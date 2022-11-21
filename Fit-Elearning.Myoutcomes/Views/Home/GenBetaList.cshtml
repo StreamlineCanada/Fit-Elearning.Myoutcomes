@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+}
+
+@using Fit_Elearning.MyOutcomes.Models
+@model List<UserModel>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GenBetaList</title>
+</head>
+<body>
+    
+    <table style="border: 1px solid black;">
+        <tr>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Password</th>
+        </tr>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.name</td><td>@user.username</td><td>@user.email</td><td>@user.password</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

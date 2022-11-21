@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="FIT-ElearnDB">
+  <DataContextMoniker Name="/FIT_ElearnDBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="a19373c6-092d-4c51-b213-2e34ed61efb3" absoluteBounds="4.875, 3, 2, 3.8862125651041666">
+      <DataClassMoniker Name="/FIT_ElearnDBDataContext/USER" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e19e5db4-be6b-4190-afe5-9b79acf8706d" absoluteBounds="4.89, 3.46, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

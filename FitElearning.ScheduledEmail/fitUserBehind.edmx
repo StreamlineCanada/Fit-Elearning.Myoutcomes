@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="fit_elearningModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="spGetUsersBehind" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MODULEID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="fit_elearningModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="fit_elearningModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="fit_elearningEntities1" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="spGetUsersBehind" ReturnType="Collection(fit_elearningModel.spGetUsersBehind_Result)">
+            <Parameter Name="MODULEID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="spGetUsersBehind_Result">
+          <Property Type="String" Name="LOGIN_USER_ID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="USER_ID" Nullable="false" />
+          <Property Type="Int32" Name="LESSON_ID" Nullable="false" />
+          <Property Type="Int32" Name="LESSON_SORT_ORDER" Nullable="true" />
+          <Property Type="DateTime" Name="USER_QUIZ_COMPLETE_DATETIME" Nullable="false" Precision="23" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="fit_elearningModelStoreContainer" CdmEntityContainer="fit_elearningEntities1" >
+          <FunctionImportMapping FunctionImportName="spGetUsersBehind" FunctionName="fit_elearningModel.Store.spGetUsersBehind">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fit_elearningModel.spGetUsersBehind_Result">
+                <ScalarProperty Name="LOGIN_USER_ID" ColumnName="LOGIN_USER_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="LESSON_ID" ColumnName="LESSON_ID" />
+                <ScalarProperty Name="LESSON_SORT_ORDER" ColumnName="LESSON_SORT_ORDER" />
+                <ScalarProperty Name="USER_QUIZ_COMPLETE_DATETIME" ColumnName="USER_QUIZ_COMPLETE_DATETIME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

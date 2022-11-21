@@ -1,0 +1,58 @@
+﻿@model Fit_Elearning.MyOutcomes.Models.LoginModel
+
+
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6 col-xs-12 col-sm-6 text-center">
+        <div align="center">
+            <div class="login-panel">
+                <h3>Login</h3><br />
+                <small style="font-size: 8pt;">This login is for users with a FIT eLearning only license.<br />
+                Users with MyOutcomes accounts should login via the main <a href="https://www.myoutcomes.com/">MyOutcomes application</a>.</small>
+
+                @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+
+                    <h6>@Html.LabelFor(m => m.UserId)</h6>
+                    @Html.TextBoxFor(m => m.UserId, new { required = true, @class = "user_form_input" }) <br />
+                    <span class="attention">@Html.ValidationMessageFor(m => m.UserId)</span>
+
+                    <h6>@Html.LabelFor(m => m.Password)</h6>
+                    @Html.PasswordFor(m => m.Password, new { required = true, @class = "user_form_input" })<br />
+                    <span class="attention">@Html.ValidationMessageFor(m => m.Password)</span>
+
+                    <div style="padding-top:20px;">
+                        <a href="javascript:document.forms[0].submit();"><img src="../../Images/btn_login.jpg" border="0" align="absmiddle" /> </a>
+                        <div><a href="Home/Forgot_PW"> <small> Forgot Password?</small></a></div>
+                    </div>
+                    <div style="padding-top:20px;">
+                        <a class="btn btn-default btn-xs" href="https://www.myoutcomes.com/contact-us" role="button" target="_blank"><small>Questions? &nbsp;&nbsp; Contact Us</small> <span class="glyphicon glyphicon-star" aria-hidden="true"></span></a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-6 col-xs-12 col-sm-6 text-center">
+        <div align="center">
+            <div class="login-panel">
+                <a class="twitter-timeline" data-height="500" data-width="300" href="//twitter.com/MyOutcomes">Tweets by MyOutcomes</a>
+                <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>

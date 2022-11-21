@@ -1,0 +1,941 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Beta|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dev|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1B35A6F1-3A2A-434B-BAE5-4C9E97A30617}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fit_Elearning.MyOutcomes</RootNamespace>
+    <AssemblyName>Fit_Elearning.MyOutcomes</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.3.4.13329\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core">
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.3.4.13329\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core.UI">
+      <HintPath>..\packages\DotNetOpenAuth.Core.UI.4.3.4.13329\lib\net40-full\DotNetOpenAuth.Core.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.InfoCard">
+      <HintPath>..\packages\DotNetOpenAuth.InfoCard.4.3.4.13329\lib\net40-full\DotNetOpenAuth.InfoCard.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.InfoCard.UI">
+      <HintPath>..\packages\DotNetOpenAuth.InfoCard.UI.4.3.4.13329\lib\net40-full\DotNetOpenAuth.InfoCard.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Common">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Common.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OAuth.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.ServiceProvider">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.ServiceProvider.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OAuth.ServiceProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth2">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth2.Core.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OAuth2.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth2.AuthorizationServer">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth2.AuthorizationServer.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OAuth2.AuthorizationServer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth2.Client">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth2.Client.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OAuth2.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth2.Client.UI">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth2.Client.UI.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OAuth2.Client.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth2.ClientAuthorization">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth2.ClientAuthorization.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OAuth2.ClientAuthorization.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth2.ResourceServer">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth2.ResourceServer.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OAuth2.ResourceServer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.Provider">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Provider.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OpenId.Provider.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.Provider.UI">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Provider.UI.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OpenId.Provider.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty.UI">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.UI.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.UI">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.UI.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OpenId.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenIdInfoCard.UI">
+      <HintPath>..\packages\DotNetOpenAuth.OpenIdInfoCard.UI.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OpenIdInfoCard.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenIdOAuth">
+      <HintPath>..\packages\DotNetOpenAuth.OpenIdOAuth.4.3.4.13329\lib\net40-full\DotNetOpenAuth.OpenIdOAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit, Version=3.1.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.3.1.0\lib\net48\MailKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.3.2.7\lib\net45\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="MimeKit, Version=3.1.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.3.1.0\lib\net48\MimeKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Entity">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Abstractions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Transactions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.7\lib\net45\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.2.7\lib\net45\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Domain\Abstract\IUserRepository.cs" />
+    <Compile Include="Domain\Concrete\EFUserRepository.cs" />
+    <Compile Include="Domain\Concrete\Enums.cs" />
+    <Compile Include="Domain\Entities\FitELearnModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FitELearnModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Helpers\EmailProcessor.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\UtilitiesHelper.cs" />
+    <Compile Include="Infrastrucure\Abstract\IMembershipProvider.cs" />
+    <Compile Include="Infrastrucure\Concrete\MembershipProvider.cs" />
+    <Compile Include="Models\Certificate.cs" />
+    <Compile Include="Models\CreateUserModel.cs" />
+    <Compile Include="Models\ErrorModel.cs" />
+    <Compile Include="Models\ForgotModel.cs" />
+    <Compile Include="Models\LessonActivity.cs" />
+    <Compile Include="Models\LessonFlow.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\Questions.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\TrainingRoom.cs" />
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\UserResponse.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Domain\Helpers\ConstantVars.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\ePlatform_style.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Images\all.gif" />
+    <Content Include="Images\animation_short.jpg" />
+    <Content Include="Images\arc.jpg" />
+    <Content Include="Images\arrow_01.gif" />
+    <Content Include="Images\arrow_02.gif" />
+    <Content Include="Images\a_icon_01_intro.gif" />
+    <Content Include="Images\a_icon_02_your_weight.gif" />
+    <Content Include="Images\a_icon_03_weight_loss.gif" />
+    <Content Include="Images\a_icon_03_weight_loss_new.jpg" />
+    <Content Include="Images\a_icon_04_preparing.gif" />
+    <Content Include="Images\a_icon_05_pleasure.gif" />
+    <Content Include="Images\a_icon_06_hyper.gif" />
+    <Content Include="Images\a_icon_06_hyper2.gif" />
+    <Content Include="Images\a_icon_08_your_brain.gif" />
+    <Content Include="Images\a_icon_09_inner.gif" />
+    <Content Include="Images\a_icon_10_engagement.gif" />
+    <Content Include="Images\a_icon_11_physical.gif" />
+    <Content Include="Images\a_icon_12_eating.gif" />
+    <Content Include="Images\a_icon_13_summary.gif" />
+    <Content Include="Images\a_icon_14_whats_next.gif" />
+    <Content Include="Images\ban.jpg" />
+    <Content Include="Images\ban2c.png" />
+    <Content Include="Images\banner.jpg" />
+    <Content Include="Images\banner12.jpg" />
+    <Content Include="Images\bios\blank_bio.jpg" />
+    <Content Include="Images\bios\buccino.png" />
+    <Content Include="Images\bios\cindy.jpg" />
+    <Content Include="Images\bios\cynthia.jpg" />
+    <Content Include="Images\bios\enda.jpg" />
+    <Content Include="Images\bios\low.png" />
+    <Content Include="Images\bios\miller.jpg" />
+    <Content Include="Images\bios\portait_buccino.jpg" />
+    <Content Include="Images\bios\portait_cindy.jpg" />
+    <Content Include="Images\bios\portait_cynthia.jpg" />
+    <Content Include="Images\bios\portait_enda.jpg" />
+    <Content Include="Images\bios\portait_low.jpg" />
+    <Content Include="Images\bios\portait_schuckard.jpg" />
+    <Content Include="Images\bios\portait_scott.jpg" />
+    <Content Include="Images\bios\portait_seidel.jpg" />
+    <Content Include="Images\bios\portait_steindl.jpg" />
+    <Content Include="Images\bios\portait_susanne.jpg" />
+    <Content Include="Images\bios\schuckard.png" />
+    <Content Include="Images\bios\seidel.png" />
+    <Content Include="Images\bios\steindl.png" />
+    <Content Include="Images\bios\susanne.jpg" />
+    <Content Include="Images\body_bottom.gif" />
+    <Content Include="Images\body_left.gif" />
+    <Content Include="Images\body_right.gif" />
+    <Content Include="Images\body_top.gif" />
+    <Content Include="Images\breathing01.gif" />
+    <Content Include="Images\breathing02.gif" />
+    <Content Include="Images\btn_01.jpg" />
+    <Content Include="Images\btn_02.jpg" />
+    <Content Include="Images\btn_back.jpg" />
+    <Content Include="Images\btn_delete.gif" />
+    <Content Include="Images\btn_edit.jpg" />
+    <Content Include="Images\btn_login.jpg" />
+    <Content Include="Images\btn_next.jpg" />
+    <Content Include="Images\btn_save.gif" />
+    <Content Include="Images\btn_view.gif" />
+    <Content Include="Images\btn_view.jpg" />
+    <Content Include="Images\bullet_training_room.gif" />
+    <Content Include="Images\calorie_burning_calculator_.jpg" />
+    <Content Include="Images\CERTIFICATE.jpg" />
+    <Content Include="Images\cert_full.jpg" />
+    <Content Include="Images\cert_full2.jpg" />
+    <Content Include="Images\cert_full_deliberate_practice.png" />
+    <Content Include="Images\cert_large.jpg" />
+    <Content Include="Images\check.gif" />
+    <Content Include="Images\coming-soon.png" />
+    <Content Include="Images\Creator.jpg" />
+    <Content Include="Images\cynthia_maeschalck.jpg" />
+    <Content Include="Images\dash.jpg" />
+    <Content Include="Images\dash2img.jpg" />
+    <Content Include="Images\dashboard.jpg" />
+    <Content Include="Images\dashboard\arrow_square_green.jpg" />
+    <Content Include="Images\dashboard\dashboardhome.gif" />
+    <Content Include="Images\dashboard\dash_bckgrnd.jpg" />
+    <Content Include="Images\dashboard\film_icon.jpg" />
+    <Content Include="Images\dashboard\film_icon2.gif" />
+    <Content Include="Images\dashboard\film_icon2.jpg" />
+    <Content Include="Images\dashboard\icon_awareness_profile.gif" />
+    <Content Include="Images\dashboard\icon_calorie_burning_calc.gif" />
+    <Content Include="Images\dashboard\icon_coach_support.gif" />
+    <Content Include="Images\dashboard\icon_journaling.gif" />
+    <Content Include="Images\dashboard\jacqui_photo.jpg" />
+    <Content Include="Images\dashboard\jacqui_photo_edit1.jpg" />
+    <Content Include="Images\dashboard\jac_photo.jpg" />
+    <Content Include="Images\dashboard\joy_photo.jpg" />
+    <Content Include="Images\dashboard\line_dotted.jpg" />
+    <Content Include="Images\dashboard\line_dotted_vertical.jpg" />
+    <Content Include="Images\dashboard\rpt.jpg" />
+    <Content Include="Images\dashboard\wisefaq.jpg" />
+    <Content Include="Images\dashboard\wise_dashboardhome_icon.gif" />
+    <Content Include="Images\dash_icons\icon_coach_support.jpg" />
+    <Content Include="Images\dash_icons\icon_journal.jpg" />
+    <Content Include="Images\dash_icons\icon_my_group_ck_in_files.jpg" />
+    <Content Include="Images\dash_icons\icon_my_group_ck_in_info.jpg" />
+    <Content Include="Images\dash_icons\icon_my_group_engagement.jpg" />
+    <Content Include="Images\dash_icons\icon_tech_support.jpg" />
+    <Content Include="Images\dash_placeholder_image.jpg" />
+    <Content Include="Images\email_emerg_foods_video.jpg" />
+    <Content Include="Images\eplatform_heart_logo.jpg" />
+    <Content Include="Images\feather.jpg" />
+    <Content Include="Images\FEEDBACK-CERTIFICATE.jpg" />
+    <Content Include="Images\FIT-logo.png" />
+    <Content Include="Images\graph1.gif" />
+    <Content Include="Images\graph2.gif" />
+    <Content Include="Images\graph_gradient.jpg" />
+    <Content Include="Images\graph_setbacks.jpg" />
+    <Content Include="Images\graph_setback_web.jpg" />
+    <Content Include="Images\graph_set_back.jpg" />
+    <Content Include="Images\graph_set_back2.jpg" />
+    <Content Include="Images\green.jpg" />
+    <Content Include="Images\greengrey.jpg" />
+    <Content Include="Images\grey.gif" />
+    <Content Include="Images\hammerguy2.png" />
+    <Content Include="Images\icon01.jpg" />
+    <Content Include="Images\icons\0-grey.png" />
+    <Content Include="Images\icons\1-color.jpg" />
+    <Content Include="Images\icons\1-grey.png" />
+    <Content Include="Images\icons\10-color.jpg" />
+    <Content Include="Images\icons\10-grey.png" />
+    <Content Include="Images\icons\11-color.jpg" />
+    <Content Include="Images\icons\11-grey.png" />
+    <Content Include="Images\icons\12-color.jpg" />
+    <Content Include="Images\icons\14-grey.png" />
+    <Content Include="Images\icons\13-grey.png" />
+    <Content Include="Images\icons\12-grey.png" />
+    <Content Include="Images\icons\14-color.jpg" />
+    <Content Include="Images\icons\13-color.jpg" />
+    <Content Include="Images\icons\2-color.jpg" />
+    <Content Include="Images\icons\2-grey.png" />
+    <Content Include="Images\icons\3-color.jpg" />
+    <Content Include="Images\icons\3-grey.png" />
+    <Content Include="Images\icons\4-color.jpg" />
+    <Content Include="Images\icons\4-grey.png" />
+    <Content Include="Images\icons\5-color.jpg" />
+    <Content Include="Images\icons\5-grey.png" />
+    <Content Include="Images\icons\6-color.jpg" />
+    <Content Include="Images\icons\6-grey.png" />
+    <Content Include="Images\icons\7-color.jpg" />
+    <Content Include="Images\icons\7-grey.png" />
+    <Content Include="Images\icons\8-color.jpg" />
+    <Content Include="Images\icons\8-grey.png" />
+    <Content Include="Images\icons\9-color.jpg" />
+    <Content Include="Images\icons\9-grey.png" />
+    <Content Include="Images\icons\correct_icon.png" />
+    <Content Include="Images\icons\incorrect_icon.png" />
+    <Content Include="Images\icons\intro-color.jpg" />
+    <Content Include="Images\icons\intro-grey.png" />
+    <Content Include="Images\icons\training_room_icon_01.jpg" />
+    <Content Include="Images\icons\training_room_icon_02.jpg" />
+    <Content Include="Images\icons\training_room_icon_03.jpg" />
+    <Content Include="Images\icons\training_room_icon_04.jpg" />
+    <Content Include="Images\icons\training_room_icon_05.jpg" />
+    <Content Include="Images\icons\training_room_icon_06.jpg" />
+    <Content Include="Images\icons\training_room_icon_09.jpg" />
+    <Content Include="Images\icons\training_room_icon_11.jpg" />
+    <Content Include="Images\icons\training_room_icon_13.jpg" />
+    <Content Include="Images\icons\training_room_icon_17.jpg" />
+    <Content Include="Images\icons\training_room_icon_19.jpg" />
+    <Content Include="Images\icons\training_room_icon_20.jpg" />
+    <Content Include="Images\icons\training_room_icon_21.jpg" />
+    <Content Include="Images\icons\training_room_icon_22.jpg" />
+    <Content Include="Images\icons\training_room_icon_23.jpg" />
+    <Content Include="Images\icons\training_room_icon_24.jpg" />
+    <Content Include="Images\icons\training_room_icon_25.jpg" />
+    <Content Include="Images\icons\training_room_icon_26.jpg" />
+    <Content Include="Images\icons\training_room_icon_27.jpg" />
+    <Content Include="Images\icons\training_room_icon_28.jpg" />
+    <Content Include="Images\icons\training_room_icon_29.jpg" />
+    <Content Include="Images\icons\untitled folder\training_room_icon_07.jpg" />
+    <Content Include="Images\icons\untitled folder\training_room_icon_08.jpg" />
+    <Content Include="Images\icons\untitled folder\training_room_icon_10.jpg" />
+    <Content Include="Images\icons\untitled folder\training_room_icon_12.jpg" />
+    <Content Include="Images\icons\untitled folder\training_room_icon_14.jpg" />
+    <Content Include="Images\icons\untitled folder\training_room_icon_15.jpg" />
+    <Content Include="Images\icons\untitled folder\training_room_icon_16.jpg" />
+    <Content Include="Images\icons\untitled folder\training_room_icon_18.jpg" />
+    <Content Include="Images\icon_animated_short.jpg" />
+    <Content Include="Images\icon_awareness_profile.gif" />
+    <Content Include="Images\icon_awareness_profile2.gif" />
+    <Content Include="Images\icon_coach_support.gif" />
+    <Content Include="Images\icon_ef.jpg" />
+    <Content Include="Images\icon_emerg_foods.gif" />
+    <Content Include="Images\icon_my_group_ck_in_files.jpg" />
+    <Content Include="Images\icon_my_group_ck_in_info.jpg" />
+    <Content Include="Images\icon_my_group_engagement.jpg" />
+    <Content Include="Images\icon_setbacks.jpg" />
+    <Content Include="Images\icon_setbacks_crisis.jpg" />
+    <Content Include="Images\icon_sm_01.gif" />
+    <Content Include="Images\icon_sm_02.gif" />
+    <Content Include="Images\icon_sm_04.gif" />
+    <Content Include="Images\icon_sm_05.gif" />
+    <Content Include="Images\icon_sm_06.gif" />
+    <Content Include="Images\icon_sm_07.gif" />
+    <Content Include="Images\icon_sm_08.gif" />
+    <Content Include="Images\icon_sm_09.gif" />
+    <Content Include="Images\icon_sm_10.gif" />
+    <Content Include="Images\icon_sm_11.gif" />
+    <Content Include="Images\icon_sm_12.gif" />
+    <Content Include="Images\icon_tech_support.gif" />
+    <Content Include="Images\icon_training_room_ACE1.gif" />
+    <Content Include="Images\icon_wise_movie01.gif" />
+    <Content Include="Images\icon_wise_movie01.jpg" />
+    <Content Include="Images\icon_wise_movie02.gif" />
+    <Content Include="Images\icon_wise_movie03.gif" />
+    <Content Include="Images\icon_wise_movie04.gif" />
+    <Content Include="Images\icon_wise_movie05.gif" />
+    <Content Include="Images\icon_wise_movie06.gif" />
+    <Content Include="Images\icon_wise_movie07.gif" />
+    <Content Include="Images\icon_wise_movie08.gif" />
+    <Content Include="Images\icon_wise_movie09.gif" />
+    <Content Include="Images\icon_wise_movie10.gif" />
+    <Content Include="Images\icon_wise_movie11.gif" />
+    <Content Include="Images\icon_wise_movie12.gif" />
+    <Content Include="Images\icon_wise_movie13.gif" />
+    <Content Include="Images\icon_wise_movie14.gif" />
+    <Content Include="Images\introduction.jpg" />
+    <Content Include="Images\introduction_banner.jpg" />
+    <Content Include="Images\jac_photo.jpg" />
+    <Content Include="Images\Leader.jpg" />
+    <Content Include="Images\left_corner.gif" />
+    <Content Include="Images\left_corner2.gif" />
+    <Content Include="Images\left_repeat.gif" />
+    <Content Include="Images\Lesson13_BE5_Scatterplot.png" />
+    <Content Include="Images\lesson13_bridege_ex5.jpg" />
+    <Content Include="Images\lesson13_bridege_ex5_2.jpg" />
+    <Content Include="Images\lesson13_bridege_ex5_3.jpg" />
+    <Content Include="Images\lesson8_graph1.png" />
+    <Content Include="Images\lesson8_graph2.png" />
+    <Content Include="Images\lesson8_graph3.png" />
+    <Content Include="Images\lesson_8_part2_icon.gif" />
+    <Content Include="Images\member_vic.jpg" />
+    <Content Include="Images\menu\scripts\javascripts\jquery.coda-slider-2.0.js" />
+    <Content Include="Images\menu\scripts\javascripts\jquery.easing.1.3.js" />
+    <Content Include="Images\menu\scripts\scripts.js" />
+    <Content Include="Images\menu_main_item_hover.jpg" />
+    <Content Include="Images\MyOutcome_Icon_Alert_LRG.jpg" />
+    <Content Include="Images\MyOutcome_Icon_Caution_LRG.jpg" />
+    <Content Include="Images\MyOutcome_Icon_Proceed_LRG.jpg" />
+    <Content Include="Images\my_support_friends_family.jpg" />
+    <Content Include="Images\no_smoking.gif" />
+    <Content Include="Images\Planner.jpg" />
+    <Content Include="Images\Reactor.jpg" />
+    <Content Include="Images\red.jpg" />
+    <Content Include="Images\redgrey.jpg" />
+    <Content Include="Images\roslyn.gif" />
+    <Content Include="Images\scott_miller.jpg" />
+    <Content Include="Images\setback1.gif" />
+    <Content Include="Images\setback2.gif" />
+    <Content Include="Images\smart_eating_almonds.jpg" />
+    <Content Include="Images\smart_eating_almonds2.jpg" />
+    <Content Include="Images\smart_eating_apples.jpg" />
+    <Content Include="Images\smart_eating_apricots.jpg" />
+    <Content Include="Images\smart_eating_apricots.png" />
+    <Content Include="Images\smart_eating_artichoke.jpg" />
+    <Content Include="Images\smart_eating_ceareal.jpg" />
+    <Content Include="Images\smart_eating_cheese.jpg" />
+    <Content Include="Images\smart_eating_cracker.jpg" />
+    <Content Include="Images\smart_eating_crisps.jpg" />
+    <Content Include="Images\smart_eating_cucumber.jpg" />
+    <Content Include="Images\smart_eating_edamame.jpg" />
+    <Content Include="Images\smart_eating_egg.jpg" />
+    <Content Include="Images\smart_eating_egg_muffin.jpg" />
+    <Content Include="Images\smart_eating_endive.jpg" />
+    <Content Include="Images\smart_eating_energy_bar.jpg" />
+    <Content Include="Images\smart_eating_humus.jpg" />
+    <Content Include="Images\smart_eating_logo.jpg" />
+    <Content Include="Images\smart_eating_low_fat_cheese.jpg" />
+    <Content Include="Images\smart_eating_oatmeal.jpg" />
+    <Content Include="Images\smart_eating_popcorn.jpg" />
+    <Content Include="Images\smart_eating_toast.jpg" />
+    <Content Include="Images\smart_eating_tomatoe_soup.jpg" />
+    <Content Include="Images\smart_eating_turkey.jpg" />
+    <Content Include="Images\smart_eating_vegi.jpg" />
+    <Content Include="Images\smart_eating_waffle.jpg" />
+    <Content Include="Images\square_bullet_arrow.gif" />
+    <Content Include="Images\stroke.gif" />
+    <Content Include="Images\stroke2.gif" />
+    <Content Include="Images\stroke3.gif" />
+    <Content Include="Images\stroke3_horizontal.gif" />
+    <Content Include="Images\support_people.jpg" />
+    <Content Include="Images\tab.gif" />
+    <Content Include="Images\tab.jpg" />
+    <Content Include="Images\tab_menu.gif" />
+    <Content Include="Images\tab_menu.jpg" />
+    <Content Include="Images\technical_coach_icon.jpg" />
+    <Content Include="Images\track_and_measure.jpg" />
+    <Content Include="Images\training_room\10b.jpg" />
+    <Content Include="Images\training_room\11b.jpg" />
+    <Content Include="Images\training_room\12b.jpg" />
+    <Content Include="Images\training_room\1b.jpg" />
+    <Content Include="Images\training_room\2b.jpg" />
+    <Content Include="Images\training_room\3b.jpg" />
+    <Content Include="Images\training_room\4b.jpg" />
+    <Content Include="Images\training_room\5b.jpg" />
+    <Content Include="Images\training_room\6b.jpg" />
+    <Content Include="Images\training_room\7b.jpg" />
+    <Content Include="Images\training_room\8b.jpg" />
+    <Content Include="Images\training_room\9b.jpg" />
+    <Content Include="Images\training_room\b1.gif" />
+    <Content Include="Images\training_room\b1.jpg" />
+    <Content Include="Images\training_room\b2.gif" />
+    <Content Include="Images\training_room\b2.jpg" />
+    <Content Include="Images\training_room\lesson_10_banner.jpg" />
+    <Content Include="Images\training_room\lesson_11_banner.jpg" />
+    <Content Include="Images\training_room\lesson_12_banner.jpg" />
+    <Content Include="Images\training_room\lesson_1_banner.jpg" />
+    <Content Include="Images\training_room\lesson_2_banner.jpg" />
+    <Content Include="Images\training_room\lesson_3_banner.jpg" />
+    <Content Include="Images\training_room\lesson_4_banner.jpg" />
+    <Content Include="Images\training_room\lesson_5_banner.jpg" />
+    <Content Include="Images\training_room\lesson_6_banner.jpg" />
+    <Content Include="Images\training_room\lesson_7_banner.jpg" />
+    <Content Include="Images\training_room\lesson_8_banner.jpg" />
+    <Content Include="Images\training_room\lesson_9_banner.jpg" />
+    <Content Include="Images\triangle.jpg" />
+    <Content Include="Images\triangle_line.jpg" />
+    <Content Include="Images\video_apple_almond.jpg" />
+    <Content Include="Images\video_trail_mix.jpg" />
+    <Content Include="Images\video_veggies_hummus.jpg" />
+    <Content Include="Images\whole_foods_chart.jpg" />
+    <Content Include="Images\wise_animation_short1.jpg" />
+    <Content Include="Images\wise_animation_short1.png" />
+    <Content Include="Images\wise_emergency_foods.jpg" />
+    <Content Include="Images\wise_emergency_foods.png" />
+    <Content Include="Images\wise_emerg_foods_greekyogurt.jpg" />
+    <Content Include="Images\wise_emerg_foods_icetea.jpg" />
+    <Content Include="Images\wise_emerg_foods_proteinbar.jpg" />
+    <Content Include="Images\wise_emerg_foods_smoothie.jpg" />
+    <Content Include="Images\wise_emerg_foods_video_icon2.jpg" />
+    <Content Include="Images\wise_home.gif" />
+    <Content Include="Images\wise_home_fade.jpg" />
+    <Content Include="Images\wise_home_fade2.jpg" />
+    <Content Include="Images\wise_logo_measure_success.gif" />
+    <Content Include="Images\wise_meal_planner.gif" />
+    <Content Include="Images\wise_vitabot_logo2.jpg" />
+    <Content Include="Images\yellow.jpg" />
+    <Content Include="Images\yellowgrey.jpg" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\css\bootstrap.min.css" />
+    <Content Include="Scripts\css\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Scripts\css\images\ui-icons_222222_256x240.png" />
+    <Content Include="Scripts\css\jquery-ui.css" />
+    <Content Include="Scripts\FitElearn\FitElearn.Questions.js" />
+    <Content Include="Scripts\FitElearn\FitElearn.Menu.js" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\FitElearn\FitElearn.Core.js" />
+    <Content Include="Content\docs\NREPP.pdf" />
+    <None Include="Scripts\jquery-3.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.printElement.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Home\Contact.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Home\ePlatform.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="googleb260e56916e65dc0.html" />
+    <Content Include="Views\Home\ICCE_Support.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Home\Xrds.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Domain\Filters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Copy of _Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\docs\GSRS.pdf" />
+    <None Include="Content\docs\Manual_1.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\docs\Manual_2.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <EntityDeploy Include="Domain\Entities\FitELearnModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FitELearnModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Content\docs\SDA and Progress Note.pdf" />
+    <None Include="Images\a_icon_04_preparing" />
+    <None Include="Images\btn_01.psd" />
+    <None Include="Images\dashboard\new_web_home4.psd" />
+    <None Include="Images\icon_wise_movie01.psd" />
+    <None Include="Images\menu\ePlatform_menu.php" />
+    <None Include="Images\my_support_friends_family.psd" />
+    <Content Include="Images\pdf\BE6.pdf" />
+    <None Include="Images\pdf\Manual_1.pdf" />
+    <None Include="Images\pdf\Manual_2.pdf" />
+    <None Include="Images\smart_eating_humus.pdf" />
+    <None Include="Images\training_room\master_banner.psd" />
+    <None Include="Images\training_room\wise_tr_icon.psd" />
+    <None Include="Images\wise_emerg_foods.psd" />
+    <Content Include="Images\ePlatform_02.cshtml" />
+    <Content Include="Views\Shared\_Progress.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <None Include="Properties\PublishProfiles\Beta.pubxml" />
+    <None Include="Properties\PublishProfiles\Fit-Elearning Live.pubxml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Intro_Activities.cshtml" />
+    <Content Include="Views\Home\Intro.cshtml" />
+    <Content Include="Views\Home\Forgot_PW.cshtml" />
+    <Content Include="Views\Home\Contact_Login.cshtml" />
+    <Content Include="Views\Home\LessonFlow.cshtml" />
+    <Content Include="Web.Beta.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Home\LessonFlowComplete.cshtml" />
+    <Content Include="Views\Home\Training_Room.cshtml" />
+    <Content Include="Views\Home\LessonActivity.cshtml" />
+    <Content Include="Views\Home\Progress_Report.cshtml" />
+    <Content Include="Views\Home\AwarenessProfile.cshtml" />
+    <Content Include="Views\Home\RegisterExternal.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Congratulations.cshtml" />
+    <Content Include="Views\Home\Request_Certificate.cshtml" />
+    <Content Include="Web.Dev.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Home\ProfileEdit.cshtml" />
+    <None Include="Properties\PublishProfiles\Live.pubxml" />
+    <Content Include="Views\Home\ExtError.cshtml" />
+    <Content Include="Views\Shared\_Print.cshtml" />
+    <Content Include="Views\Home\About_FIT_Tutorial.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Home\GenBetaList.cshtml" />
+    <Content Include="Views\Home\ManageUsers.cshtml" />
+    <Content Include="Views\Home\CreateUserView.cshtml" />
+    <Content Include="Views\Home\UpdateUserView.cshtml" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53707</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:53707/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

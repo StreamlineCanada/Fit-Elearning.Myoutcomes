@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Login Error";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+@using Fit_Elearning.MyOutcomes.Models
+@model Fit_Elearning.MyOutcomes.Models.ErrorModel
+
+<div align="center">
+
+    <div style="width:990px;text-align:left;margin-left:40px;">
+        <div style="width:240px;clear:both;float:left;">
+            <img src="../../Images/icons/training_room_icon_29.jpg" alt="" border="0" />
+        </div>
+
+        <div style="width:565px;clear:none;float:left;">
+
+            <h1>Login Error</h1>
+            <hr />
+            <p>@Html.Raw(Model.errorMessage)</p>
+
+            <p>&nbsp;</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="fit_elearning" Class="FIT_ElearnDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=ACER-CPSTOCKER\SQLEXPRESS;Initial Catalog=somedb;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="fit_elearningConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.[USER]" Member="USERs">
+    <Type Name="USER">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LOGIN_USER_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NAME" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PASSWORD" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="EMAIL" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="USER_STATUS_CODE" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="CREATE_DATETIME" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CREATE_USER_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CREATE_IP" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="UPDATE_DATETIME" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UPDATE_USER_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UPDATE_IP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MODULE1_BASIC" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="MODULE1_ADVANCED" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="COMPANY_NAME" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="FIT_NUMBER" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.SpGetMostRecentDetails" Method="SpGetMostRecentDetails">
+    <Parameter Name="USERNAME" Parameter="uSERNAME" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="StatusID" Parameter="statusID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SpGetMostRecentDetailsResult">
+      <Column Name="USER_QUIZ_COMPLETE_DATETIME" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LESSON_SORT_ORDER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="USER_QUIZ_SCORE" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

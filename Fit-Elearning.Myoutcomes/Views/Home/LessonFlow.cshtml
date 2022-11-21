@@ -1,0 +1,203 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Fit_Elearning.MyOutcomes.Domain.Concrete
+@using Fit_Elearning.MyOutcomes.Models
+@model Fit_Elearning.MyOutcomes.Models.LessonFlow
+
+
+
+
+<div class="row">
+    <div class="col-lg-2 col-md-2 col-xs-4 col-sm-4">
+        <img src="../../Images/icons/@Model.lesson.lessonImageFile" class="lesson_icon">
+    </div>
+
+    <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8 page-header">
+        <h1>Lesson @Model.lesson.lessonSortOrderNumber</h1>
+        <h2>@Model.lesson.lessonName</h2>
+        <hr />
+    </div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-xs-12 col-sm-12">
+        @using (Html.BeginForm("", "", FormMethod.Post, new { id = "questionForm" }))
+        {
+            <input type="hidden" id="userId" value="@Model.userId" />
+            <input type="hidden" id="moduleId" value="@Model.moduleId" />
+            <input type="hidden" id="lessonId" value="@Model.lesson.lessonId" />
+            <input type="hidden" id="sortId" value="@Model.lessonFlowSortOrderNumber" />
+
+            if (Model.lessonFlowTypeId != (int)LessonFlowContentTypes.Video)
+            {
+                <h2>@Html.Raw(Model.lessonFlowText)</h2>
+            }
+
+            if (Model.lessonFlowTypeId == (int)LessonFlowContentTypes.Video)
+            {
+                <div class="responsive-video"><iframe id="ytplayer" src="//www.youtube.com/embed/@Model.youTubeVideoID?showinfo=0&autoplay=1&fs=1&rel=0&autohide=2&color=white&theme=light" frameborder="0" style="padding-top:15px;"></iframe></div>
+
+                <br /><p>@Html.Raw(Model.lessonFlowText)</p><br />
+
+            }
+
+            if (Model.lessonFlowTypeId == (int)LessonFlowContentTypes.Content)
+            {
+                @Html.Raw(Model.lessonFlowContent)
+            }
+            else
+            {
+
+                if (Model.lessonFlowTypeId == (int)LessonFlowContentTypes.QuestionGroup)
+                {
+                    int qCount = 0;
+
+                    <p>@Html.Raw(Model.questionGroup.questionGroupTitle)</p>
+                    <ol>
+                        @foreach (Question question in Model.questionGroup.questionList)
+                        {
+                            qCount++;
+                            string extraClass = qCount == Model.questionGroup.questionList.Count ? "last" : "";
+
+                            <li>
+                                @if (question.questionType == (int)QuestionTypes.CheckBox)
+                                {
+                                    <input type="checkbox" data-lessonid="@Model.lesson.lessonId" class="checkbox_question" data-questiontypeid="@question.questionType" data-questionid="@question.questionId" id="question_@question.questionId" value="1" @question.questionResponse /> <span>@question.questionText</span>
+                                }
+                                else
+                                {
+                                    <span>@Html.Raw(question.questionText)</span>
+                                }
+                                <span class="msg_text" id="saveStatus_@question.questionId"></span>
+
+                                @if (question.questionType == (int)QuestionTypes.TextArea)
+                                {
+
+                                    <br /><div style="padding-left:250px;"><span id="textarea_cc_@question.questionId" class="character_text"></span></div><textarea class="text_question @extraClass" data-lessonid="@Model.lesson.lessonId" data-questiontypeid="@question.questionType" data-questionid="@question.questionId" id="question_@question.questionId">@question.questionResponse</textarea>
+
+                                }
+
+                                @if (question.questionType == (int)QuestionTypes.TextBox)
+                                {
+                                    <br /><input class="text_question @extraClass" type="text" width="60" data-extra="ORS" data-lessonid="@Model.lesson.lessonId" data-questiontypeid="@question.questionType" data-questionid="@question.questionId" id="question_@question.questionId" value="@question.questionResponse" />
+                                }
+
+                                @if (question.questionType == (int)QuestionTypes.Radio)
+                                {
+                                    string disabledAttr = question.answeredCorrectly ? "disabled='disabled'" : "";
+                                    int score = question.answeredCorrectly ? 1 : 0;
+
+                                    <input type="hidden" id="score_@question.questionId" value="@score" class="scores" />
+                                    <input type="hidden" id="answered_locked_@question.questionId" value="@score" />
+                                    <ol style="list-style-type:lower-alpha;">
+
+                                        @foreach (QuestionOption questionOption in question.questionOptions)
+                                        {
+                                            <li>
+                                                <input type="radio" data-lessonid="@Model.lesson.lessonId" data-questiontypeid="@question.questionType" name="question_@question.questionId" class="radio_question" data-questionid="@question.questionId" value="@questionOption.questionOptionId" @questionOption.questionOptionChecked @disabledAttr /> @questionOption.questionOptionText <span class="answerStatus_@question.questionId" id="answerStatus_@questionOption.questionOptionId">@Html.Raw(questionOption.questionOptionImage)</span>
+                                            </li>
+                                        }
+
+                                    </ol>
+                                }
+
+                                @if (question.questionType == (int)QuestionTypes.RadioNonQiuz)
+                                {
+
+
+                                    <ol style="list-style-type:lower-alpha;">
+
+                                        @foreach (QuestionOption questionOption in question.questionOptions)
+                                        {
+                                            <li>
+                                                <input type="radio" data-lessonid="@Model.lesson.lessonId" data-questiontypeid="@question.questionType" name="question_@question.questionId" class="radio_non_quiz_question" data-questionid="@question.questionId" value="@questionOption.questionOptionId" @questionOption.questionOptionChecked /> @questionOption.questionOptionText <span class="answerStatus_@question.questionId" id="answerStatus_@questionOption.questionOptionId"></span>
+                                            </li>
+                                        }
+
+                                    </ol>
+                                }
+
+                                @if (question.questionType == (int)QuestionTypes.Select)
+                                {
+                                    <br /><select data-lessonid="@Model.lesson.lessonId" data-questiontypeid="@question.questionType" name="question_@question.questionId" data-questionid="@question.questionId" class="select_question">
+                                        <option></option>
+                                        @foreach (QuestionOption questionOption in question.questionOptions)
+                                        {
+
+                                            <option value="@questionOption.questionOptionId" @questionOption.questionOptionSelected>@questionOption.questionOptionText</option>
+
+                                        }
+                                    </select>
+                                }
+
+                                @if (question.questionType == (int)QuestionTypes.Slider)
+                                {
+                                    <div data-lessonid="@Model.lesson.lessonId" id="question_@question.questionId" data-questionid="@question.questionId" data-questiontypeid="@question.questionType" class="slider_question"></div>
+
+                                    <script>
+                                        $(function () {
+                                            $("#question_@question.questionId").slider();
+                                            $("#question_@question.questionId").slider({ max: 10, step: 0.1, value: @{ if (question.questionResponse != null && question.questionResponse != "") { @question.questionResponse} else { @Html.Raw("0") } } });
+                                            $("#question_@question.questionId").on("slidechange", function (event, ui) { FitElearn.UserData.saveUserResponse(jQuery(this)); });
+                                        });
+                                    </script>
+
+
+                                }
+
+                                @if (question.questionType == (int)QuestionTypes.Empty)
+                                {
+                                    <input type="hidden" data-lessonid="@Model.lesson.lessonId" id="question_@question.questionId" data-questionid="@question.questionId" data-questiontypeid="@question.questionType" value="0" />
+                                }
+
+                            </li>
+                        }
+                    </ol>
+
+                    <p class="msg_text" id="saveStatus"></p>
+                }
+            }
+
+            if (Model.lessonFlowTypeId == (int)LessonFlowContentTypes.ConfirmLessonComplete)
+            {
+                if (Model.lesson.lessonSortOrderNumber == 13 || Model.lesson.lessonSortOrderNumber == 14)
+                {
+                    <h2>Confirm you have completed your lesson @Model.lesson.lessonSortOrderNumber recommended readings and are ready for the Lesson Quiz*</h2>
+                }
+                else
+                {
+                <h2>Confirm you have completed your lesson @Model.lesson.lessonSortOrderNumber activities and are ready for the Lesson Quiz*</h2>
+                }
+                <p class="msg_text" id="saveStatus"></p>
+                <p style="padding-bottom:10px;"><input id="confirmLessonComplete" type="checkbox" value="1" checked="@Model.lessonCompleteCheck" disabled="@Model.lessonCompleteDisabled" /> I have completed my lesson activities.</p>
+                <p>*Please note box must be checked to access lesson quiz. </p>
+                <p>&nbsp;</p>
+                if (Model.lesson.lessonSortOrderNumber == 13 || Model.lesson.lessonSortOrderNumber == 14)
+                {
+                    <p id="l2"><a href="LessonActivity?moduleId=@Model.moduleId&lessonId=@Model.lesson.lessonId">Click here to review your recommended reading.</a></p>
+                }
+                else
+                {
+                    <p id="l2"><a href="LessonActivity?moduleId=@Model.moduleId&lessonId=@Model.lesson.lessonId">Click here to review your lesson activities.</a></p>
+
+                }
+                <p>&nbsp;</p>
+            }
+
+            if (Model.lessonFlowTypeId != (int)LessonFlowContentTypes.Content && Model.lessonFlowContent != null && Model.lessonFlowContent != "")
+            {
+                <p>@Html.Raw(Model.lessonFlowContent)</p>
+            }
+
+            
+                <div class="lessonNav">
+                    <div style="@Model.lessonBackBtnStyle" id="backBtn"><a href="@Model.lessonBackURL"><img alt="Back" title="Back" src="../../Images/btn_back.jpg" border="0" /></a></div>
+                
+            
+                    <input type="hidden" value="@Model.lessonNextPageUrl" id="nextPageUrl" />
+                    <div style="@Model.lessonNextBtnStyle" id="nextBtn" class="rightBtn"><a href="@Model.lessonNextURL"><img alt="Next" title="Next" src="../../Images/btn_next.jpg" border="0" /></a></div>
+                </div>
+            
+        }
+        <p><br /></p>
+    </div>
+</div>
+

@@ -1,0 +1,123 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Fit_Elearning.MyOutcomes.Domain.Concrete
+@using Fit_Elearning.MyOutcomes.Models
+@model Fit_Elearning.MyOutcomes.Models.TrainingRoom
+
+
+<div id="awareness_profile" class="lesson_list">
+<h1>Awareness Profile</h1>
+<h5>A place to review and edit your developing awareness of the FIT Path Excellence.</h5><hr />
+
+
+@using (Html.BeginForm("", "", FormMethod.Post, new { id = "trainingForm" }))
+{
+
+    <input type="hidden" id="moduleId" value="@Model.moduleId" />
+    <input type="hidden" id="userId" value="@Model.userId" />
+    
+    foreach (Lesson lesson in Model.lessons)
+    {
+        if (lesson.lessonSortOrderNumber == 0)
+        {
+            continue;
+        }
+
+        var lessonTitle = "Lesson " + lesson.lessonSortOrderNumber.ToString();
+         
+        
+        <!-- Start Lesson @lesson.lessonSortOrderNumber -->
+    <div class="row">
+
+        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">&nbsp;<br /></div>
+        <div class="col-lg-1 col-md-2 col-xs-2 col-sm-2">
+            <div id="lessonid_@lesson.lessonSortOrderNumber"><img src="../../Images/icons/@lesson.lessonImageFile" class="apicon" /></div>
+        </div>
+        <div class="col-lg-10 col-md-10 col-xs-10 col-sm-10">
+            <br />
+                <div id="week_intro"><span class="week_intro_heading">@lessonTitle</span></div>
+            </div>
+
+        <div class="col-lg-11 col-lg-ofset-1 col-md-11 col-md-offset-1 col-xs-12 col-sm-11 col-sm-offset-1">
+            
+                <span id="l2"><a href="Training_Room#lessonid_@lesson.lessonId">@lesson.lessonName</a></span>
+
+                <!-- start lesson response review -->
+                
+                <h4 style="padding-top:10px;">Results from @lessonTitle</h4>
+
+                <ol>
+                    @foreach (Question question in lesson.questionGroup.questionList)
+                    {
+                        <li>
+                            <span>@Html.Raw(question.questionText)</span> <span class="msg_text" id="saveStatus_@question.questionId"></span><br />
+
+                            @if (question.questionType == (int)QuestionTypes.TextArea)
+                            {
+                                <textarea class="text_question" data-lessonid="@lesson.lessonId" data-questiontypeid="@question.questionType" data-questionid="@question.questionId" id="question_@question.questionId">@question.questionResponse</textarea>
+                            }
+
+                            @if (question.questionType == (int)QuestionTypes.RadioNonQiuz)
+                            {
+                                <p style="padding-left:15px;"><b>Your answer:</b> <i>@question.questionResponse</i> </p>
+                            }
+
+                        </li>
+                    }
+                </ol>
+                <!-- end lesson response review -->
+                <!-- start activities -->
+                
+                <h3>@lesson.lessonActivity.activityTitle</h3>
+                @Html.Raw(lesson.lessonActivity.activityText)
+                <!-- end activities -->
+                <!-- start score -->
+            <h3>
+                Your Score for @lessonTitle
+                @if (lesson.lessonQuizScore == 0)
+                {
+                    <p>Score 0 or not complete</p>
+                }
+                else
+                {
+                    <span class="btn btn-default">
+                        @if (lesson.lessonQuizPass)
+                        {
+                            <span>Pass: </span>
+                        }
+                        else
+                        {
+                            <span>Fail: </span>
+                        }
+                        @lesson.lessonQuizScore %
+                    </span>
+                }
+            </h3>
+            <p>&nbsp;</p>
+                <!-- end score -->
+            
+
+        </div>
+
+
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12"></div>
+        </div>
+        <!-- End Lesson @lesson.lessonSortOrderNumber -->
+        }
+
+
+
+        }
+
+    </div>
+
+<script>
+
+    $(".activity_text").each(function (index) {
+        var activityInputId = $(this).data('activityinputid');
+        FitElearn.UserData.getUserActivity($(this));
+    });
+</script>
+
+

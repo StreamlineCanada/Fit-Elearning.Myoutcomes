@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MyOutcomes - Feedback Informed Treatment</title>
+    <meta name="google-site-verification" content="QuHN5DaKV4dReupSuaMLH8BxFjGSazixlbjKYv4cGk4" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+
+
+    <link href="../../Content/ePlatform_style.css" type="text/css" rel="stylesheet" />
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <script src="/Scripts/jquery-3.4.1.js"></script>
+    <script src="/Scripts/jquery-ui-1.12.1.js"></script>
+
+
+    @* @Scripts.Render("~/bundles/jquery") *@
+
+    @Scripts.Render("~/bundles/FitElearn")
+    @RenderSection("scripts", required: false)
+
+
+    <script>
+
+        var isBeta = window.location.href.indexOf("beta") > -1 || window.location.href.indexOf("localhost") > -1;
+        if (location.protocol != 'https:' && !isBeta) {
+            location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+        }
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53592313-12"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-53592313-12');
+    </script>
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-6 col-xs-12 col-sm-8">
+                <div class="logo">
+                    <img src="../../Images/FIT-logo.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="tabmenu"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12"><div class="bar"></div></div>
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                <div align="center">
+                    <div class="content-login">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            <div id="footer"></div>
+        
+</body>
+</html>

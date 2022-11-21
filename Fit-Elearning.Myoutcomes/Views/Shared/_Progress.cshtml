@@ -1,0 +1,52 @@
+﻿@using Fit_Elearning.MyOutcomes.Domain.Concrete
+@using Fit_Elearning.MyOutcomes.Models
+@model Fit_Elearning.MyOutcomes.Models.TrainingRoom
+
+@{
+
+    var trianglePos = "0px";
+    if (Model.nextLessonSortNum != null)
+    {
+        trianglePos = (25 + (Model.nextLessonSortNum * 71)).ToString() + "px";
+    }
+}
+
+
+
+<div class="statuspane">
+    <h4>Lesson Completion Status</h4>
+
+            @foreach (Lesson lesson in Model.lessons)
+            {
+                var lessonNumber = lesson.lessonSortOrderNumber.ToString();
+                if (lesson.lessonSortOrderNumber == 0)
+                {
+                    lessonNumber = "Intro";
+
+                }
+                <div id="compstat">
+                    @if (lesson.isAvailable)
+                    {
+                        var colorImage = lessonNumber + "-color.jpg";
+                        
+                        <a href="~/Home/Training_Room#lessonid_@lesson.lessonId" title="Lesson @lessonNumber"><img src="../../Images/icons/@colorImage" /></a>
+                        <br /><a href="~/Home/Training_Room#lessonid_@lesson.lessonId" title="Lesson @lessonNumber">@lessonNumber</a><br />
+                    }
+                    else
+                    {
+                        var greyImage = lesson.lessonSortOrderNumber + "-grey.png";
+                        <a class="@lesson.lessonStartUrlClass" href="@lesson.lessonStartUrl"><img src="../../Images/icons/@greyImage" title="Lesson @lessonNumber" /></a>
+                        <br />@lessonNumber<br />
+                    }
+                    
+
+                </div>
+            }
+
+
+            @if (Model.showProgress)
+            {
+
+               
+            }
+</div>

@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Progress_Report";
+}
+
+@using Fit_Elearning.MyOutcomes.Domain.Concrete
+@using Fit_Elearning.MyOutcomes.Models
+@model Fit_Elearning.MyOutcomes.Models.TrainingRoom
+
+
+
+
+<div align="center">
+
+<div style="width:990px;text-align:left;margin-left:40px;">
+<div style="width:240px;clear:both;float:left;">
+<img src="../../Images/icons/training_room_icon_29.jpg" alt="" border="0" /></div>
+
+<div style="width:565px;clear:none;float:left;">
+
+<h1>Progress Report</h1>
+<hr />
+
+    @foreach (Lesson lesson in Model.lessons)
+    {
+        if (lesson.lessonSortOrderNumber == 0)
+        {
+            continue;
+        }
+        
+
+        <div id="prog_rep"><h3>Lesson @lesson.lessonSortOrderNumber Quiz</h3></div>
+        <div id="prog_rep2"><h3>Your Score: @lesson.lessonQuizScore %</h3></div>
+    <div id="tr_lessons">
+        @Html.Raw(lesson.lessonDescription)
+        <hr />
+    </div>
+
+
+        <p>&nbsp;</p>
+    }
+        <div style="padding:40px 0 100px 0;float:left;"><p id="l2"><a href="Index">return to dashboard</a></p></div>
+    </div></div></div>

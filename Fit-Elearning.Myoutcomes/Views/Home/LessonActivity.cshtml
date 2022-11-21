@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using Fit_Elearning.MyOutcomes.Models
+@model Fit_Elearning.MyOutcomes.Models.LessonActivity
+
+
+<div class="lesson_activity">
+@using (Html.BeginForm("", "", FormMethod.Post, new { id = "trainingForm" }))
+{
+
+    <input type="hidden" id="moduleId" value="@Model.moduleId" />
+    <input type="hidden" id="userId" value="@Model.userId" />
+
+    <div class="row">
+        @if (Model.lessonImageFile != null) {
+        <div class="col-lg-2 col-md-2 col-xs-4 col-sm-4">
+            <img src="../../Images/icons/@Model.lessonImageFile" class="lesson_icon">
+        </div>
+        }
+
+        <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8 page-header">
+            <h2>@Model.activityTitle</h2>
+            <hr />
+
+            @Html.Raw(Model.activityText)
+
+        </div>
+    </div>
+}
+
+
+<script>
+
+    $(".activity_text").each(function (index) {
+        var activityInputId = $(this).data('activityinputid');
+        FitElearn.UserData.getUserActivity($(this));
+    });
+</script>

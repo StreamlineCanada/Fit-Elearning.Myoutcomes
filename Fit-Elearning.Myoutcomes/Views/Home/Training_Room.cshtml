@@ -1,0 +1,106 @@
+﻿@{
+    ViewBag.Title = "test title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Fit_Elearning.MyOutcomes.Domain.Concrete
+@using Fit_Elearning.MyOutcomes.Models
+@model Fit_Elearning.MyOutcomes.Models.TrainingRoom
+
+
+
+
+@using (Html.BeginForm("", "", FormMethod.Post, new { id = "trainingForm" }))
+{
+
+    <input type="hidden" id="moduleId" value="@Model.moduleId" />
+    
+    foreach (Lesson lesson in Model.lessons)
+    {
+         var lessonNumber = "Lesson " + lesson.lessonSortOrderNumber.ToString();
+         if (lesson.lessonSortOrderNumber == 0)
+         {
+             lessonNumber = "Introduction";
+         }
+        
+    
+    
+    
+    <!-- Start Lesson @lesson.lessonSortOrderNumber -->
+    <a name="lesson_@lesson.lessonId"></a>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                <div class="lesson_intro" id="lessonid_@lesson.lessonId">
+                    <span class="week_intro_heading">@lessonNumber</span>
+                </div>
+            </div>
+    
+            <div class="col-lg-2 col-md-2 col-xs-4 col-sm-4">
+                <a href="@lesson.lessonStartUrl"><img src="../../Images/icons/@lesson.lessonImageFile" class="lesson_icon" /></a>
+            </div>
+            <div class="col-lg-5 col-md-5 col-xs-8 col-sm-8">
+                
+                <h2><a class="@lesson.lessonStartUrlClass" href="@lesson.lessonStartUrl">@lesson.lessonName</a></h2>
+                <h3><a class="@lesson.lessonStartUrlClass" href="@lesson.lessonStartUrl"><img src="../../../../Images/dashboard/film_icon2.gif" height="18" align="absmiddle" /> Begin @lessonNumber</a></h3>
+                <h4>Lesson Goals</h4>
+                <div id="tr_lessons">@Html.Raw(lesson.lessonDescription)</div>
+
+                <img src="~/Images/feather.jpg" style="width:100%;" />
+               @if (lessonNumber == "Lesson 13" || lessonNumber == "Lesson 14")
+                {
+                <div class="lesson_review"><a href="LessonActivity?moduleId=@Model.moduleId&lessonId=@lesson.lessonId">Review this week's recommended reading</a> </div>
+                }
+                else
+                {
+                    <div class="lesson_review"><a href="LessonActivity?moduleId=@Model.moduleId&lessonId=@lesson.lessonId">Review this week's activities</a> </div>
+
+                }
+            </div>
+        
+
+            <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-xs-6 col-xs-offset-4 col-sm-6 col-sm-offset-4">
+                <h4><b>Status:</b></h4>
+
+                @if ((lesson.lessonSortOrderNumber == 0 && Model.introComplete) || lesson.lessonQuizPass)
+                {
+                    <div id="status_icons_redgrey">falling<br />behind</div>
+                    <div id="status_icons_yellow">on<br />pace</div>
+                    <div id="status_icons_green">successfully<br />completed</div>
+                }
+                else
+                {
+                    if (lesson.onPace)
+                    {
+                        <div id="status_icons_redgrey">falling<br />behind</div>
+                        <div id="status_icons_yellow">on<br />pace</div>
+                    }
+                    else
+                    {
+                        <div id="status_icons_red">falling<br />behind</div>
+                        <div id="status_icons_yellowgrey">on<br />pace</div>
+                    }
+
+                    <div id="status_icons_greengrey">successfully<br />completed</div>
+                }
+                <div style="float:left;clear:both;padding-top:4px;"><img src="../../../../Images/graph_gradient.jpg" width="180" height="1" /></div>
+
+                <div id="supportforsuccess"><a href="ICCE_Support">ICCE Support</a></div>
+                <div id="awarenessprofile"><a href="AwarenessProfile#lessonid_@lesson.lessonSortOrderNumber">My Awareness Profile</a></div>
+            </div>
+
+    </div>
+    
+    if (lesson.lessonSortOrderNumber > 0)
+    { 
+    
+    
+    }
+    <!-- End Lesson @lesson.lessonSortOrderNumber -->
+    }
+
+
+
+}
+
+
+
+

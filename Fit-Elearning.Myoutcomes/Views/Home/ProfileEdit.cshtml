@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Profile Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Fit_Elearning.MyOutcomes.Models.UserModel
+
+
+<div class="row">
+    <div class="col-lg-2 col-md-2 col-xs-4 col-sm-4">
+        <img src="../../Images/icons/training_room_icon_29.jpg" class="lesson_icon">
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-xs-8 col-sm-8 page-header">
+
+        <h1>Profile Edit</h1>
+        <form name="profileForm">
+            <input type="hidden" id="userid" value="@Model.id" />
+            <div class="form">
+                <div style="clear:both;">
+                    <div class="form_cell" id="profileMsg"></div>
+                </div>
+                <div class="form_row">
+                    <div class="form_cell">Username:</div><div class="form_cell"><input type="text" id="username" value="@Model.username" class="user_form_input" /></div>
+                </div>
+                <div class="form_row">
+                    <div class="form_cell">Name:</div><div class="form_cell"><input type="text" id="name" value="@Model.name" class="user_form_input" /></div>
+                </div>
+                <div class="form_row">
+                    <div class="form_cell">Email:</div><div class="form_cell"><input type="text" id="email" value="@Model.email" class="user_form_input" /></div>
+                </div>
+                <div class="form_row">
+                    <div class="form_cell"><a href="javascript: FitElearn.Utilities.showPassword();">Click here to change password</a></div>
+                </div>
+                <div id="pw_section" style="display:none;">
+                    <div class="form_row">
+                        <div class="form_cell">Password:</div><div class="form_cell"><input type="password" id="password" value="" class="user_form_input" /></div>
+                    </div>
+                    <div class="form_row">
+                        <div class="form_cell">Confirm Password:</div><div class="form_cell"><input type="password" id="change_password" value="" class="user_form_input" /></div>
+                    </div>
+                </div>
+                <div class="form_row">
+                    <div class="form_cell"> </div><div class="form_cell"><input type="button" name="goBtn" onclick="FitElearn.Utilities.changeProfile();" value="Submit Changes" /></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

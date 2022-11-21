@@ -1,0 +1,2744 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="fit_elearningModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ACTIVITY">
+          <Key>
+            <PropertyRef Name="ACTIVITY_ID" />
+          </Key>
+          <Property Name="ACTIVITY_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ACTIVITY_TITLE" Type="nvarchar" MaxLength="255" />
+          <Property Name="ACTIVITY_CONTENT" Type="text" />
+          <Property Name="CREATE_DATETIME" Type="datetime" Nullable="false" />
+          <Property Name="CREATE_USER_ID" Type="int" Nullable="false" />
+          <Property Name="CREATE_IP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UPDATE_DATETIME" Type="datetime" />
+          <Property Name="UPDATE_USER_ID" Type="int" />
+          <Property Name="UPDATE_IP" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LESSON">
+          <Key>
+            <PropertyRef Name="LESSON_ID" />
+          </Key>
+          <Property Name="LESSON_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LESSON_NAME" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LESSON_DESCRIPTION" Type="text" />
+          <Property Name="LESSON_IMAGE_FILE" Type="varchar(max)" />
+          <Property Name="LESSON_CONTENT" Type="varchar(max)" />
+          <Property Name="CREATE_DATETIME" Type="datetime" Nullable="false" />
+          <Property Name="CREATE_USER_ID" Type="int" Nullable="false" />
+          <Property Name="CREATE_IP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UPDATE_DATETIME" Type="datetime" />
+          <Property Name="UPDATE_USER_ID" Type="int" />
+          <Property Name="UPDATE_IP" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LESSON_ACTIVITY">
+          <Key>
+            <PropertyRef Name="LESSON_ACTIVITY_ID" />
+          </Key>
+          <Property Name="LESSON_ACTIVITY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LESSON_ID" Type="int" Nullable="false" />
+          <Property Name="ACTIVITY_ID" Type="int" Nullable="false" />
+          <Property Name="CREATE_DATETIME" Type="datetime" Nullable="false" />
+          <Property Name="CREATE_USER_ID" Type="int" Nullable="false" />
+          <Property Name="CREATE_IP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UPDATE_DATETIME" Type="datetime" />
+          <Property Name="UPDATE_USER_ID" Type="int" />
+          <Property Name="UPDATE_IP" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LESSON_FLOW">
+          <Key>
+            <PropertyRef Name="LESSON_FLOW_ID" />
+          </Key>
+          <Property Name="LESSON_FLOW_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LESSON_ID" Type="int" Nullable="false" />
+          <Property Name="LESSON_FLOW_SORT_ORDER" Type="int" Nullable="false" />
+          <Property Name="LESSON_FLOW_TYPE_ID" Type="int" Nullable="false" />
+          <Property Name="QUESTION_GROUP_ID" Type="int" />
+          <Property Name="VIDEO_ID" Type="int" />
+          <Property Name="LESSON_FLOW_TEXT" Type="text" />
+          <Property Name="LESSON_FLOW_CONTENT" Type="varchar(max)" />
+          <Property Name="CREATE_DATETIME" Type="datetime" Nullable="false" />
+          <Property Name="CREATE_USER_ID" Type="int" Nullable="false" />
+          <Property Name="CREATE_IP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UPDATE_DATETIME" Type="datetime" />
+          <Property Name="UPDATE_USER_ID" Type="int" />
+          <Property Name="UPDATE_IP" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LESSON_FLOW_TYPE">
+          <Key>
+            <PropertyRef Name="LESSON_FLOW_TYPE_ID" />
+          </Key>
+          <Property Name="LESSON_FLOW_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LESSON_FLOW_TYPE_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOGIN_AUDIT">
+          <Key>
+            <PropertyRef Name="LOGIN_AUDIT_ID" />
+          </Key>
+          <Property Name="LOGIN_AUDIT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_ID" Type="int" Nullable="false" />
+          <Property Name="LOGIN_DATETIME" Type="datetime" Nullable="false" />
+          <Property Name="LOGIN_IP" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MODULE">
+          <Key>
+            <PropertyRef Name="MODULE_ID" />
+          </Key>
+          <Property Name="MODULE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MODULE_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MODULE_DESCRIPTION" Type="text" />
+          <Property Name="CREATE_DATETIME" Type="datetime" Nullable="false" />
+          <Property Name="CREATE_USER_ID" Type="int" Nullable="false" />
+          <Property Name="CREATE_IP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UPDATE_DATETIME" Type="datetime" />
+          <Property Name="UPDATE_USER_ID" Type="int" />
+          <Property Name="UPDATE_IP" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MODULE_LESSON">
+          <Key>
+            <PropertyRef Name="MODULE_LESSON_ID" />
+          </Key>
+          <Property Name="MODULE_LESSON_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MODULE_ID" Type="int" Nullable="false" />
+          <Property Name="LESSON_ID" Type="int" Nullable="false" />
+          <Property Name="LESSON_SORT_ORDER" Type="int" Nullable="false" />
+          <Property Name="CREATE_DATETIME" Type="datetime" Nullable="false" />
+          <Property Name="CREATE_USER_ID" Type="int" Nullable="false" />
+          <Property Name="CREATE_IP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UPATE_DATEIME" Type="datetime" />
+          <Property Name="UPDATE_USER_ID" Type="int" />
+          <Property Name="UPDATE_IP" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="QUESTION">
+          <Key>
+            <PropertyRef Name="QUESTION_ID" />
+          </Key>
+          <Property Name="QUESTION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QUESTION_TYPE_ID" Type="int" Nullable="false" />
+          <Property Name="QUESTION_TEXT" Type="text" Nullable="false" />
+          <Property Name="CREATE_DATETIME" Type="datetime" Nullable="false" />
+          <Property Name="CREATE_USER_ID" Type="int" Nullable="false" />
+          <Property Name="CREATE_IP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UPDATE_DATETIME" Type="datetime" />
+          <Property Name="UPDATE_USER_ID" Type="int" />
+          <Property Name="UPDATE_IP" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="QUESTION_GROUP">
+          <Key>
+            <PropertyRef Name="QUESTION_GROUP_ID" />
+          </Key>
+          <Property Name="QUESTION_GROUP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QUESTION_GROUP_TITLE" Type="nvarchar(max)" />
+          <Property Name="CREATE_DATETIME" Type="datetime" Nullable="false" />
+          <Property Name="CREATE_USER_ID" Type="int" Nullable="false" />
+          <Property Name="CREATE_IP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UPDATE_DATETIME" Type="datetime" />
+          <Property Name="UPDATE_USER_ID" Type="int" />
+          <Property Name="UPDATE_IP" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="QUESTION_GROUP_QUESTION">
+          <Key>
+            <PropertyRef Name="QUESTION_GROUP_QUESTION_ID" />
+          </Key>
+          <Property Name="QUESTION_GROUP_QUESTION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QUESTION_GROUP_ID" Type="int" Nullable="false" />
+          <Property Name="QUESTION_ID" Type="int" Nullable="false" />
+          <Property Name="QUESTION_SORT_ORDER" Type="int" Nullable="false" />
+          <Property Name="CREATE_DATETIME" Type="datetime" Nullable="false" />
+          <Property Name="CREATE_USER_ID" Type="int" Nullable="false" />
+          <Property Name="CREATE_IP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UPDATE_DATETIME" Type="datetime" />
+          <Property Name="UPDATE_USER_ID" Type="int" />
+          <Property Name="UPDATE_IP" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="QUESTION_OPTION">
+          <Key>
+            <PropertyRef Name="QUESTION_OPTION_ID" />
+          </Key>
+          <Property Name="QUESTION_OPTION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QUESTION_ID" Type="int" Nullable="false" />
+          <Property Name="QUESTION_OPTION_TEXT" Type="text" Nullable="false" />
+          <Property Name="QUESTION_OPTION_CORRECT" Type="bit" Nullable="false" />
+          <Property Name="CREATE_DATETIME" Type="datetime" Nullable="false" />
+          <Property Name="CREATE_USER_ID" Type="int" Nullable="false" />
+          <Property Name="CREATE_IP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UPDATE_DATETIME" Type="datetime" />
+          <Property Name="UPDATE_USER_ID" Type="int" />
+          <Property Name="UPDATE_IP" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="QUESTION_TYPE">
+          <Key>
+            <PropertyRef Name="QUESTION_TYPE_ID" />
+          </Key>
+          <Property Name="QUESTION_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QUESTION_TYPE_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LOGIN_USER_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PASSWORD" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="50" />
+          <Property Name="USER_STATUS_CODE" Type="smallint" />
+          <Property Name="CREATE_DATETIME" Type="datetime" Nullable="false" />
+          <Property Name="CREATE_USER_ID" Type="int" Nullable="false" />
+          <Property Name="CREATE_IP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UPDATE_DATETIME" Type="datetime" />
+          <Property Name="UPDATE_USER_ID" Type="int" />
+          <Property Name="UPDATE_IP" Type="nvarchar" MaxLength="50" />
+          <Property Name="MODULE1_BASIC" Type="tinyint" Nullable="false" />
+          <Property Name="MODULE1_ADVANCED" Type="tinyint" Nullable="false" />
+          <Property Name="COMPANY_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="FIT_NUMBER" Type="nvarchar" MaxLength="50" />
+          <Property Name="isAdmin" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_ACTIVITY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_ID" Type="int" Nullable="false" />
+          <Property Name="MODULE_ID" Type="int" Nullable="false" />
+          <Property Name="LESSON_ID" Type="int" Nullable="false" />
+          <Property Name="ACTIVITY_INPUT_ID" Type="int" Nullable="false" />
+          <Property Name="ACTIVITY_TEXT" Type="text" />
+          <Property Name="CREATE_DATETIME" Type="datetime" Nullable="false" />
+          <Property Name="CREATE_USER_ID" Type="int" Nullable="false" />
+          <Property Name="CREATE_IP" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UPDATE_DATETIME" Type="datetime" />
+          <Property Name="UPDATE_USER_ID" Type="int" />
+          <Property Name="UPDATE_IP" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="USER_AUDIT">
+          <Key>
+            <PropertyRef Name="USER_AUDIT_ID" />
+          </Key>
+          <Property Name="USER_AUDIT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_ID" Type="int" Nullable="false" />
+          <Property Name="AUDIT_OPERATION" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="AUDIT_DATETIME" Type="datetime" Nullable="false" />
+          <Property Name="AUDIT_IP" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_LESSON_COMPLETE">
+          <Key>
+            <PropertyRef Name="USER_LESSON_COMPLETE_ID" />
+          </Key>
+          <Property Name="USER_LESSON_COMPLETE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_ID" Type="int" Nullable="false" />
+          <Property Name="MODULE_ID" Type="int" Nullable="false" />
+          <Property Name="LESSON_ID" Type="int" Nullable="false" />
+          <Property Name="USER_LESSON_COMPLETE_DATETIME" Type="datetime" Nullable="false" />
+          <Property Name="USER_LESSON_COMPLETE_IP" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_QUIZ_COMPLETE">
+          <Key>
+            <PropertyRef Name="USER_QUIZ_COMPLETE_ID" />
+          </Key>
+          <Property Name="USER_QUIZ_COMPLETE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_ID" Type="int" Nullable="false" />
+          <Property Name="MODULE_ID" Type="int" Nullable="false" />
+          <Property Name="LESSON_ID" Type="int" Nullable="false" />
+          <Property Name="USER_QUIZ_SCORE" Type="float" Nullable="false" />
+          <Property Name="USER_QUIZ_COMPLETE_DATETIME" Type="datetime" Nullable="false" />
+          <Property Name="USER_QUIZ_COMPLETE_IP" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_RESPONSE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_ID" Type="int" Nullable="false" />
+          <Property Name="MODULE_ID" Type="int" Nullable="false" />
+          <Property Name="LESSON_ID" Type="int" Nullable="false" />
+          <Property Name="QUESTION_ID" Type="int" Nullable="false" />
+          <Property Name="QUESTION_TYPE_ID" Type="int" />
+          <Property Name="RESPONSE" Type="text" />
+          <Property Name="CREATE_DATETIME" Type="datetime" Nullable="false" />
+          <Property Name="CREATE_USER_ID" Type="int" Nullable="false" />
+          <Property Name="CREATE_IP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UPDATE_DATETIME" Type="datetime" />
+          <Property Name="UPDATE_USER_ID" Type="int" />
+          <Property Name="UPDATE_IP" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="USER_STATUS">
+          <Key>
+            <PropertyRef Name="STATUS_CODE" />
+          </Key>
+          <Property Name="STATUS_CODE" Type="smallint" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VIDEO">
+          <Key>
+            <PropertyRef Name="VIDEO_ID" />
+          </Key>
+          <Property Name="VIDEO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VIDEO_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VIDEO_DESCRIPTION" Type="text" />
+          <Property Name="VIDEO_YOUTUBE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_LESSON_ACTIVITY_ACTIVITY">
+          <End Role="ACTIVITY" Type="Self.ACTIVITY" Multiplicity="1" />
+          <End Role="LESSON_ACTIVITY" Type="Self.LESSON_ACTIVITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACTIVITY">
+              <PropertyRef Name="ACTIVITY_ID" />
+            </Principal>
+            <Dependent Role="LESSON_ACTIVITY">
+              <PropertyRef Name="ACTIVITY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LESSON_ACTIVITY_LESSON">
+          <End Role="LESSON" Type="Self.LESSON" Multiplicity="1" />
+          <End Role="LESSON_ACTIVITY" Type="Self.LESSON_ACTIVITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LESSON">
+              <PropertyRef Name="LESSON_ID" />
+            </Principal>
+            <Dependent Role="LESSON_ACTIVITY">
+              <PropertyRef Name="LESSON_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LESSON_FLOW_LESSON">
+          <End Role="LESSON" Type="Self.LESSON" Multiplicity="1" />
+          <End Role="LESSON_FLOW" Type="Self.LESSON_FLOW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LESSON">
+              <PropertyRef Name="LESSON_ID" />
+            </Principal>
+            <Dependent Role="LESSON_FLOW">
+              <PropertyRef Name="LESSON_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LESSON_FLOW_LESSON_TYPE">
+          <End Role="LESSON_FLOW_TYPE" Type="Self.LESSON_FLOW_TYPE" Multiplicity="1" />
+          <End Role="LESSON_FLOW" Type="Self.LESSON_FLOW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LESSON_FLOW_TYPE">
+              <PropertyRef Name="LESSON_FLOW_TYPE_ID" />
+            </Principal>
+            <Dependent Role="LESSON_FLOW">
+              <PropertyRef Name="LESSON_FLOW_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LESSON_FLOW_QUESTION_GROUP">
+          <End Role="QUESTION_GROUP" Type="Self.QUESTION_GROUP" Multiplicity="0..1" />
+          <End Role="LESSON_FLOW" Type="Self.LESSON_FLOW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUESTION_GROUP">
+              <PropertyRef Name="QUESTION_GROUP_ID" />
+            </Principal>
+            <Dependent Role="LESSON_FLOW">
+              <PropertyRef Name="QUESTION_GROUP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LESSON_FLOW_VIDEO">
+          <End Role="VIDEO" Type="Self.VIDEO" Multiplicity="0..1" />
+          <End Role="LESSON_FLOW" Type="Self.LESSON_FLOW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VIDEO">
+              <PropertyRef Name="VIDEO_ID" />
+            </Principal>
+            <Dependent Role="LESSON_FLOW">
+              <PropertyRef Name="VIDEO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOGIN_AUDIT_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="LOGIN_AUDIT" Type="Self.LOGIN_AUDIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LOGIN_AUDIT">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MODULE_LESSON_LESSON">
+          <End Role="LESSON" Type="Self.LESSON" Multiplicity="1" />
+          <End Role="MODULE_LESSON" Type="Self.MODULE_LESSON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LESSON">
+              <PropertyRef Name="LESSON_ID" />
+            </Principal>
+            <Dependent Role="MODULE_LESSON">
+              <PropertyRef Name="LESSON_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MODULE_LESSON_MODULE">
+          <End Role="MODULE" Type="Self.MODULE" Multiplicity="1" />
+          <End Role="MODULE_LESSON" Type="Self.MODULE_LESSON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULE">
+              <PropertyRef Name="MODULE_ID" />
+            </Principal>
+            <Dependent Role="MODULE_LESSON">
+              <PropertyRef Name="MODULE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QUESTION_GROUP_QUESTION_QUESTION">
+          <End Role="QUESTION" Type="Self.QUESTION" Multiplicity="1" />
+          <End Role="QUESTION_GROUP_QUESTION" Type="Self.QUESTION_GROUP_QUESTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUESTION">
+              <PropertyRef Name="QUESTION_ID" />
+            </Principal>
+            <Dependent Role="QUESTION_GROUP_QUESTION">
+              <PropertyRef Name="QUESTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QUESTION_GROUP_QUESTION_QUESTION_GROUP">
+          <End Role="QUESTION_GROUP" Type="Self.QUESTION_GROUP" Multiplicity="1" />
+          <End Role="QUESTION_GROUP_QUESTION" Type="Self.QUESTION_GROUP_QUESTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUESTION_GROUP">
+              <PropertyRef Name="QUESTION_GROUP_ID" />
+            </Principal>
+            <Dependent Role="QUESTION_GROUP_QUESTION">
+              <PropertyRef Name="QUESTION_GROUP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QUESTION_OPTIONS_QUESTIONS">
+          <End Role="QUESTION" Type="Self.QUESTION" Multiplicity="1" />
+          <End Role="QUESTION_OPTION" Type="Self.QUESTION_OPTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUESTION">
+              <PropertyRef Name="QUESTION_ID" />
+            </Principal>
+            <Dependent Role="QUESTION_OPTION">
+              <PropertyRef Name="QUESTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QUESTION_QUESTION_TYPE">
+          <End Role="QUESTION_TYPE" Type="Self.QUESTION_TYPE" Multiplicity="1" />
+          <End Role="QUESTION" Type="Self.QUESTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUESTION_TYPE">
+              <PropertyRef Name="QUESTION_TYPE_ID" />
+            </Principal>
+            <Dependent Role="QUESTION">
+              <PropertyRef Name="QUESTION_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_ACTIVITY_LESSON">
+          <End Role="LESSON" Type="Self.LESSON" Multiplicity="1" />
+          <End Role="USER_ACTIVITY" Type="Self.USER_ACTIVITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LESSON">
+              <PropertyRef Name="LESSON_ID" />
+            </Principal>
+            <Dependent Role="USER_ACTIVITY">
+              <PropertyRef Name="LESSON_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_ACTIVITY_MODULE">
+          <End Role="MODULE" Type="Self.MODULE" Multiplicity="1" />
+          <End Role="USER_ACTIVITY" Type="Self.USER_ACTIVITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULE">
+              <PropertyRef Name="MODULE_ID" />
+            </Principal>
+            <Dependent Role="USER_ACTIVITY">
+              <PropertyRef Name="MODULE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_ACTIVITY_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="USER_ACTIVITY" Type="Self.USER_ACTIVITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER_ACTIVITY">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_AUDIT_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="USER_AUDIT" Type="Self.USER_AUDIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER_AUDIT">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_LESSON_COMPLETE_LESSON">
+          <End Role="LESSON" Type="Self.LESSON" Multiplicity="1" />
+          <End Role="USER_LESSON_COMPLETE" Type="Self.USER_LESSON_COMPLETE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LESSON">
+              <PropertyRef Name="LESSON_ID" />
+            </Principal>
+            <Dependent Role="USER_LESSON_COMPLETE">
+              <PropertyRef Name="LESSON_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_LESSON_COMPLETE_MODULE">
+          <End Role="MODULE" Type="Self.MODULE" Multiplicity="1" />
+          <End Role="USER_LESSON_COMPLETE" Type="Self.USER_LESSON_COMPLETE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULE">
+              <PropertyRef Name="MODULE_ID" />
+            </Principal>
+            <Dependent Role="USER_LESSON_COMPLETE">
+              <PropertyRef Name="MODULE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_LESSON_COMPLETE_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="USER_LESSON_COMPLETE" Type="Self.USER_LESSON_COMPLETE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER_LESSON_COMPLETE">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_QUIZ_COMPLETE_LESSON">
+          <End Role="LESSON" Type="Self.LESSON" Multiplicity="1" />
+          <End Role="USER_QUIZ_COMPLETE" Type="Self.USER_QUIZ_COMPLETE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LESSON">
+              <PropertyRef Name="LESSON_ID" />
+            </Principal>
+            <Dependent Role="USER_QUIZ_COMPLETE">
+              <PropertyRef Name="LESSON_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_QUIZ_COMPLETE_MODULE">
+          <End Role="MODULE" Type="Self.MODULE" Multiplicity="1" />
+          <End Role="USER_QUIZ_COMPLETE" Type="Self.USER_QUIZ_COMPLETE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULE">
+              <PropertyRef Name="MODULE_ID" />
+            </Principal>
+            <Dependent Role="USER_QUIZ_COMPLETE">
+              <PropertyRef Name="MODULE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_QUIZ_COMPLETE_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="USER_QUIZ_COMPLETE" Type="Self.USER_QUIZ_COMPLETE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER_QUIZ_COMPLETE">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_RESPONSE_LESSON">
+          <End Role="LESSON" Type="Self.LESSON" Multiplicity="1" />
+          <End Role="USER_RESPONSE" Type="Self.USER_RESPONSE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LESSON">
+              <PropertyRef Name="LESSON_ID" />
+            </Principal>
+            <Dependent Role="USER_RESPONSE">
+              <PropertyRef Name="LESSON_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_RESPONSE_MODULE">
+          <End Role="MODULE" Type="Self.MODULE" Multiplicity="1" />
+          <End Role="USER_RESPONSE" Type="Self.USER_RESPONSE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULE">
+              <PropertyRef Name="MODULE_ID" />
+            </Principal>
+            <Dependent Role="USER_RESPONSE">
+              <PropertyRef Name="MODULE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_RESPONSE_QUESTION">
+          <End Role="QUESTION" Type="Self.QUESTION" Multiplicity="1" />
+          <End Role="USER_RESPONSE" Type="Self.USER_RESPONSE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUESTION">
+              <PropertyRef Name="QUESTION_ID" />
+            </Principal>
+            <Dependent Role="USER_RESPONSE">
+              <PropertyRef Name="QUESTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_RESPONSES_USERS">
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="USER_RESPONSE" Type="Self.USER_RESPONSE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER_RESPONSE">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_USER_STATUS">
+          <End Role="USER_STATUS" Type="Self.USER_STATUS" Multiplicity="0..1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_STATUS">
+              <PropertyRef Name="STATUS_CODE" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="USER_STATUS_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fnGetExpectedLessonSort" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="USERID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spCreateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="USERID" Type="varchar" Mode="In" />
+          <Parameter Name="PWD" Type="varchar" Mode="In" />
+          <Parameter Name="USERSTATUSID" Type="int" Mode="In" />
+          <Parameter Name="CREATEDATE" Type="datetime" Mode="In" />
+          <Parameter Name="CREATEIP" Type="varchar" Mode="In" />
+          <Parameter Name="CREATEID" Type="int" Mode="In" />
+          <Parameter Name="BASICLESSON" Type="bit" Mode="In" />
+          <Parameter Name="ADVANCEDLESSON" Type="bit" Mode="In" />
+          <Parameter Name="EMAIL" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spCreateUser2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LoginUserID" Type="varchar" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="UserStatusID" Type="smallint" Mode="In" />
+          <Parameter Name="CreateDate" Type="datetime" Mode="In" />
+          <Parameter Name="CreateID" Type="int" Mode="In" />
+          <Parameter Name="CreateIP" Type="varchar" Mode="In" />
+          <Parameter Name="BasicLesson" Type="tinyint" Mode="In" />
+          <Parameter Name="AdvancedLesson" Type="tinyint" Mode="In" />
+          <Parameter Name="CompanyName" Type="varchar" Mode="In" />
+          <Parameter Name="FitNumber" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spDeactivateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="LoginUserID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spGetLastCompletedLesson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MODULEID" Type="int" Mode="In" />
+          <Parameter Name="USERID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetLesson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MODULEID" Type="int" Mode="In" />
+          <Parameter Name="LESSONID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetLessonActivity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LESSONID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetLessonComplete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MODULEID" Type="int" Mode="In" />
+          <Parameter Name="LESSONID" Type="int" Mode="In" />
+          <Parameter Name="USERID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetLessonFlow" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MODULEID" Type="int" Mode="In" />
+          <Parameter Name="LESSONID" Type="int" Mode="In" />
+          <Parameter Name="SORTID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetLessonId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MODULEID" Type="int" Mode="In" />
+          <Parameter Name="SORTNUM" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetLessons" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MODULEID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetNextLessonFlowId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LESSON_ID" Type="int" Mode="In" />
+          <Parameter Name="CURRENT_LESSON_SORT_ORDER" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetQuestions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="QUESTIONGROUPID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetQuizComplete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MODULEID" Type="int" Mode="In" />
+          <Parameter Name="LESSONID" Type="int" Mode="In" />
+          <Parameter Name="USERID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetQuizScore" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MODULEID" Type="int" Mode="In" />
+          <Parameter Name="LESSONID" Type="int" Mode="In" />
+          <Parameter Name="USERID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetRadioNonQuizQuestions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MODULEID" Type="int" Mode="In" />
+          <Parameter Name="LESSONID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetTextQuestions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MODULEID" Type="int" Mode="In" />
+          <Parameter Name="LESSONID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetUserActivity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MODULEID" Type="int" Mode="In" />
+          <Parameter Name="LESSONID" Type="int" Mode="In" />
+          <Parameter Name="USERID" Type="int" Mode="In" />
+          <Parameter Name="ACTIVITYINPUTID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetUserResponse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MODULEID" Type="int" Mode="In" />
+          <Parameter Name="LESSONID" Type="int" Mode="In" />
+          <Parameter Name="QUESTIONID" Type="int" Mode="In" />
+          <Parameter Name="USERID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetUsersBehind" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MODULEID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spReactivateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="LoginUserID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spSaveLessonComplete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MODULEID" Type="int" Mode="In" />
+          <Parameter Name="LESSONID" Type="int" Mode="In" />
+          <Parameter Name="USERID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spSaveQuizComplete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MODULEID" Type="int" Mode="In" />
+          <Parameter Name="LESSONID" Type="int" Mode="In" />
+          <Parameter Name="USERID" Type="int" Mode="In" />
+          <Parameter Name="SCORE" Type="float" Mode="In" />
+        </Function>
+        <Function Name="spSaveUserActivity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="USERID" Type="int" Mode="In" />
+          <Parameter Name="MODULEID" Type="int" Mode="In" />
+          <Parameter Name="LESSONID" Type="int" Mode="In" />
+          <Parameter Name="ACTIVITYINPUTID" Type="int" Mode="In" />
+          <Parameter Name="ACTIVITYTEXT" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="spSaveUserResponse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MODULEID" Type="int" Mode="In" />
+          <Parameter Name="LESSONID" Type="int" Mode="In" />
+          <Parameter Name="QUESTIONID" Type="int" Mode="In" />
+          <Parameter Name="QUESTIONTYPEID" Type="int" Mode="In" />
+          <Parameter Name="USERID" Type="int" Mode="In" />
+          <Parameter Name="RESPONSE" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="spUpdateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="newPassword" Type="varchar" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="basicLesson" Type="bit" Mode="In" />
+          <Parameter Name="advancedLesson" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="spUpdateUser2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="LoginUserID" Type="varchar" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
+          <Parameter Name="UpdateID" Type="int" Mode="In" />
+          <Parameter Name="UpdateIP" Type="varchar" Mode="In" />
+          <Parameter Name="BasicLesson" Type="tinyint" Mode="In" />
+          <Parameter Name="AdvancedLesson" Type="tinyint" Mode="In" />
+          <Parameter Name="CompanyName" Type="varchar" Mode="In" />
+          <Parameter Name="FitNumber" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SpValidateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SpVerifyAndSendNewPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="newPassword" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="fit_elearningModelStoreContainer">
+          <EntitySet Name="ACTIVITY" EntityType="Self.ACTIVITY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LESSON" EntityType="Self.LESSON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LESSON_ACTIVITY" EntityType="Self.LESSON_ACTIVITY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LESSON_FLOW" EntityType="Self.LESSON_FLOW" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LESSON_FLOW_TYPE" EntityType="Self.LESSON_FLOW_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOGIN_AUDIT" EntityType="Self.LOGIN_AUDIT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MODULE" EntityType="Self.MODULE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MODULE_LESSON" EntityType="Self.MODULE_LESSON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QUESTION" EntityType="Self.QUESTION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QUESTION_GROUP" EntityType="Self.QUESTION_GROUP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QUESTION_GROUP_QUESTION" EntityType="Self.QUESTION_GROUP_QUESTION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QUESTION_OPTION" EntityType="Self.QUESTION_OPTION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QUESTION_TYPE" EntityType="Self.QUESTION_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_ACTIVITY" EntityType="Self.USER_ACTIVITY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_AUDIT" EntityType="Self.USER_AUDIT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_LESSON_COMPLETE" EntityType="Self.USER_LESSON_COMPLETE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_QUIZ_COMPLETE" EntityType="Self.USER_QUIZ_COMPLETE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_RESPONSE" EntityType="Self.USER_RESPONSE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_STATUS" EntityType="Self.USER_STATUS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VIDEO" EntityType="Self.VIDEO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_LESSON_ACTIVITY_ACTIVITY" Association="Self.FK_LESSON_ACTIVITY_ACTIVITY">
+            <End Role="ACTIVITY" EntitySet="ACTIVITY" />
+            <End Role="LESSON_ACTIVITY" EntitySet="LESSON_ACTIVITY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LESSON_ACTIVITY_LESSON" Association="Self.FK_LESSON_ACTIVITY_LESSON">
+            <End Role="LESSON" EntitySet="LESSON" />
+            <End Role="LESSON_ACTIVITY" EntitySet="LESSON_ACTIVITY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LESSON_FLOW_LESSON" Association="Self.FK_LESSON_FLOW_LESSON">
+            <End Role="LESSON" EntitySet="LESSON" />
+            <End Role="LESSON_FLOW" EntitySet="LESSON_FLOW" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LESSON_FLOW_LESSON_TYPE" Association="Self.FK_LESSON_FLOW_LESSON_TYPE">
+            <End Role="LESSON_FLOW_TYPE" EntitySet="LESSON_FLOW_TYPE" />
+            <End Role="LESSON_FLOW" EntitySet="LESSON_FLOW" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LESSON_FLOW_QUESTION_GROUP" Association="Self.FK_LESSON_FLOW_QUESTION_GROUP">
+            <End Role="QUESTION_GROUP" EntitySet="QUESTION_GROUP" />
+            <End Role="LESSON_FLOW" EntitySet="LESSON_FLOW" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LESSON_FLOW_VIDEO" Association="Self.FK_LESSON_FLOW_VIDEO">
+            <End Role="VIDEO" EntitySet="VIDEO" />
+            <End Role="LESSON_FLOW" EntitySet="LESSON_FLOW" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOGIN_AUDIT_USER" Association="Self.FK_LOGIN_AUDIT_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="LOGIN_AUDIT" EntitySet="LOGIN_AUDIT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MODULE_LESSON_LESSON" Association="Self.FK_MODULE_LESSON_LESSON">
+            <End Role="LESSON" EntitySet="LESSON" />
+            <End Role="MODULE_LESSON" EntitySet="MODULE_LESSON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MODULE_LESSON_MODULE" Association="Self.FK_MODULE_LESSON_MODULE">
+            <End Role="MODULE" EntitySet="MODULE" />
+            <End Role="MODULE_LESSON" EntitySet="MODULE_LESSON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QUESTION_GROUP_QUESTION_QUESTION" Association="Self.FK_QUESTION_GROUP_QUESTION_QUESTION">
+            <End Role="QUESTION" EntitySet="QUESTION" />
+            <End Role="QUESTION_GROUP_QUESTION" EntitySet="QUESTION_GROUP_QUESTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QUESTION_GROUP_QUESTION_QUESTION_GROUP" Association="Self.FK_QUESTION_GROUP_QUESTION_QUESTION_GROUP">
+            <End Role="QUESTION_GROUP" EntitySet="QUESTION_GROUP" />
+            <End Role="QUESTION_GROUP_QUESTION" EntitySet="QUESTION_GROUP_QUESTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QUESTION_OPTIONS_QUESTIONS" Association="Self.FK_QUESTION_OPTIONS_QUESTIONS">
+            <End Role="QUESTION" EntitySet="QUESTION" />
+            <End Role="QUESTION_OPTION" EntitySet="QUESTION_OPTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QUESTION_QUESTION_TYPE" Association="Self.FK_QUESTION_QUESTION_TYPE">
+            <End Role="QUESTION_TYPE" EntitySet="QUESTION_TYPE" />
+            <End Role="QUESTION" EntitySet="QUESTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_ACTIVITY_LESSON" Association="Self.FK_USER_ACTIVITY_LESSON">
+            <End Role="LESSON" EntitySet="LESSON" />
+            <End Role="USER_ACTIVITY" EntitySet="USER_ACTIVITY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_ACTIVITY_MODULE" Association="Self.FK_USER_ACTIVITY_MODULE">
+            <End Role="MODULE" EntitySet="MODULE" />
+            <End Role="USER_ACTIVITY" EntitySet="USER_ACTIVITY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_ACTIVITY_USER" Association="Self.FK_USER_ACTIVITY_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="USER_ACTIVITY" EntitySet="USER_ACTIVITY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_AUDIT_USER" Association="Self.FK_USER_AUDIT_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="USER_AUDIT" EntitySet="USER_AUDIT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_LESSON_COMPLETE_LESSON" Association="Self.FK_USER_LESSON_COMPLETE_LESSON">
+            <End Role="LESSON" EntitySet="LESSON" />
+            <End Role="USER_LESSON_COMPLETE" EntitySet="USER_LESSON_COMPLETE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_LESSON_COMPLETE_MODULE" Association="Self.FK_USER_LESSON_COMPLETE_MODULE">
+            <End Role="MODULE" EntitySet="MODULE" />
+            <End Role="USER_LESSON_COMPLETE" EntitySet="USER_LESSON_COMPLETE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_LESSON_COMPLETE_USER" Association="Self.FK_USER_LESSON_COMPLETE_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="USER_LESSON_COMPLETE" EntitySet="USER_LESSON_COMPLETE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_QUIZ_COMPLETE_LESSON" Association="Self.FK_USER_QUIZ_COMPLETE_LESSON">
+            <End Role="LESSON" EntitySet="LESSON" />
+            <End Role="USER_QUIZ_COMPLETE" EntitySet="USER_QUIZ_COMPLETE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_QUIZ_COMPLETE_MODULE" Association="Self.FK_USER_QUIZ_COMPLETE_MODULE">
+            <End Role="MODULE" EntitySet="MODULE" />
+            <End Role="USER_QUIZ_COMPLETE" EntitySet="USER_QUIZ_COMPLETE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_QUIZ_COMPLETE_USER" Association="Self.FK_USER_QUIZ_COMPLETE_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="USER_QUIZ_COMPLETE" EntitySet="USER_QUIZ_COMPLETE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_RESPONSE_LESSON" Association="Self.FK_USER_RESPONSE_LESSON">
+            <End Role="LESSON" EntitySet="LESSON" />
+            <End Role="USER_RESPONSE" EntitySet="USER_RESPONSE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_RESPONSE_MODULE" Association="Self.FK_USER_RESPONSE_MODULE">
+            <End Role="MODULE" EntitySet="MODULE" />
+            <End Role="USER_RESPONSE" EntitySet="USER_RESPONSE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_RESPONSE_QUESTION" Association="Self.FK_USER_RESPONSE_QUESTION">
+            <End Role="QUESTION" EntitySet="QUESTION" />
+            <End Role="USER_RESPONSE" EntitySet="USER_RESPONSE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_RESPONSES_USERS" Association="Self.FK_USER_RESPONSES_USERS">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="USER_RESPONSE" EntitySet="USER_RESPONSE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_USER_STATUS" Association="Self.FK_USER_USER_STATUS">
+            <End Role="USER_STATUS" EntitySet="USER_STATUS" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="fit_elearningModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="fit_elearningEntities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+          <FunctionImport Name="SpValidateUser" ReturnType="Collection(Boolean)">
+            <Parameter Name="UserId" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="ACTIVITY" EntityType="fit_elearningModel.ACTIVITY" />
+          <EntitySet Name="LESSON" EntityType="fit_elearningModel.LESSON" />
+          <EntitySet Name="LESSON_ACTIVITY" EntityType="fit_elearningModel.LESSON_ACTIVITY" />
+          <EntitySet Name="LESSON_FLOW" EntityType="fit_elearningModel.LESSON_FLOW" />
+          <EntitySet Name="LESSON_FLOW_TYPE" EntityType="fit_elearningModel.LESSON_FLOW_TYPE" />
+          <EntitySet Name="LOGIN_AUDIT" EntityType="fit_elearningModel.LOGIN_AUDIT" />
+          <EntitySet Name="MODULE" EntityType="fit_elearningModel.MODULE" />
+          <EntitySet Name="MODULE_LESSON" EntityType="fit_elearningModel.MODULE_LESSON" />
+          <EntitySet Name="QUESTION" EntityType="fit_elearningModel.QUESTION" />
+          <EntitySet Name="QUESTION_GROUP" EntityType="fit_elearningModel.QUESTION_GROUP" />
+          <EntitySet Name="QUESTION_GROUP_QUESTION" EntityType="fit_elearningModel.QUESTION_GROUP_QUESTION" />
+          <EntitySet Name="QUESTION_OPTION" EntityType="fit_elearningModel.QUESTION_OPTION" />
+          <EntitySet Name="QUESTION_TYPE" EntityType="fit_elearningModel.QUESTION_TYPE" />
+          <EntitySet Name="USER" EntityType="fit_elearningModel.USER" />
+          <EntitySet Name="USER_RESPONSE" EntityType="fit_elearningModel.USER_RESPONSE" />
+          <EntitySet Name="VIDEO" EntityType="fit_elearningModel.VIDEO" />
+          <AssociationSet Name="FK_LESSON_ACTIVITY_ACTIVITY" Association="fit_elearningModel.FK_LESSON_ACTIVITY_ACTIVITY">
+            <End Role="ACTIVITY" EntitySet="ACTIVITY" />
+            <End Role="LESSON_ACTIVITY" EntitySet="LESSON_ACTIVITY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LESSON_ACTIVITY_LESSON" Association="fit_elearningModel.FK_LESSON_ACTIVITY_LESSON">
+            <End Role="LESSON" EntitySet="LESSON" />
+            <End Role="LESSON_ACTIVITY" EntitySet="LESSON_ACTIVITY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LESSON_FLOW_LESSON" Association="fit_elearningModel.FK_LESSON_FLOW_LESSON">
+            <End Role="LESSON" EntitySet="LESSON" />
+            <End Role="LESSON_FLOW" EntitySet="LESSON_FLOW" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MODULE_LESSON_LESSON" Association="fit_elearningModel.FK_MODULE_LESSON_LESSON">
+            <End Role="LESSON" EntitySet="LESSON" />
+            <End Role="MODULE_LESSON" EntitySet="MODULE_LESSON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_RESPONSE_LESSON" Association="fit_elearningModel.FK_USER_RESPONSE_LESSON">
+            <End Role="LESSON" EntitySet="LESSON" />
+            <End Role="USER_RESPONSE" EntitySet="USER_RESPONSE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LESSON_FLOW_LESSON_TYPE" Association="fit_elearningModel.FK_LESSON_FLOW_LESSON_TYPE">
+            <End Role="LESSON_FLOW_TYPE" EntitySet="LESSON_FLOW_TYPE" />
+            <End Role="LESSON_FLOW" EntitySet="LESSON_FLOW" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LESSON_FLOW_QUESTION_GROUP" Association="fit_elearningModel.FK_LESSON_FLOW_QUESTION_GROUP">
+            <End Role="QUESTION_GROUP" EntitySet="QUESTION_GROUP" />
+            <End Role="LESSON_FLOW" EntitySet="LESSON_FLOW" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LESSON_FLOW_VIDEO" Association="fit_elearningModel.FK_LESSON_FLOW_VIDEO">
+            <End Role="VIDEO" EntitySet="VIDEO" />
+            <End Role="LESSON_FLOW" EntitySet="LESSON_FLOW" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOGIN_AUDIT_USER" Association="fit_elearningModel.FK_LOGIN_AUDIT_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="LOGIN_AUDIT" EntitySet="LOGIN_AUDIT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MODULE_LESSON_MODULE" Association="fit_elearningModel.FK_MODULE_LESSON_MODULE">
+            <End Role="MODULE" EntitySet="MODULE" />
+            <End Role="MODULE_LESSON" EntitySet="MODULE_LESSON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_RESPONSE_MODULE" Association="fit_elearningModel.FK_USER_RESPONSE_MODULE">
+            <End Role="MODULE" EntitySet="MODULE" />
+            <End Role="USER_RESPONSE" EntitySet="USER_RESPONSE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QUESTION_GROUP_QUESTION_QUESTION" Association="fit_elearningModel.FK_QUESTION_GROUP_QUESTION_QUESTION">
+            <End Role="QUESTION" EntitySet="QUESTION" />
+            <End Role="QUESTION_GROUP_QUESTION" EntitySet="QUESTION_GROUP_QUESTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QUESTION_OPTIONS_QUESTIONS" Association="fit_elearningModel.FK_QUESTION_OPTIONS_QUESTIONS">
+            <End Role="QUESTION" EntitySet="QUESTION" />
+            <End Role="QUESTION_OPTION" EntitySet="QUESTION_OPTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QUESTION_QUESTION_TYPE" Association="fit_elearningModel.FK_QUESTION_QUESTION_TYPE">
+            <End Role="QUESTION_TYPE" EntitySet="QUESTION_TYPE" />
+            <End Role="QUESTION" EntitySet="QUESTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_RESPONSE_QUESTION" Association="fit_elearningModel.FK_USER_RESPONSE_QUESTION">
+            <End Role="QUESTION" EntitySet="QUESTION" />
+            <End Role="USER_RESPONSE" EntitySet="USER_RESPONSE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QUESTION_GROUP_QUESTION_QUESTION_GROUP" Association="fit_elearningModel.FK_QUESTION_GROUP_QUESTION_QUESTION_GROUP">
+            <End Role="QUESTION_GROUP" EntitySet="QUESTION_GROUP" />
+            <End Role="QUESTION_GROUP_QUESTION" EntitySet="QUESTION_GROUP_QUESTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_RESPONSES_USERS" Association="fit_elearningModel.FK_USER_RESPONSES_USERS">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="USER_RESPONSE" EntitySet="USER_RESPONSE" />
+          </AssociationSet>
+          <FunctionImport Name="spGetQuestions" ReturnType="Collection(fit_elearningModel.spGetQuestions_Result)">
+          <Parameter Name="QUESTIONGROUPID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetNextLessonFlowId" ReturnType="Collection(fit_elearningModel.spGetNextLessonFlowId_Result)">
+            <Parameter Name="LESSON_ID" Mode="In" Type="Int32" />
+            <Parameter Name="CURRENT_LESSON_SORT_ORDER" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetUserResponse" ReturnType="Collection(String)">
+            <Parameter Name="MODULEID" Mode="In" Type="Int32" />
+            <Parameter Name="LESSONID" Mode="In" Type="Int32" />
+            <Parameter Name="QUESTIONID" Mode="In" Type="Int32" />
+            <Parameter Name="USERID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spSaveLessonComplete" ReturnType="Collection(fit_elearningModel.spSaveLessonComplete_Result)">
+            <Parameter Name="MODULEID" Mode="In" Type="Int32" />
+            <Parameter Name="LESSONID" Mode="In" Type="Int32" />
+            <Parameter Name="USERID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetLessonComplete" ReturnType="Collection(Int32)">
+            <Parameter Name="MODULEID" Mode="In" Type="Int32" />
+            <Parameter Name="LESSONID" Mode="In" Type="Int32" />
+            <Parameter Name="USERID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spSaveQuizComplete" ReturnType="Collection(fit_elearningModel.spSaveQuizComplete_Result)">
+            <Parameter Name="MODULEID" Mode="In" Type="Int32" />
+            <Parameter Name="LESSONID" Mode="In" Type="Int32" />
+            <Parameter Name="USERID" Mode="In" Type="Int32" />
+            <Parameter Name="SCORE" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="spGetQuizScore" ReturnType="Collection(fit_elearningModel.spGetQuizScore_Result)">
+            <Parameter Name="MODULEID" Mode="In" Type="Int32" />
+            <Parameter Name="LESSONID" Mode="In" Type="Int32" />
+            <Parameter Name="USERID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetQuizComplete" ReturnType="Collection(fit_elearningModel.spGetQuizComplete_Result)">
+            <Parameter Name="MODULEID" Mode="In" Type="Int32" />
+            <Parameter Name="LESSONID" Mode="In" Type="Int32" />
+            <Parameter Name="USERID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetLessons" ReturnType="Collection(fit_elearningModel.spGetLessons_Result)">
+          <Parameter Name="MODULEID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetLastCompletedLesson" ReturnType="Collection(fit_elearningModel.spGetLastCompletedLesson_Result)">
+            <Parameter Name="MODULEID" Mode="In" Type="Int32" />
+            <Parameter Name="USERID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetLessonId" ReturnType="Collection(Int32)">
+            <Parameter Name="MODULEID" Mode="In" Type="Int32" />
+            <Parameter Name="SORTNUM" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetLessonActivity" ReturnType="Collection(fit_elearningModel.spGetLessonActivity_Result)">
+          <Parameter Name="LESSONID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetTextQuestions" ReturnType="Collection(fit_elearningModel.spGetTextQuestions_Result)">
+            <Parameter Name="MODULEID" Mode="In" Type="Int32" />
+            <Parameter Name="LESSONID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spSaveUserActivity" ReturnType="Collection(fit_elearningModel.spSaveUserActivity_Result)">
+            <Parameter Name="USERID" Mode="In" Type="Int32" />
+            <Parameter Name="MODULEID" Mode="In" Type="Int32" />
+            <Parameter Name="LESSONID" Mode="In" Type="Int32" />
+            <Parameter Name="ACTIVITYINPUTID" Mode="In" Type="Int32" />
+            <Parameter Name="ACTIVITYTEXT" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spGetUserActivity" ReturnType="Collection(String)">
+            <Parameter Name="MODULEID" Mode="In" Type="Int32" />
+            <Parameter Name="LESSONID" Mode="In" Type="Int32" />
+            <Parameter Name="USERID" Mode="In" Type="Int32" />
+            <Parameter Name="ACTIVITYINPUTID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="USER_STATUS" EntityType="fit_elearningModel.USER_STATUS" />
+          <AssociationSet Name="FK_USER_USER_STATUS" Association="fit_elearningModel.FK_USER_USER_STATUS">
+            <End Role="USER_STATUS" EntitySet="USER_STATUS" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+          <EntitySet Name="USER_ACTIVITY" EntityType="fit_elearningModel.USER_ACTIVITY" />
+          <EntitySet Name="USER_AUDIT" EntityType="fit_elearningModel.USER_AUDIT" />
+          <EntitySet Name="USER_LESSON_COMPLETE" EntityType="fit_elearningModel.USER_LESSON_COMPLETE" />
+          <EntitySet Name="USER_QUIZ_COMPLETE" EntityType="fit_elearningModel.USER_QUIZ_COMPLETE" />
+          <AssociationSet Name="FK_USER_ACTIVITY_LESSON" Association="fit_elearningModel.FK_USER_ACTIVITY_LESSON">
+            <End Role="LESSON" EntitySet="LESSON" />
+            <End Role="USER_ACTIVITY" EntitySet="USER_ACTIVITY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_LESSON_COMPLETE_LESSON" Association="fit_elearningModel.FK_USER_LESSON_COMPLETE_LESSON">
+            <End Role="LESSON" EntitySet="LESSON" />
+            <End Role="USER_LESSON_COMPLETE" EntitySet="USER_LESSON_COMPLETE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_QUIZ_COMPLETE_LESSON" Association="fit_elearningModel.FK_USER_QUIZ_COMPLETE_LESSON">
+            <End Role="LESSON" EntitySet="LESSON" />
+            <End Role="USER_QUIZ_COMPLETE" EntitySet="USER_QUIZ_COMPLETE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_ACTIVITY_MODULE" Association="fit_elearningModel.FK_USER_ACTIVITY_MODULE">
+            <End Role="MODULE" EntitySet="MODULE" />
+            <End Role="USER_ACTIVITY" EntitySet="USER_ACTIVITY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_LESSON_COMPLETE_MODULE" Association="fit_elearningModel.FK_USER_LESSON_COMPLETE_MODULE">
+            <End Role="MODULE" EntitySet="MODULE" />
+            <End Role="USER_LESSON_COMPLETE" EntitySet="USER_LESSON_COMPLETE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_QUIZ_COMPLETE_MODULE" Association="fit_elearningModel.FK_USER_QUIZ_COMPLETE_MODULE">
+            <End Role="MODULE" EntitySet="MODULE" />
+            <End Role="USER_QUIZ_COMPLETE" EntitySet="USER_QUIZ_COMPLETE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_ACTIVITY_USER" Association="fit_elearningModel.FK_USER_ACTIVITY_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="USER_ACTIVITY" EntitySet="USER_ACTIVITY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_AUDIT_USER" Association="fit_elearningModel.FK_USER_AUDIT_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="USER_AUDIT" EntitySet="USER_AUDIT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_LESSON_COMPLETE_USER" Association="fit_elearningModel.FK_USER_LESSON_COMPLETE_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="USER_LESSON_COMPLETE" EntitySet="USER_LESSON_COMPLETE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_QUIZ_COMPLETE_USER" Association="fit_elearningModel.FK_USER_QUIZ_COMPLETE_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="USER_QUIZ_COMPLETE" EntitySet="USER_QUIZ_COMPLETE" />
+          </AssociationSet>
+          <FunctionImport Name="spSaveUserResponse" ReturnType="Collection(fit_elearningModel.spSaveUserResponse_Result)">
+            <Parameter Name="MODULEID" Mode="In" Type="Int32" />
+            <Parameter Name="LESSONID" Mode="In" Type="Int32" />
+            <Parameter Name="QUESTIONID" Mode="In" Type="Int32" />
+            <Parameter Name="QUESTIONTYPEID" Mode="In" Type="Int32" />
+            <Parameter Name="USERID" Mode="In" Type="Int32" />
+            <Parameter Name="RESPONSE" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spGetLessonFlow" ReturnType="Collection(fit_elearningModel.spGetLessonFlow_Result)">
+            <Parameter Name="MODULEID" Mode="In" Type="Int32" />
+            <Parameter Name="LESSONID" Mode="In" Type="Int32" />
+            <Parameter Name="SORTID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetLesson" ReturnType="Collection(fit_elearningModel.spGetLesson_Result)">
+            <Parameter Name="MODULEID" Mode="In" Type="Int32" />
+            <Parameter Name="LESSONID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SpVerifyAndSendNewPassword" ReturnType="Collection(Int32)">
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="newPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spCreateUser">
+            <Parameter Name="USERID" Mode="In" Type="String" />
+            <Parameter Name="PWD" Mode="In" Type="String" />
+            <Parameter Name="USERSTATUSID" Mode="In" Type="Int32" />
+            <Parameter Name="CREATEDATE" Mode="In" Type="DateTime" />
+            <Parameter Name="CREATEIP" Mode="In" Type="String" />
+            <Parameter Name="CREATEID" Mode="In" Type="Int32" />
+            <Parameter Name="BASICLESSON" Mode="In" Type="Boolean" />
+            <Parameter Name="ADVANCEDLESSON" Mode="In" Type="Boolean" />
+            <Parameter Name="EMAIL" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spGetRadioNonQuizQuestions" ReturnType="Collection(fit_elearningModel.spGetRadioNonQuizQuestions_Result)">
+            <Parameter Name="MODULEID" Mode="In" Type="Int32" />
+            <Parameter Name="LESSONID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spUpdateUser">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="newPassword" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="basicLesson" Mode="In" Type="Boolean" />
+            <Parameter Name="advancedLesson" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="spGetUsersBehind" ReturnType="Collection(fit_elearningModel.spGetUsersBehind_Result)">
+          <Parameter Name="MODULEID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spDeactivateUser" ReturnType="Collection(Int32)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="LoginUserID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spReactivateUser" ReturnType="Collection(Int32)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="LoginUserID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spUpdateUser2" ReturnType="Collection(Int32)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="LoginUserID" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+            <Parameter Name="UpdateID" Mode="In" Type="Int32" />
+            <Parameter Name="UpdateIP" Mode="In" Type="String" />
+            <Parameter Name="BasicLesson" Mode="In" Type="Byte" />
+            <Parameter Name="AdvancedLesson" Mode="In" Type="Byte" />
+            <Parameter Name="CompanyName" Mode="In" Type="String" />
+            <Parameter Name="FitNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spCreateUser2">
+            <Parameter Name="LoginUserID" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="UserStatusID" Mode="In" Type="Int16" />
+            <Parameter Name="CreateDate" Mode="In" Type="DateTime" />
+            <Parameter Name="CreateID" Mode="In" Type="Int32" />
+            <Parameter Name="CreateIP" Mode="In" Type="String" />
+            <Parameter Name="BasicLesson" Mode="In" Type="Byte" />
+            <Parameter Name="AdvancedLesson" Mode="In" Type="Byte" />
+            <Parameter Name="CompanyName" Mode="In" Type="String" />
+            <Parameter Name="FitNumber" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="ACTIVITY">
+          <Key>
+            <PropertyRef Name="ACTIVITY_ID" />
+          </Key>
+          <Property Type="Int32" Name="ACTIVITY_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="ACTIVITY_TITLE" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ACTIVITY_CONTENT" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CREATE_DATETIME" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="CREATE_USER_ID" Nullable="false" />
+          <Property Type="String" Name="CREATE_IP" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UPDATE_DATETIME" Precision="3" />
+          <Property Type="Int32" Name="UPDATE_USER_ID" />
+          <Property Type="String" Name="UPDATE_IP" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LESSON_ACTIVITY" Relationship="fit_elearningModel.FK_LESSON_ACTIVITY_ACTIVITY" FromRole="ACTIVITY" ToRole="LESSON_ACTIVITY" />
+        </EntityType>
+        <EntityType Name="LESSON">
+          <Key>
+            <PropertyRef Name="LESSON_ID" />
+          </Key>
+          <Property Type="Int32" Name="LESSON_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="LESSON_NAME" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LESSON_DESCRIPTION" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LESSON_IMAGE_FILE" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CREATE_DATETIME" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="CREATE_USER_ID" Nullable="false" />
+          <Property Type="String" Name="CREATE_IP" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UPDATE_DATETIME" Precision="3" />
+          <Property Type="Int32" Name="UPDATE_USER_ID" />
+          <Property Type="String" Name="UPDATE_IP" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LESSON_ACTIVITY" Relationship="fit_elearningModel.FK_LESSON_ACTIVITY_LESSON" FromRole="LESSON" ToRole="LESSON_ACTIVITY" />
+          <NavigationProperty Name="LESSON_FLOW" Relationship="fit_elearningModel.FK_LESSON_FLOW_LESSON" FromRole="LESSON" ToRole="LESSON_FLOW" />
+          <NavigationProperty Name="MODULE_LESSON" Relationship="fit_elearningModel.FK_MODULE_LESSON_LESSON" FromRole="LESSON" ToRole="MODULE_LESSON" />
+          <NavigationProperty Name="USER_RESPONSE" Relationship="fit_elearningModel.FK_USER_RESPONSE_LESSON" FromRole="LESSON" ToRole="USER_RESPONSE" />
+          <NavigationProperty Name="USER_ACTIVITY" Relationship="fit_elearningModel.FK_USER_ACTIVITY_LESSON" FromRole="LESSON" ToRole="USER_ACTIVITY" />
+          <NavigationProperty Name="USER_LESSON_COMPLETE" Relationship="fit_elearningModel.FK_USER_LESSON_COMPLETE_LESSON" FromRole="LESSON" ToRole="USER_LESSON_COMPLETE" />
+          <NavigationProperty Name="USER_QUIZ_COMPLETE" Relationship="fit_elearningModel.FK_USER_QUIZ_COMPLETE_LESSON" FromRole="LESSON" ToRole="USER_QUIZ_COMPLETE" />
+          <Property Name="LESSON_CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="LESSON_ACTIVITY">
+          <Key>
+            <PropertyRef Name="LESSON_ACTIVITY_ID" />
+          </Key>
+          <Property Type="Int32" Name="LESSON_ACTIVITY_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="LESSON_ID" Nullable="false" />
+          <Property Type="Int32" Name="ACTIVITY_ID" Nullable="false" />
+          <Property Type="DateTime" Name="CREATE_DATETIME" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="CREATE_USER_ID" Nullable="false" />
+          <Property Type="String" Name="CREATE_IP" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UPDATE_DATETIME" Precision="3" />
+          <Property Type="Int32" Name="UPDATE_USER_ID" />
+          <Property Type="String" Name="UPDATE_IP" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ACTIVITY" Relationship="fit_elearningModel.FK_LESSON_ACTIVITY_ACTIVITY" FromRole="LESSON_ACTIVITY" ToRole="ACTIVITY" />
+          <NavigationProperty Name="LESSON" Relationship="fit_elearningModel.FK_LESSON_ACTIVITY_LESSON" FromRole="LESSON_ACTIVITY" ToRole="LESSON" />
+        </EntityType>
+        <EntityType Name="LESSON_FLOW">
+          <Key>
+            <PropertyRef Name="LESSON_FLOW_ID" />
+          </Key>
+          <Property Type="Int32" Name="LESSON_FLOW_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="LESSON_ID" Nullable="false" />
+          <Property Type="Int32" Name="LESSON_FLOW_SORT_ORDER" Nullable="false" />
+          <Property Type="Int32" Name="LESSON_FLOW_TYPE_ID" Nullable="false" />
+          <Property Type="Int32" Name="QUESTION_GROUP_ID" />
+          <Property Type="Int32" Name="VIDEO_ID" />
+          <Property Type="DateTime" Name="CREATE_DATETIME" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="CREATE_USER_ID" Nullable="false" />
+          <Property Type="String" Name="CREATE_IP" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UPDATE_DATETIME" Precision="3" />
+          <Property Type="Int32" Name="UPDATE_USER_ID" />
+          <Property Type="String" Name="UPDATE_IP" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LESSON" Relationship="fit_elearningModel.FK_LESSON_FLOW_LESSON" FromRole="LESSON_FLOW" ToRole="LESSON" />
+          <NavigationProperty Name="LESSON_FLOW_TYPE" Relationship="fit_elearningModel.FK_LESSON_FLOW_LESSON_TYPE" FromRole="LESSON_FLOW" ToRole="LESSON_FLOW_TYPE" />
+          <NavigationProperty Name="QUESTION_GROUP" Relationship="fit_elearningModel.FK_LESSON_FLOW_QUESTION_GROUP" FromRole="LESSON_FLOW" ToRole="QUESTION_GROUP" />
+          <NavigationProperty Name="VIDEO" Relationship="fit_elearningModel.FK_LESSON_FLOW_VIDEO" FromRole="LESSON_FLOW" ToRole="VIDEO" />
+          <Property Type="String" Name="LESSON_FLOW_TEXT" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LESSON_FLOW_CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="LESSON_FLOW_TYPE">
+          <Key>
+            <PropertyRef Name="LESSON_FLOW_TYPE_ID" />
+          </Key>
+          <Property Type="Int32" Name="LESSON_FLOW_TYPE_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="LESSON_FLOW_TYPE_NAME" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LESSON_FLOW" Relationship="fit_elearningModel.FK_LESSON_FLOW_LESSON_TYPE" FromRole="LESSON_FLOW_TYPE" ToRole="LESSON_FLOW" />
+        </EntityType>
+        <EntityType Name="LOGIN_AUDIT">
+          <Key>
+            <PropertyRef Name="LOGIN_AUDIT_ID" />
+          </Key>
+          <Property Type="Int32" Name="LOGIN_AUDIT_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="USER_ID" Nullable="false" />
+          <Property Type="DateTime" Name="LOGIN_DATETIME" Nullable="false" Precision="3" />
+          <Property Type="String" Name="LOGIN_IP" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="USER" Relationship="fit_elearningModel.FK_LOGIN_AUDIT_USER" FromRole="LOGIN_AUDIT" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="MODULE">
+          <Key>
+            <PropertyRef Name="MODULE_ID" />
+          </Key>
+          <Property Type="Int32" Name="MODULE_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="MODULE_NAME" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MODULE_DESCRIPTION" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CREATE_DATETIME" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="CREATE_USER_ID" Nullable="false" />
+          <Property Type="String" Name="CREATE_IP" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UPDATE_DATETIME" Precision="3" />
+          <Property Type="Int32" Name="UPDATE_USER_ID" />
+          <Property Type="String" Name="UPDATE_IP" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MODULE_LESSON" Relationship="fit_elearningModel.FK_MODULE_LESSON_MODULE" FromRole="MODULE" ToRole="MODULE_LESSON" />
+          <NavigationProperty Name="USER_RESPONSE" Relationship="fit_elearningModel.FK_USER_RESPONSE_MODULE" FromRole="MODULE" ToRole="USER_RESPONSE" />
+          <NavigationProperty Name="USER_ACTIVITY" Relationship="fit_elearningModel.FK_USER_ACTIVITY_MODULE" FromRole="MODULE" ToRole="USER_ACTIVITY" />
+          <NavigationProperty Name="USER_LESSON_COMPLETE" Relationship="fit_elearningModel.FK_USER_LESSON_COMPLETE_MODULE" FromRole="MODULE" ToRole="USER_LESSON_COMPLETE" />
+          <NavigationProperty Name="USER_QUIZ_COMPLETE" Relationship="fit_elearningModel.FK_USER_QUIZ_COMPLETE_MODULE" FromRole="MODULE" ToRole="USER_QUIZ_COMPLETE" />
+        </EntityType>
+        <EntityType Name="MODULE_LESSON">
+          <Key>
+            <PropertyRef Name="MODULE_LESSON_ID" />
+          </Key>
+          <Property Type="Int32" Name="MODULE_LESSON_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="MODULE_ID" Nullable="false" />
+          <Property Type="Int32" Name="LESSON_ID" Nullable="false" />
+          <Property Type="Int32" Name="LESSON_SORT_ORDER" Nullable="false" />
+          <Property Type="DateTime" Name="CREATE_DATETIME" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="CREATE_USER_ID" Nullable="false" />
+          <Property Type="String" Name="CREATE_IP" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UPATE_DATEIME" Precision="3" />
+          <Property Type="Int32" Name="UPDATE_USER_ID" />
+          <Property Type="String" Name="UPDATE_IP" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LESSON" Relationship="fit_elearningModel.FK_MODULE_LESSON_LESSON" FromRole="MODULE_LESSON" ToRole="LESSON" />
+          <NavigationProperty Name="MODULE" Relationship="fit_elearningModel.FK_MODULE_LESSON_MODULE" FromRole="MODULE_LESSON" ToRole="MODULE" />
+        </EntityType>
+        <EntityType Name="QUESTION">
+          <Key>
+            <PropertyRef Name="QUESTION_ID" />
+          </Key>
+          <Property Type="Int32" Name="QUESTION_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="QUESTION_TYPE_ID" Nullable="false" />
+          <Property Type="String" Name="QUESTION_TEXT" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CREATE_DATETIME" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="CREATE_USER_ID" Nullable="false" />
+          <Property Type="String" Name="CREATE_IP" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UPDATE_DATETIME" Precision="3" />
+          <Property Type="Int32" Name="UPDATE_USER_ID" />
+          <Property Type="String" Name="UPDATE_IP" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="QUESTION_GROUP_QUESTION" Relationship="fit_elearningModel.FK_QUESTION_GROUP_QUESTION_QUESTION" FromRole="QUESTION" ToRole="QUESTION_GROUP_QUESTION" />
+          <NavigationProperty Name="QUESTION_OPTION" Relationship="fit_elearningModel.FK_QUESTION_OPTIONS_QUESTIONS" FromRole="QUESTION" ToRole="QUESTION_OPTION" />
+          <NavigationProperty Name="QUESTION_TYPE" Relationship="fit_elearningModel.FK_QUESTION_QUESTION_TYPE" FromRole="QUESTION" ToRole="QUESTION_TYPE" />
+          <NavigationProperty Name="USER_RESPONSE" Relationship="fit_elearningModel.FK_USER_RESPONSE_QUESTION" FromRole="QUESTION" ToRole="USER_RESPONSE" />
+        </EntityType>
+        <EntityType Name="QUESTION_GROUP">
+          <Key>
+            <PropertyRef Name="QUESTION_GROUP_ID" />
+          </Key>
+          <Property Type="Int32" Name="QUESTION_GROUP_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="QUESTION_GROUP_TITLE" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATE_DATETIME" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="CREATE_USER_ID" Nullable="false" />
+          <Property Type="String" Name="CREATE_IP" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UPDATE_DATETIME" Precision="3" />
+          <Property Type="Int32" Name="UPDATE_USER_ID" />
+          <Property Type="String" Name="UPDATE_IP" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LESSON_FLOW" Relationship="fit_elearningModel.FK_LESSON_FLOW_QUESTION_GROUP" FromRole="QUESTION_GROUP" ToRole="LESSON_FLOW" />
+          <NavigationProperty Name="QUESTION_GROUP_QUESTION" Relationship="fit_elearningModel.FK_QUESTION_GROUP_QUESTION_QUESTION_GROUP" FromRole="QUESTION_GROUP" ToRole="QUESTION_GROUP_QUESTION" />
+        </EntityType>
+        <EntityType Name="QUESTION_GROUP_QUESTION">
+          <Key>
+            <PropertyRef Name="QUESTION_GROUP_QUESTION_ID" />
+          </Key>
+          <Property Type="Int32" Name="QUESTION_GROUP_QUESTION_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="QUESTION_GROUP_ID" Nullable="false" />
+          <Property Type="Int32" Name="QUESTION_ID" Nullable="false" />
+          <Property Type="DateTime" Name="CREATE_DATETIME" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="CREATE_USER_ID" Nullable="false" />
+          <Property Type="String" Name="CREATE_IP" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UPDATE_DATETIME" Precision="3" />
+          <Property Type="Int32" Name="UPDATE_USER_ID" />
+          <Property Type="String" Name="UPDATE_IP" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="QUESTION" Relationship="fit_elearningModel.FK_QUESTION_GROUP_QUESTION_QUESTION" FromRole="QUESTION_GROUP_QUESTION" ToRole="QUESTION" />
+          <NavigationProperty Name="QUESTION_GROUP" Relationship="fit_elearningModel.FK_QUESTION_GROUP_QUESTION_QUESTION_GROUP" FromRole="QUESTION_GROUP_QUESTION" ToRole="QUESTION_GROUP" />
+          <Property Type="Int32" Name="QUESTION_SORT_ORDER" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QUESTION_OPTION">
+          <Key>
+            <PropertyRef Name="QUESTION_OPTION_ID" />
+          </Key>
+          <Property Type="Int32" Name="QUESTION_OPTION_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="QUESTION_ID" Nullable="false" />
+          <Property Type="String" Name="QUESTION_OPTION_TEXT" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="QUESTION_OPTION_CORRECT" Nullable="false" />
+          <Property Type="DateTime" Name="CREATE_DATETIME" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="CREATE_USER_ID" Nullable="false" />
+          <Property Type="String" Name="CREATE_IP" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UPDATE_DATETIME" Precision="3" />
+          <Property Type="Int32" Name="UPDATE_USER_ID" />
+          <Property Type="String" Name="UPDATE_IP" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="QUESTION" Relationship="fit_elearningModel.FK_QUESTION_OPTIONS_QUESTIONS" FromRole="QUESTION_OPTION" ToRole="QUESTION" />
+        </EntityType>
+        <EntityType Name="QUESTION_TYPE">
+          <Key>
+            <PropertyRef Name="QUESTION_TYPE_ID" />
+          </Key>
+          <Property Type="Int32" Name="QUESTION_TYPE_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="QUESTION_TYPE_NAME" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="QUESTION" Relationship="fit_elearningModel.FK_QUESTION_QUESTION_TYPE" FromRole="QUESTION_TYPE" ToRole="QUESTION" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="LOGIN_USER_ID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NAME" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PASSWORD" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EMAIL" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CREATE_DATETIME" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="CREATE_USER_ID" Nullable="false" />
+          <Property Type="String" Name="CREATE_IP" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UPDATE_DATETIME" Precision="3" />
+          <Property Type="Int32" Name="UPDATE_USER_ID" />
+          <Property Type="String" Name="UPDATE_IP" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LOGIN_AUDIT" Relationship="fit_elearningModel.FK_LOGIN_AUDIT_USER" FromRole="USER" ToRole="LOGIN_AUDIT" />
+          <NavigationProperty Name="USER_RESPONSE" Relationship="fit_elearningModel.FK_USER_RESPONSES_USERS" FromRole="USER" ToRole="USER_RESPONSE" />
+          <Property Type="Int16" Name="USER_STATUS_CODE" />
+          <NavigationProperty Name="USER_STATUS" Relationship="fit_elearningModel.FK_USER_USER_STATUS" FromRole="USER" ToRole="USER_STATUS" />
+          <NavigationProperty Name="USER_ACTIVITY" Relationship="fit_elearningModel.FK_USER_ACTIVITY_USER" FromRole="USER" ToRole="USER_ACTIVITY" />
+          <NavigationProperty Name="USER_AUDIT" Relationship="fit_elearningModel.FK_USER_AUDIT_USER" FromRole="USER" ToRole="USER_AUDIT" />
+          <NavigationProperty Name="USER_LESSON_COMPLETE" Relationship="fit_elearningModel.FK_USER_LESSON_COMPLETE_USER" FromRole="USER" ToRole="USER_LESSON_COMPLETE" />
+          <NavigationProperty Name="USER_QUIZ_COMPLETE" Relationship="fit_elearningModel.FK_USER_QUIZ_COMPLETE_USER" FromRole="USER" ToRole="USER_QUIZ_COMPLETE" />
+          <Property Name="MODULE1_BASIC" Type="Byte" Nullable="false" />
+          <Property Name="MODULE1_ADVANCED" Type="Byte" Nullable="false" />
+          <Property Name="COMPANY_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FIT_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isAdmin" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_RESPONSE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="USER_ID" Nullable="false" />
+          <Property Type="Int32" Name="MODULE_ID" Nullable="false" />
+          <Property Type="Int32" Name="LESSON_ID" Nullable="false" />
+          <Property Type="Int32" Name="QUESTION_ID" Nullable="false" />
+          <Property Type="String" Name="RESPONSE" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CREATE_DATETIME" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="CREATE_USER_ID" Nullable="false" />
+          <Property Type="String" Name="CREATE_IP" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UPDATE_DATETIME" Precision="3" />
+          <Property Type="Int32" Name="UPDATE_USER_ID" />
+          <Property Type="String" Name="UPDATE_IP" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LESSON" Relationship="fit_elearningModel.FK_USER_RESPONSE_LESSON" FromRole="USER_RESPONSE" ToRole="LESSON" />
+          <NavigationProperty Name="MODULE" Relationship="fit_elearningModel.FK_USER_RESPONSE_MODULE" FromRole="USER_RESPONSE" ToRole="MODULE" />
+          <NavigationProperty Name="QUESTION" Relationship="fit_elearningModel.FK_USER_RESPONSE_QUESTION" FromRole="USER_RESPONSE" ToRole="QUESTION" />
+          <NavigationProperty Name="USER" Relationship="fit_elearningModel.FK_USER_RESPONSES_USERS" FromRole="USER_RESPONSE" ToRole="USER" />
+          <Property Type="Int32" Name="QUESTION_TYPE_ID" />
+        </EntityType>
+        <EntityType Name="VIDEO">
+          <Key>
+            <PropertyRef Name="VIDEO_ID" />
+          </Key>
+          <Property Type="Int32" Name="VIDEO_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="VIDEO_NAME" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="VIDEO_DESCRIPTION" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="VIDEO_YOUTUBE_ID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LESSON_FLOW" Relationship="fit_elearningModel.FK_LESSON_FLOW_VIDEO" FromRole="VIDEO" ToRole="LESSON_FLOW" />
+        </EntityType>
+        <Association Name="FK_LESSON_ACTIVITY_ACTIVITY">
+          <End Type="fit_elearningModel.ACTIVITY" Role="ACTIVITY" Multiplicity="1" />
+          <End Type="fit_elearningModel.LESSON_ACTIVITY" Role="LESSON_ACTIVITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACTIVITY">
+              <PropertyRef Name="ACTIVITY_ID" />
+            </Principal>
+            <Dependent Role="LESSON_ACTIVITY">
+              <PropertyRef Name="ACTIVITY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LESSON_ACTIVITY_LESSON">
+          <End Type="fit_elearningModel.LESSON" Role="LESSON" Multiplicity="1" />
+          <End Type="fit_elearningModel.LESSON_ACTIVITY" Role="LESSON_ACTIVITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LESSON">
+              <PropertyRef Name="LESSON_ID" />
+            </Principal>
+            <Dependent Role="LESSON_ACTIVITY">
+              <PropertyRef Name="LESSON_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LESSON_FLOW_LESSON">
+          <End Type="fit_elearningModel.LESSON" Role="LESSON" Multiplicity="1" />
+          <End Type="fit_elearningModel.LESSON_FLOW" Role="LESSON_FLOW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LESSON">
+              <PropertyRef Name="LESSON_ID" />
+            </Principal>
+            <Dependent Role="LESSON_FLOW">
+              <PropertyRef Name="LESSON_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MODULE_LESSON_LESSON">
+          <End Type="fit_elearningModel.LESSON" Role="LESSON" Multiplicity="1" />
+          <End Type="fit_elearningModel.MODULE_LESSON" Role="MODULE_LESSON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LESSON">
+              <PropertyRef Name="LESSON_ID" />
+            </Principal>
+            <Dependent Role="MODULE_LESSON">
+              <PropertyRef Name="LESSON_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_RESPONSE_LESSON">
+          <End Type="fit_elearningModel.LESSON" Role="LESSON" Multiplicity="1" />
+          <End Type="fit_elearningModel.USER_RESPONSE" Role="USER_RESPONSE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LESSON">
+              <PropertyRef Name="LESSON_ID" />
+            </Principal>
+            <Dependent Role="USER_RESPONSE">
+              <PropertyRef Name="LESSON_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LESSON_FLOW_LESSON_TYPE">
+          <End Type="fit_elearningModel.LESSON_FLOW_TYPE" Role="LESSON_FLOW_TYPE" Multiplicity="1" />
+          <End Type="fit_elearningModel.LESSON_FLOW" Role="LESSON_FLOW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LESSON_FLOW_TYPE">
+              <PropertyRef Name="LESSON_FLOW_TYPE_ID" />
+            </Principal>
+            <Dependent Role="LESSON_FLOW">
+              <PropertyRef Name="LESSON_FLOW_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LESSON_FLOW_QUESTION_GROUP">
+          <End Type="fit_elearningModel.QUESTION_GROUP" Role="QUESTION_GROUP" Multiplicity="0..1" />
+          <End Type="fit_elearningModel.LESSON_FLOW" Role="LESSON_FLOW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUESTION_GROUP">
+              <PropertyRef Name="QUESTION_GROUP_ID" />
+            </Principal>
+            <Dependent Role="LESSON_FLOW">
+              <PropertyRef Name="QUESTION_GROUP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LESSON_FLOW_VIDEO">
+          <End Type="fit_elearningModel.VIDEO" Role="VIDEO" Multiplicity="0..1" />
+          <End Type="fit_elearningModel.LESSON_FLOW" Role="LESSON_FLOW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VIDEO">
+              <PropertyRef Name="VIDEO_ID" />
+            </Principal>
+            <Dependent Role="LESSON_FLOW">
+              <PropertyRef Name="VIDEO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOGIN_AUDIT_USER">
+          <End Type="fit_elearningModel.USER" Role="USER" Multiplicity="1" />
+          <End Type="fit_elearningModel.LOGIN_AUDIT" Role="LOGIN_AUDIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LOGIN_AUDIT">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MODULE_LESSON_MODULE">
+          <End Type="fit_elearningModel.MODULE" Role="MODULE" Multiplicity="1" />
+          <End Type="fit_elearningModel.MODULE_LESSON" Role="MODULE_LESSON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULE">
+              <PropertyRef Name="MODULE_ID" />
+            </Principal>
+            <Dependent Role="MODULE_LESSON">
+              <PropertyRef Name="MODULE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_RESPONSE_MODULE">
+          <End Type="fit_elearningModel.MODULE" Role="MODULE" Multiplicity="1" />
+          <End Type="fit_elearningModel.USER_RESPONSE" Role="USER_RESPONSE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULE">
+              <PropertyRef Name="MODULE_ID" />
+            </Principal>
+            <Dependent Role="USER_RESPONSE">
+              <PropertyRef Name="MODULE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QUESTION_GROUP_QUESTION_QUESTION">
+          <End Type="fit_elearningModel.QUESTION" Role="QUESTION" Multiplicity="1" />
+          <End Type="fit_elearningModel.QUESTION_GROUP_QUESTION" Role="QUESTION_GROUP_QUESTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUESTION">
+              <PropertyRef Name="QUESTION_ID" />
+            </Principal>
+            <Dependent Role="QUESTION_GROUP_QUESTION">
+              <PropertyRef Name="QUESTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QUESTION_OPTIONS_QUESTIONS">
+          <End Type="fit_elearningModel.QUESTION" Role="QUESTION" Multiplicity="1" />
+          <End Type="fit_elearningModel.QUESTION_OPTION" Role="QUESTION_OPTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUESTION">
+              <PropertyRef Name="QUESTION_ID" />
+            </Principal>
+            <Dependent Role="QUESTION_OPTION">
+              <PropertyRef Name="QUESTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QUESTION_QUESTION_TYPE">
+          <End Type="fit_elearningModel.QUESTION_TYPE" Role="QUESTION_TYPE" Multiplicity="1" />
+          <End Type="fit_elearningModel.QUESTION" Role="QUESTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUESTION_TYPE">
+              <PropertyRef Name="QUESTION_TYPE_ID" />
+            </Principal>
+            <Dependent Role="QUESTION">
+              <PropertyRef Name="QUESTION_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_RESPONSE_QUESTION">
+          <End Type="fit_elearningModel.QUESTION" Role="QUESTION" Multiplicity="1" />
+          <End Type="fit_elearningModel.USER_RESPONSE" Role="USER_RESPONSE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUESTION">
+              <PropertyRef Name="QUESTION_ID" />
+            </Principal>
+            <Dependent Role="USER_RESPONSE">
+              <PropertyRef Name="QUESTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QUESTION_GROUP_QUESTION_QUESTION_GROUP">
+          <End Type="fit_elearningModel.QUESTION_GROUP" Role="QUESTION_GROUP" Multiplicity="1" />
+          <End Type="fit_elearningModel.QUESTION_GROUP_QUESTION" Role="QUESTION_GROUP_QUESTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUESTION_GROUP">
+              <PropertyRef Name="QUESTION_GROUP_ID" />
+            </Principal>
+            <Dependent Role="QUESTION_GROUP_QUESTION">
+              <PropertyRef Name="QUESTION_GROUP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_RESPONSES_USERS">
+          <End Type="fit_elearningModel.USER" Role="USER" Multiplicity="1" />
+          <End Type="fit_elearningModel.USER_RESPONSE" Role="USER_RESPONSE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER_RESPONSE">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="spGetQuestions_Result">
+          <Property Type="Int32" Name="QUESTION_ID" Nullable="false" />
+          <Property Type="Int32" Name="QUESTION_GROUP_ID" Nullable="false" />
+          <Property Type="Int32" Name="QUESTION_SORT_ORDER" Nullable="false" />
+          <Property Type="Int32" Name="QUESTION_TYPE_ID" Nullable="true" />
+          <Property Type="String" Name="QUESTION_TEXT" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="spGetNextLessonFlowId_Result">
+          <Property Type="Int32" Name="LESSON_FLOW_ID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spSaveLessonComplete_Result">
+          <Property Type="Int32" Name="id" Nullable="true" />
+          <Property Type="Int32" Name="error" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spSaveQuizComplete_Result">
+          <Property Type="Int32" Name="id" Nullable="true" />
+          <Property Type="Int32" Name="error" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spGetQuizScore_Result">
+          <Property Type="Int32" Name="score" Nullable="true" />
+          <Property Type="Int32" Name="num_questions" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spGetQuizComplete_Result">
+          <Property Type="Int32" Name="USER_ID" Nullable="false" />
+          <Property Type="DateTime" Name="USER_QUIZ_COMPLETE_DATETIME" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="spGetLessons_Result">
+          <Property Type="Int32" Name="LESSON_ID" Nullable="true" />
+          <Property Type="String" Name="LESSON_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LESSON_DESCRIPTION" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="LESSON_IMAGE_FILE" Nullable="true" />
+          <Property Type="Int32" Name="LESSON_SORT_ORDER" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spGetLastCompletedLesson_Result">
+          <Property Type="Int32" Name="LESSON_ID" Nullable="false" />
+          <Property Type="DateTime" Name="USER_QUIZ_COMPLETE_DATETIME" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="spGetLessonActivity_Result">
+          <Property Type="String" Name="LESSON_NAME" Nullable="true" />
+          <Property Type="String" Name="LESSON_IMAGE_FILE" Nullable="true" />
+          <Property Type="String" Name="ACTIVITY_TITLE" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ACTIVITY_CONTENT" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="spGetTextQuestions_Result">
+          <Property Type="Int32" Name="QUESTION_ID" Nullable="false" />
+          <Property Type="String" Name="QUESTION_TEXT" Nullable="false" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="spSaveUserActivity_Result">
+          <Property Type="Int32" Name="userActivityId" Nullable="true" />
+          <Property Type="Int32" Name="error" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="USER_STATUS">
+          <Key>
+            <PropertyRef Name="STATUS_CODE" />
+          </Key>
+          <Property Type="Int16" Name="STATUS_CODE" Nullable="false" />
+          <Property Type="String" Name="DESCRIPTION" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="USER" Relationship="fit_elearningModel.FK_USER_USER_STATUS" FromRole="USER_STATUS" ToRole="USER" />
+        </EntityType>
+        <Association Name="FK_USER_USER_STATUS">
+          <End Type="fit_elearningModel.USER_STATUS" Role="USER_STATUS" Multiplicity="0..1" />
+          <End Type="fit_elearningModel.USER" Role="USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_STATUS">
+              <PropertyRef Name="STATUS_CODE" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="USER_STATUS_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="USER_ACTIVITY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="USER_ID" Nullable="false" />
+          <Property Type="Int32" Name="MODULE_ID" Nullable="false" />
+          <Property Type="Int32" Name="LESSON_ID" Nullable="false" />
+          <Property Type="Int32" Name="ACTIVITY_INPUT_ID" Nullable="false" />
+          <Property Type="String" Name="ACTIVITY_TEXT" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CREATE_DATETIME" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="CREATE_USER_ID" Nullable="false" />
+          <Property Type="String" Name="CREATE_IP" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="UPDATE_DATETIME" Precision="3" />
+          <Property Type="Int32" Name="UPDATE_USER_ID" />
+          <Property Type="String" Name="UPDATE_IP" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LESSON" Relationship="fit_elearningModel.FK_USER_ACTIVITY_LESSON" FromRole="USER_ACTIVITY" ToRole="LESSON" />
+          <NavigationProperty Name="MODULE" Relationship="fit_elearningModel.FK_USER_ACTIVITY_MODULE" FromRole="USER_ACTIVITY" ToRole="MODULE" />
+          <NavigationProperty Name="USER" Relationship="fit_elearningModel.FK_USER_ACTIVITY_USER" FromRole="USER_ACTIVITY" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="USER_AUDIT">
+          <Key>
+            <PropertyRef Name="USER_AUDIT_ID" />
+          </Key>
+          <Property Type="Int32" Name="USER_AUDIT_ID" Nullable="false" />
+          <Property Type="Int32" Name="USER_ID" Nullable="false" />
+          <Property Type="String" Name="AUDIT_OPERATION" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Type="DateTime" Name="AUDIT_DATETIME" Nullable="false" Precision="3" />
+          <Property Type="String" Name="AUDIT_IP" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="USER" Relationship="fit_elearningModel.FK_USER_AUDIT_USER" FromRole="USER_AUDIT" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="USER_LESSON_COMPLETE">
+          <Key>
+            <PropertyRef Name="USER_LESSON_COMPLETE_ID" />
+          </Key>
+          <Property Type="Int32" Name="USER_LESSON_COMPLETE_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="USER_ID" Nullable="false" />
+          <Property Type="Int32" Name="MODULE_ID" Nullable="false" />
+          <Property Type="Int32" Name="LESSON_ID" Nullable="false" />
+          <Property Type="DateTime" Name="USER_LESSON_COMPLETE_DATETIME" Nullable="false" Precision="3" />
+          <Property Type="String" Name="USER_LESSON_COMPLETE_IP" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LESSON" Relationship="fit_elearningModel.FK_USER_LESSON_COMPLETE_LESSON" FromRole="USER_LESSON_COMPLETE" ToRole="LESSON" />
+          <NavigationProperty Name="MODULE" Relationship="fit_elearningModel.FK_USER_LESSON_COMPLETE_MODULE" FromRole="USER_LESSON_COMPLETE" ToRole="MODULE" />
+          <NavigationProperty Name="USER" Relationship="fit_elearningModel.FK_USER_LESSON_COMPLETE_USER" FromRole="USER_LESSON_COMPLETE" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="USER_QUIZ_COMPLETE">
+          <Key>
+            <PropertyRef Name="USER_QUIZ_COMPLETE_ID" />
+          </Key>
+          <Property Type="Int32" Name="USER_QUIZ_COMPLETE_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="USER_ID" Nullable="false" />
+          <Property Type="Int32" Name="MODULE_ID" Nullable="false" />
+          <Property Type="Int32" Name="LESSON_ID" Nullable="false" />
+          <Property Type="DateTime" Name="USER_QUIZ_COMPLETE_DATETIME" Nullable="false" Precision="3" />
+          <Property Type="String" Name="USER_QUIZ_COMPLETE_IP" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LESSON" Relationship="fit_elearningModel.FK_USER_QUIZ_COMPLETE_LESSON" FromRole="USER_QUIZ_COMPLETE" ToRole="LESSON" />
+          <NavigationProperty Name="MODULE" Relationship="fit_elearningModel.FK_USER_QUIZ_COMPLETE_MODULE" FromRole="USER_QUIZ_COMPLETE" ToRole="MODULE" />
+          <NavigationProperty Name="USER" Relationship="fit_elearningModel.FK_USER_QUIZ_COMPLETE_USER" FromRole="USER_QUIZ_COMPLETE" ToRole="USER" />
+          <Property Name="USER_QUIZ_SCORE" Type="Double" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_USER_ACTIVITY_LESSON">
+          <End Type="fit_elearningModel.LESSON" Role="LESSON" Multiplicity="1" />
+          <End Type="fit_elearningModel.USER_ACTIVITY" Role="USER_ACTIVITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LESSON">
+              <PropertyRef Name="LESSON_ID" />
+            </Principal>
+            <Dependent Role="USER_ACTIVITY">
+              <PropertyRef Name="LESSON_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_LESSON_COMPLETE_LESSON">
+          <End Type="fit_elearningModel.LESSON" Role="LESSON" Multiplicity="1" />
+          <End Type="fit_elearningModel.USER_LESSON_COMPLETE" Role="USER_LESSON_COMPLETE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LESSON">
+              <PropertyRef Name="LESSON_ID" />
+            </Principal>
+            <Dependent Role="USER_LESSON_COMPLETE">
+              <PropertyRef Name="LESSON_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_QUIZ_COMPLETE_LESSON">
+          <End Type="fit_elearningModel.LESSON" Role="LESSON" Multiplicity="1" />
+          <End Type="fit_elearningModel.USER_QUIZ_COMPLETE" Role="USER_QUIZ_COMPLETE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LESSON">
+              <PropertyRef Name="LESSON_ID" />
+            </Principal>
+            <Dependent Role="USER_QUIZ_COMPLETE">
+              <PropertyRef Name="LESSON_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_ACTIVITY_MODULE">
+          <End Type="fit_elearningModel.MODULE" Role="MODULE" Multiplicity="1" />
+          <End Type="fit_elearningModel.USER_ACTIVITY" Role="USER_ACTIVITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULE">
+              <PropertyRef Name="MODULE_ID" />
+            </Principal>
+            <Dependent Role="USER_ACTIVITY">
+              <PropertyRef Name="MODULE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_LESSON_COMPLETE_MODULE">
+          <End Type="fit_elearningModel.MODULE" Role="MODULE" Multiplicity="1" />
+          <End Type="fit_elearningModel.USER_LESSON_COMPLETE" Role="USER_LESSON_COMPLETE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULE">
+              <PropertyRef Name="MODULE_ID" />
+            </Principal>
+            <Dependent Role="USER_LESSON_COMPLETE">
+              <PropertyRef Name="MODULE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_QUIZ_COMPLETE_MODULE">
+          <End Type="fit_elearningModel.MODULE" Role="MODULE" Multiplicity="1" />
+          <End Type="fit_elearningModel.USER_QUIZ_COMPLETE" Role="USER_QUIZ_COMPLETE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULE">
+              <PropertyRef Name="MODULE_ID" />
+            </Principal>
+            <Dependent Role="USER_QUIZ_COMPLETE">
+              <PropertyRef Name="MODULE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_ACTIVITY_USER">
+          <End Type="fit_elearningModel.USER" Role="USER" Multiplicity="1" />
+          <End Type="fit_elearningModel.USER_ACTIVITY" Role="USER_ACTIVITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER_ACTIVITY">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_AUDIT_USER">
+          <End Type="fit_elearningModel.USER" Role="USER" Multiplicity="1" />
+          <End Type="fit_elearningModel.USER_AUDIT" Role="USER_AUDIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER_AUDIT">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_LESSON_COMPLETE_USER">
+          <End Type="fit_elearningModel.USER" Role="USER" Multiplicity="1" />
+          <End Type="fit_elearningModel.USER_LESSON_COMPLETE" Role="USER_LESSON_COMPLETE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER_LESSON_COMPLETE">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_QUIZ_COMPLETE_USER">
+          <End Type="fit_elearningModel.USER" Role="USER" Multiplicity="1" />
+          <End Type="fit_elearningModel.USER_QUIZ_COMPLETE" Role="USER_QUIZ_COMPLETE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER_QUIZ_COMPLETE">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="spSaveUserResponse_Result">
+          <Property Type="Int32" Name="userResponseId" Nullable="true" />
+          <Property Type="Int32" Name="correct" Nullable="false" />
+          <Property Type="Int32" Name="error" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spGetLessonFlow_Result">
+          <Property Type="Int32" Name="LESSON_FLOW_ID" Nullable="false" />
+          <Property Type="Int32" Name="LESSON_ID" Nullable="false" />
+          <Property Type="Int32" Name="LESSON_FLOW_TYPE_ID" Nullable="false" />
+          <Property Type="Int32" Name="QUESTION_GROUP_ID" Nullable="true" />
+          <Property Type="Int32" Name="VIDEO_ID" Nullable="true" />
+          <Property Type="Int32" Name="LESSON_FLOW_SORT_ORDER" Nullable="false" />
+          <Property Type="Int32" Name="MODULE_ID" Nullable="true" />
+          <Property Type="Int32" Name="LESSON_SORT_ORDER" Nullable="true" />
+          <Property Type="String" Name="LESSON_NAME" Nullable="true" />
+          <Property Type="String" Name="LESSON_IMAGE_FILE" Nullable="true" />
+          <Property Type="String" Name="LESSON_FLOW_TEXT" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="LESSON_FLOW_CONTENT" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spGetLesson_Result">
+          <Property Type="Int32" Name="LESSON_ID" Nullable="false" />
+          <Property Type="String" Name="LESSON_NAME" Nullable="false" />
+          <Property Type="String" Name="LESSON_IMAGE_FILE" Nullable="true" />
+          <Property Type="String" Name="LESSON_CONTENT" Nullable="true" />
+          <Property Type="Int32" Name="MODULE_ID" Nullable="true" />
+          <Property Type="Int32" Name="LESSON_SORT_ORDER" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spGetRadioNonQuizQuestions_Result">
+          <Property Type="Int32" Name="QUESTION_ID" Nullable="false" />
+          <Property Type="String" Name="QUESTION_TEXT" Nullable="false" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="spGetUsersBehind_Result">
+          <Property Type="String" Name="LOGIN_USER_ID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="USER_ID" Nullable="false" />
+          <Property Type="Int32" Name="LESSON_ID" Nullable="false" />
+          <Property Type="Int32" Name="LESSON_SORT_ORDER" Nullable="true" />
+          <Property Type="DateTime" Name="USER_QUIZ_COMPLETE_DATETIME" Nullable="false" Precision="23" />
+        </ComplexType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="fit_elearningModelStoreContainer" CdmEntityContainer="fit_elearningEntities">
+          <FunctionImportMapping FunctionImportName="SpValidateUser" FunctionName="fit_elearningModel.Store.SpValidateUser" />
+          <EntitySetMapping Name="ACTIVITY">
+            <EntityTypeMapping TypeName="fit_elearningModel.ACTIVITY">
+              <MappingFragment StoreEntitySet="ACTIVITY">
+                <ScalarProperty Name="UPDATE_IP" ColumnName="UPDATE_IP" />
+                <ScalarProperty Name="UPDATE_USER_ID" ColumnName="UPDATE_USER_ID" />
+                <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CREATE_IP" ColumnName="CREATE_IP" />
+                <ScalarProperty Name="CREATE_USER_ID" ColumnName="CREATE_USER_ID" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="ACTIVITY_CONTENT" ColumnName="ACTIVITY_CONTENT" />
+                <ScalarProperty Name="ACTIVITY_TITLE" ColumnName="ACTIVITY_TITLE" />
+                <ScalarProperty Name="ACTIVITY_ID" ColumnName="ACTIVITY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LESSON">
+            <EntityTypeMapping TypeName="fit_elearningModel.LESSON">
+              <MappingFragment StoreEntitySet="LESSON">
+                <ScalarProperty Name="LESSON_CONTENT" ColumnName="LESSON_CONTENT" />
+                <ScalarProperty Name="UPDATE_IP" ColumnName="UPDATE_IP" />
+                <ScalarProperty Name="UPDATE_USER_ID" ColumnName="UPDATE_USER_ID" />
+                <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CREATE_IP" ColumnName="CREATE_IP" />
+                <ScalarProperty Name="CREATE_USER_ID" ColumnName="CREATE_USER_ID" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="LESSON_IMAGE_FILE" ColumnName="LESSON_IMAGE_FILE" />
+                <ScalarProperty Name="LESSON_DESCRIPTION" ColumnName="LESSON_DESCRIPTION" />
+                <ScalarProperty Name="LESSON_NAME" ColumnName="LESSON_NAME" />
+                <ScalarProperty Name="LESSON_ID" ColumnName="LESSON_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LESSON_ACTIVITY">
+            <EntityTypeMapping TypeName="fit_elearningModel.LESSON_ACTIVITY">
+              <MappingFragment StoreEntitySet="LESSON_ACTIVITY">
+                <ScalarProperty Name="UPDATE_IP" ColumnName="UPDATE_IP" />
+                <ScalarProperty Name="UPDATE_USER_ID" ColumnName="UPDATE_USER_ID" />
+                <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CREATE_IP" ColumnName="CREATE_IP" />
+                <ScalarProperty Name="CREATE_USER_ID" ColumnName="CREATE_USER_ID" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="ACTIVITY_ID" ColumnName="ACTIVITY_ID" />
+                <ScalarProperty Name="LESSON_ID" ColumnName="LESSON_ID" />
+                <ScalarProperty Name="LESSON_ACTIVITY_ID" ColumnName="LESSON_ACTIVITY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LESSON_FLOW">
+            <EntityTypeMapping TypeName="fit_elearningModel.LESSON_FLOW">
+              <MappingFragment StoreEntitySet="LESSON_FLOW">
+                <ScalarProperty Name="LESSON_FLOW_CONTENT" ColumnName="LESSON_FLOW_CONTENT" />
+                <ScalarProperty Name="LESSON_FLOW_TEXT" ColumnName="LESSON_FLOW_TEXT" />
+                <ScalarProperty Name="UPDATE_IP" ColumnName="UPDATE_IP" />
+                <ScalarProperty Name="UPDATE_USER_ID" ColumnName="UPDATE_USER_ID" />
+                <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CREATE_IP" ColumnName="CREATE_IP" />
+                <ScalarProperty Name="CREATE_USER_ID" ColumnName="CREATE_USER_ID" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="VIDEO_ID" ColumnName="VIDEO_ID" />
+                <ScalarProperty Name="QUESTION_GROUP_ID" ColumnName="QUESTION_GROUP_ID" />
+                <ScalarProperty Name="LESSON_FLOW_TYPE_ID" ColumnName="LESSON_FLOW_TYPE_ID" />
+                <ScalarProperty Name="LESSON_FLOW_SORT_ORDER" ColumnName="LESSON_FLOW_SORT_ORDER" />
+                <ScalarProperty Name="LESSON_ID" ColumnName="LESSON_ID" />
+                <ScalarProperty Name="LESSON_FLOW_ID" ColumnName="LESSON_FLOW_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LESSON_FLOW_TYPE">
+            <EntityTypeMapping TypeName="fit_elearningModel.LESSON_FLOW_TYPE">
+              <MappingFragment StoreEntitySet="LESSON_FLOW_TYPE">
+                <ScalarProperty Name="LESSON_FLOW_TYPE_NAME" ColumnName="LESSON_FLOW_TYPE_NAME" />
+                <ScalarProperty Name="LESSON_FLOW_TYPE_ID" ColumnName="LESSON_FLOW_TYPE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOGIN_AUDIT">
+            <EntityTypeMapping TypeName="fit_elearningModel.LOGIN_AUDIT">
+              <MappingFragment StoreEntitySet="LOGIN_AUDIT">
+                <ScalarProperty Name="LOGIN_IP" ColumnName="LOGIN_IP" />
+                <ScalarProperty Name="LOGIN_DATETIME" ColumnName="LOGIN_DATETIME" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="LOGIN_AUDIT_ID" ColumnName="LOGIN_AUDIT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MODULE">
+            <EntityTypeMapping TypeName="fit_elearningModel.MODULE">
+              <MappingFragment StoreEntitySet="MODULE">
+                <ScalarProperty Name="UPDATE_IP" ColumnName="UPDATE_IP" />
+                <ScalarProperty Name="UPDATE_USER_ID" ColumnName="UPDATE_USER_ID" />
+                <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CREATE_IP" ColumnName="CREATE_IP" />
+                <ScalarProperty Name="CREATE_USER_ID" ColumnName="CREATE_USER_ID" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="MODULE_DESCRIPTION" ColumnName="MODULE_DESCRIPTION" />
+                <ScalarProperty Name="MODULE_NAME" ColumnName="MODULE_NAME" />
+                <ScalarProperty Name="MODULE_ID" ColumnName="MODULE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MODULE_LESSON">
+            <EntityTypeMapping TypeName="fit_elearningModel.MODULE_LESSON">
+              <MappingFragment StoreEntitySet="MODULE_LESSON">
+                <ScalarProperty Name="UPDATE_IP" ColumnName="UPDATE_IP" />
+                <ScalarProperty Name="UPDATE_USER_ID" ColumnName="UPDATE_USER_ID" />
+                <ScalarProperty Name="UPATE_DATEIME" ColumnName="UPATE_DATEIME" />
+                <ScalarProperty Name="CREATE_IP" ColumnName="CREATE_IP" />
+                <ScalarProperty Name="CREATE_USER_ID" ColumnName="CREATE_USER_ID" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="LESSON_SORT_ORDER" ColumnName="LESSON_SORT_ORDER" />
+                <ScalarProperty Name="LESSON_ID" ColumnName="LESSON_ID" />
+                <ScalarProperty Name="MODULE_ID" ColumnName="MODULE_ID" />
+                <ScalarProperty Name="MODULE_LESSON_ID" ColumnName="MODULE_LESSON_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QUESTION">
+            <EntityTypeMapping TypeName="fit_elearningModel.QUESTION">
+              <MappingFragment StoreEntitySet="QUESTION">
+                <ScalarProperty Name="UPDATE_IP" ColumnName="UPDATE_IP" />
+                <ScalarProperty Name="UPDATE_USER_ID" ColumnName="UPDATE_USER_ID" />
+                <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CREATE_IP" ColumnName="CREATE_IP" />
+                <ScalarProperty Name="CREATE_USER_ID" ColumnName="CREATE_USER_ID" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="QUESTION_TEXT" ColumnName="QUESTION_TEXT" />
+                <ScalarProperty Name="QUESTION_TYPE_ID" ColumnName="QUESTION_TYPE_ID" />
+                <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QUESTION_GROUP">
+            <EntityTypeMapping TypeName="fit_elearningModel.QUESTION_GROUP">
+              <MappingFragment StoreEntitySet="QUESTION_GROUP">
+                <ScalarProperty Name="UPDATE_IP" ColumnName="UPDATE_IP" />
+                <ScalarProperty Name="UPDATE_USER_ID" ColumnName="UPDATE_USER_ID" />
+                <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CREATE_IP" ColumnName="CREATE_IP" />
+                <ScalarProperty Name="CREATE_USER_ID" ColumnName="CREATE_USER_ID" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="QUESTION_GROUP_TITLE" ColumnName="QUESTION_GROUP_TITLE" />
+                <ScalarProperty Name="QUESTION_GROUP_ID" ColumnName="QUESTION_GROUP_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QUESTION_GROUP_QUESTION">
+            <EntityTypeMapping TypeName="fit_elearningModel.QUESTION_GROUP_QUESTION">
+              <MappingFragment StoreEntitySet="QUESTION_GROUP_QUESTION">
+                <ScalarProperty Name="QUESTION_SORT_ORDER" ColumnName="QUESTION_SORT_ORDER" />
+                <ScalarProperty Name="UPDATE_IP" ColumnName="UPDATE_IP" />
+                <ScalarProperty Name="UPDATE_USER_ID" ColumnName="UPDATE_USER_ID" />
+                <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CREATE_IP" ColumnName="CREATE_IP" />
+                <ScalarProperty Name="CREATE_USER_ID" ColumnName="CREATE_USER_ID" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+                <ScalarProperty Name="QUESTION_GROUP_ID" ColumnName="QUESTION_GROUP_ID" />
+                <ScalarProperty Name="QUESTION_GROUP_QUESTION_ID" ColumnName="QUESTION_GROUP_QUESTION_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QUESTION_OPTION">
+            <EntityTypeMapping TypeName="fit_elearningModel.QUESTION_OPTION">
+              <MappingFragment StoreEntitySet="QUESTION_OPTION">
+                <ScalarProperty Name="UPDATE_IP" ColumnName="UPDATE_IP" />
+                <ScalarProperty Name="UPDATE_USER_ID" ColumnName="UPDATE_USER_ID" />
+                <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CREATE_IP" ColumnName="CREATE_IP" />
+                <ScalarProperty Name="CREATE_USER_ID" ColumnName="CREATE_USER_ID" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="QUESTION_OPTION_CORRECT" ColumnName="QUESTION_OPTION_CORRECT" />
+                <ScalarProperty Name="QUESTION_OPTION_TEXT" ColumnName="QUESTION_OPTION_TEXT" />
+                <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+                <ScalarProperty Name="QUESTION_OPTION_ID" ColumnName="QUESTION_OPTION_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QUESTION_TYPE">
+            <EntityTypeMapping TypeName="fit_elearningModel.QUESTION_TYPE">
+              <MappingFragment StoreEntitySet="QUESTION_TYPE">
+                <ScalarProperty Name="QUESTION_TYPE_NAME" ColumnName="QUESTION_TYPE_NAME" />
+                <ScalarProperty Name="QUESTION_TYPE_ID" ColumnName="QUESTION_TYPE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER">
+            <EntityTypeMapping TypeName="fit_elearningModel.USER">
+              <MappingFragment StoreEntitySet="USER">
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+                <ScalarProperty Name="FIT_NUMBER" ColumnName="FIT_NUMBER" />
+                <ScalarProperty Name="COMPANY_NAME" ColumnName="COMPANY_NAME" />
+                <ScalarProperty Name="MODULE1_ADVANCED" ColumnName="MODULE1_ADVANCED" />
+                <ScalarProperty Name="MODULE1_BASIC" ColumnName="MODULE1_BASIC" />
+                <ScalarProperty Name="USER_STATUS_CODE" ColumnName="USER_STATUS_CODE" />
+                <ScalarProperty Name="UPDATE_IP" ColumnName="UPDATE_IP" />
+                <ScalarProperty Name="UPDATE_USER_ID" ColumnName="UPDATE_USER_ID" />
+                <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CREATE_IP" ColumnName="CREATE_IP" />
+                <ScalarProperty Name="CREATE_USER_ID" ColumnName="CREATE_USER_ID" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="LOGIN_USER_ID" ColumnName="LOGIN_USER_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_RESPONSE">
+            <EntityTypeMapping TypeName="fit_elearningModel.USER_RESPONSE">
+              <MappingFragment StoreEntitySet="USER_RESPONSE">
+                <ScalarProperty Name="QUESTION_TYPE_ID" ColumnName="QUESTION_TYPE_ID" />
+                <ScalarProperty Name="UPDATE_IP" ColumnName="UPDATE_IP" />
+                <ScalarProperty Name="UPDATE_USER_ID" ColumnName="UPDATE_USER_ID" />
+                <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CREATE_IP" ColumnName="CREATE_IP" />
+                <ScalarProperty Name="CREATE_USER_ID" ColumnName="CREATE_USER_ID" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="RESPONSE" ColumnName="RESPONSE" />
+                <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+                <ScalarProperty Name="LESSON_ID" ColumnName="LESSON_ID" />
+                <ScalarProperty Name="MODULE_ID" ColumnName="MODULE_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VIDEO">
+            <EntityTypeMapping TypeName="fit_elearningModel.VIDEO">
+              <MappingFragment StoreEntitySet="VIDEO">
+                <ScalarProperty Name="VIDEO_YOUTUBE_ID" ColumnName="VIDEO_YOUTUBE_ID" />
+                <ScalarProperty Name="VIDEO_DESCRIPTION" ColumnName="VIDEO_DESCRIPTION" />
+                <ScalarProperty Name="VIDEO_NAME" ColumnName="VIDEO_NAME" />
+                <ScalarProperty Name="VIDEO_ID" ColumnName="VIDEO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spGetQuestions" FunctionName="fit_elearningModel.Store.spGetQuestions">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fit_elearningModel.spGetQuestions_Result">
+                <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+                <ScalarProperty Name="QUESTION_GROUP_ID" ColumnName="QUESTION_GROUP_ID" />
+                <ScalarProperty Name="QUESTION_SORT_ORDER" ColumnName="QUESTION_SORT_ORDER" />
+                <ScalarProperty Name="QUESTION_TYPE_ID" ColumnName="QUESTION_TYPE_ID" />
+                <ScalarProperty Name="QUESTION_TEXT" ColumnName="QUESTION_TEXT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetNextLessonFlowId" FunctionName="fit_elearningModel.Store.spGetNextLessonFlowId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fit_elearningModel.spGetNextLessonFlowId_Result">
+                <ScalarProperty Name="LESSON_FLOW_ID" ColumnName="LESSON_FLOW_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetUserResponse" FunctionName="fit_elearningModel.Store.spGetUserResponse" />
+          <FunctionImportMapping FunctionImportName="spSaveLessonComplete" FunctionName="fit_elearningModel.Store.spSaveLessonComplete">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fit_elearningModel.spSaveLessonComplete_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="error" ColumnName="error" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetLessonComplete" FunctionName="fit_elearningModel.Store.spGetLessonComplete" />
+          <FunctionImportMapping FunctionImportName="spSaveQuizComplete" FunctionName="fit_elearningModel.Store.spSaveQuizComplete">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fit_elearningModel.spSaveQuizComplete_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="error" ColumnName="error" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetQuizScore" FunctionName="fit_elearningModel.Store.spGetQuizScore">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fit_elearningModel.spGetQuizScore_Result">
+                <ScalarProperty Name="score" ColumnName="score" />
+                <ScalarProperty Name="num_questions" ColumnName="num_questions" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetQuizComplete" FunctionName="fit_elearningModel.Store.spGetQuizComplete">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fit_elearningModel.spGetQuizComplete_Result">
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="USER_QUIZ_COMPLETE_DATETIME" ColumnName="USER_QUIZ_COMPLETE_DATETIME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetLessons" FunctionName="fit_elearningModel.Store.spGetLessons">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fit_elearningModel.spGetLessons_Result">
+                <ScalarProperty Name="LESSON_ID" ColumnName="LESSON_ID" />
+                <ScalarProperty Name="LESSON_NAME" ColumnName="LESSON_NAME" />
+                <ScalarProperty Name="LESSON_DESCRIPTION" ColumnName="LESSON_DESCRIPTION" />
+                <ScalarProperty Name="LESSON_IMAGE_FILE" ColumnName="LESSON_IMAGE_FILE" />
+                <ScalarProperty Name="LESSON_SORT_ORDER" ColumnName="LESSON_SORT_ORDER" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetLastCompletedLesson" FunctionName="fit_elearningModel.Store.spGetLastCompletedLesson">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fit_elearningModel.spGetLastCompletedLesson_Result">
+                <ScalarProperty Name="LESSON_ID" ColumnName="LESSON_ID" />
+                <ScalarProperty Name="USER_QUIZ_COMPLETE_DATETIME" ColumnName="USER_QUIZ_COMPLETE_DATETIME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetLessonId" FunctionName="fit_elearningModel.Store.spGetLessonId" />
+          <FunctionImportMapping FunctionImportName="spGetLessonActivity" FunctionName="fit_elearningModel.Store.spGetLessonActivity">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fit_elearningModel.spGetLessonActivity_Result">
+                <ScalarProperty Name="LESSON_NAME" ColumnName="LESSON_NAME" />
+                <ScalarProperty Name="LESSON_IMAGE_FILE" ColumnName="LESSON_IMAGE_FILE" />
+                <ScalarProperty Name="ACTIVITY_TITLE" ColumnName="ACTIVITY_TITLE" />
+                <ScalarProperty Name="ACTIVITY_CONTENT" ColumnName="ACTIVITY_CONTENT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetTextQuestions" FunctionName="fit_elearningModel.Store.spGetTextQuestions">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fit_elearningModel.spGetTextQuestions_Result">
+                <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+                <ScalarProperty Name="QUESTION_TEXT" ColumnName="QUESTION_TEXT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spSaveUserActivity" FunctionName="fit_elearningModel.Store.spSaveUserActivity">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fit_elearningModel.spSaveUserActivity_Result">
+                <ScalarProperty Name="userActivityId" ColumnName="userActivityId" />
+                <ScalarProperty Name="error" ColumnName="error" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetUserActivity" FunctionName="fit_elearningModel.Store.spGetUserActivity" />
+          <EntitySetMapping Name="USER_STATUS">
+            <EntityTypeMapping TypeName="fit_elearningModel.USER_STATUS">
+              <MappingFragment StoreEntitySet="USER_STATUS">
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="STATUS_CODE" ColumnName="STATUS_CODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_ACTIVITY">
+            <EntityTypeMapping TypeName="fit_elearningModel.USER_ACTIVITY">
+              <MappingFragment StoreEntitySet="USER_ACTIVITY">
+                <ScalarProperty Name="UPDATE_IP" ColumnName="UPDATE_IP" />
+                <ScalarProperty Name="UPDATE_USER_ID" ColumnName="UPDATE_USER_ID" />
+                <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CREATE_IP" ColumnName="CREATE_IP" />
+                <ScalarProperty Name="CREATE_USER_ID" ColumnName="CREATE_USER_ID" />
+                <ScalarProperty Name="CREATE_DATETIME" ColumnName="CREATE_DATETIME" />
+                <ScalarProperty Name="ACTIVITY_TEXT" ColumnName="ACTIVITY_TEXT" />
+                <ScalarProperty Name="ACTIVITY_INPUT_ID" ColumnName="ACTIVITY_INPUT_ID" />
+                <ScalarProperty Name="LESSON_ID" ColumnName="LESSON_ID" />
+                <ScalarProperty Name="MODULE_ID" ColumnName="MODULE_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_AUDIT">
+            <EntityTypeMapping TypeName="fit_elearningModel.USER_AUDIT">
+              <MappingFragment StoreEntitySet="USER_AUDIT">
+                <ScalarProperty Name="AUDIT_IP" ColumnName="AUDIT_IP" />
+                <ScalarProperty Name="AUDIT_DATETIME" ColumnName="AUDIT_DATETIME" />
+                <ScalarProperty Name="AUDIT_OPERATION" ColumnName="AUDIT_OPERATION" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="USER_AUDIT_ID" ColumnName="USER_AUDIT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_LESSON_COMPLETE">
+            <EntityTypeMapping TypeName="fit_elearningModel.USER_LESSON_COMPLETE">
+              <MappingFragment StoreEntitySet="USER_LESSON_COMPLETE">
+                <ScalarProperty Name="USER_LESSON_COMPLETE_IP" ColumnName="USER_LESSON_COMPLETE_IP" />
+                <ScalarProperty Name="USER_LESSON_COMPLETE_DATETIME" ColumnName="USER_LESSON_COMPLETE_DATETIME" />
+                <ScalarProperty Name="LESSON_ID" ColumnName="LESSON_ID" />
+                <ScalarProperty Name="MODULE_ID" ColumnName="MODULE_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="USER_LESSON_COMPLETE_ID" ColumnName="USER_LESSON_COMPLETE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_QUIZ_COMPLETE">
+            <EntityTypeMapping TypeName="fit_elearningModel.USER_QUIZ_COMPLETE">
+              <MappingFragment StoreEntitySet="USER_QUIZ_COMPLETE">
+                <ScalarProperty Name="USER_QUIZ_SCORE" ColumnName="USER_QUIZ_SCORE" />
+                <ScalarProperty Name="USER_QUIZ_COMPLETE_IP" ColumnName="USER_QUIZ_COMPLETE_IP" />
+                <ScalarProperty Name="USER_QUIZ_COMPLETE_DATETIME" ColumnName="USER_QUIZ_COMPLETE_DATETIME" />
+                <ScalarProperty Name="LESSON_ID" ColumnName="LESSON_ID" />
+                <ScalarProperty Name="MODULE_ID" ColumnName="MODULE_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="USER_QUIZ_COMPLETE_ID" ColumnName="USER_QUIZ_COMPLETE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spSaveUserResponse" FunctionName="fit_elearningModel.Store.spSaveUserResponse">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fit_elearningModel.spSaveUserResponse_Result">
+                <ScalarProperty Name="userResponseId" ColumnName="userResponseId" />
+                <ScalarProperty Name="correct" ColumnName="correct" />
+                <ScalarProperty Name="error" ColumnName="error" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetLessonFlow" FunctionName="fit_elearningModel.Store.spGetLessonFlow">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fit_elearningModel.spGetLessonFlow_Result">
+                <ScalarProperty Name="LESSON_FLOW_ID" ColumnName="LESSON_FLOW_ID" />
+                <ScalarProperty Name="LESSON_ID" ColumnName="LESSON_ID" />
+                <ScalarProperty Name="LESSON_FLOW_TYPE_ID" ColumnName="LESSON_FLOW_TYPE_ID" />
+                <ScalarProperty Name="QUESTION_GROUP_ID" ColumnName="QUESTION_GROUP_ID" />
+                <ScalarProperty Name="VIDEO_ID" ColumnName="VIDEO_ID" />
+                <ScalarProperty Name="LESSON_FLOW_SORT_ORDER" ColumnName="LESSON_FLOW_SORT_ORDER" />
+                <ScalarProperty Name="MODULE_ID" ColumnName="MODULE_ID" />
+                <ScalarProperty Name="LESSON_SORT_ORDER" ColumnName="LESSON_SORT_ORDER" />
+                <ScalarProperty Name="LESSON_NAME" ColumnName="LESSON_NAME" />
+                <ScalarProperty Name="LESSON_IMAGE_FILE" ColumnName="LESSON_IMAGE_FILE" />
+                <ScalarProperty Name="LESSON_FLOW_TEXT" ColumnName="LESSON_FLOW_TEXT" />
+                <ScalarProperty Name="LESSON_FLOW_CONTENT" ColumnName="LESSON_FLOW_CONTENT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetLesson" FunctionName="fit_elearningModel.Store.spGetLesson">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fit_elearningModel.spGetLesson_Result">
+                <ScalarProperty Name="LESSON_ID" ColumnName="LESSON_ID" />
+                <ScalarProperty Name="LESSON_NAME" ColumnName="LESSON_NAME" />
+                <ScalarProperty Name="LESSON_IMAGE_FILE" ColumnName="LESSON_IMAGE_FILE" />
+                <ScalarProperty Name="LESSON_CONTENT" ColumnName="LESSON_CONTENT" />
+                <ScalarProperty Name="MODULE_ID" ColumnName="MODULE_ID" />
+                <ScalarProperty Name="LESSON_SORT_ORDER" ColumnName="LESSON_SORT_ORDER" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SpVerifyAndSendNewPassword" FunctionName="fit_elearningModel.Store.SpVerifyAndSendNewPassword" />
+          <FunctionImportMapping FunctionImportName="spCreateUser" FunctionName="fit_elearningModel.Store.spCreateUser" />
+          <FunctionImportMapping FunctionImportName="spGetRadioNonQuizQuestions" FunctionName="fit_elearningModel.Store.spGetRadioNonQuizQuestions">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fit_elearningModel.spGetRadioNonQuizQuestions_Result">
+                <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+                <ScalarProperty Name="QUESTION_TEXT" ColumnName="QUESTION_TEXT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spUpdateUser" FunctionName="fit_elearningModel.Store.spUpdateUser" />
+          <FunctionImportMapping FunctionImportName="spGetUsersBehind" FunctionName="fit_elearningModel.Store.spGetUsersBehind">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fit_elearningModel.spGetUsersBehind_Result">
+                <ScalarProperty Name="LOGIN_USER_ID" ColumnName="LOGIN_USER_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="LESSON_ID" ColumnName="LESSON_ID" />
+                <ScalarProperty Name="LESSON_SORT_ORDER" ColumnName="LESSON_SORT_ORDER" />
+                <ScalarProperty Name="USER_QUIZ_COMPLETE_DATETIME" ColumnName="USER_QUIZ_COMPLETE_DATETIME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spDeactivateUser" FunctionName="fit_elearningModel.Store.spDeactivateUser" />
+          <FunctionImportMapping FunctionImportName="spReactivateUser" FunctionName="fit_elearningModel.Store.spReactivateUser" />
+          <FunctionImportMapping FunctionImportName="spCreateUser2" FunctionName="fit_elearningModel.Store.spCreateUser2" />
+          <FunctionImportMapping FunctionImportName="spUpdateUser2" FunctionName="fit_elearningModel.Store.spUpdateUser2" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="FitELearnModel" ZoomLevel="82">
+        <EntityTypeShape EntityType="fit_elearningModel.ACTIVITY" Width="1.5" PointX="0.75" PointY="13.625" Height="2.9417936197916692" />
+        <EntityTypeShape EntityType="fit_elearningModel.LESSON" Width="1.5" PointX="0.75" PointY="8.25" Height="3.7109993489583388" />
+        <EntityTypeShape EntityType="fit_elearningModel.LESSON_ACTIVITY" Width="1.5" PointX="3" PointY="8.5" Height="3.1340950520833388" />
+        <EntityTypeShape EntityType="fit_elearningModel.LESSON_FLOW" Width="2.125" PointX="6" PointY="8.125" Height="4.0956022135416674" />
+        <EntityTypeShape EntityType="fit_elearningModel.LESSON_FLOW_TYPE" Width="2.25" PointX="3.75" PointY="2.125" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="fit_elearningModel.LOGIN_AUDIT" Width="1.5" PointX="3" PointY="31.25" Height="1.9802864583333246" />
+        <EntityTypeShape EntityType="fit_elearningModel.MODULE" Width="1.5" PointX="0.75" PointY="3.5" Height="3.1340950520833388" />
+        <EntityTypeShape EntityType="fit_elearningModel.MODULE_LESSON" Width="1.5" PointX="3" PointY="4.5" Height="3.3263964843750102" />
+        <EntityTypeShape EntityType="fit_elearningModel.QUESTION" Width="2" PointX="0.75" PointY="18.25" Height="3.5186979166666674" />
+        <EntityTypeShape EntityType="fit_elearningModel.QUESTION_GROUP" Width="2.125" PointX="3.375" PointY="18.875" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="fit_elearningModel.QUESTION_GROUP_QUESTION" Width="2.125" PointX="6" PointY="18.75" Height="3.3263964843749996" />
+        <EntityTypeShape EntityType="fit_elearningModel.QUESTION_OPTION" Width="2.25" PointX="3" PointY="26.375" Height="3.1340950520833246" />
+        <EntityTypeShape EntityType="fit_elearningModel.QUESTION_TYPE" Width="1.5" PointX="1.5" PointY="23.25" Height="1.595683593749996" />
+        <EntityTypeShape EntityType="fit_elearningModel.USER" Width="1.5" PointX="0.75" PointY="26.5" Height="3.5186979166666674" />
+        <EntityTypeShape EntityType="fit_elearningModel.USER_RESPONSE" Width="1.5" PointX="3" PointY="13.125" Height="4.0956022135416692" />
+        <EntityTypeShape EntityType="fit_elearningModel.VIDEO" Width="1.5" PointX="3.75" PointY="23.125" Height="1.9802864583333246" />
+        <AssociationConnector Association="fit_elearningModel.FK_LESSON_ACTIVITY_ACTIVITY">
+          <ConnectorPoint PointX="2.25" PointY="13.626152846153847" />
+          <ConnectorPoint PointX="2.625" PointY="13.251152846153847" />
+          <ConnectorPoint PointX="2.625" PointY="10.067047526041669" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="10.067047526041669" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="10.067047526041669" />
+          <ConnectorPoint PointX="3" PointY="10.067047526041669" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_LESSON_ACTIVITY_LESSON">
+          <ConnectorPoint PointX="2.25" PointY="9.2210237630208347" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="9.2210237630208329" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="9.2210237630208347" />
+          <ConnectorPoint PointX="3" PointY="9.2210237630208347" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_LESSON_FLOW_LESSON">
+          <ConnectorPoint PointX="2.25" PointY="11.84624727609175" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="11.846247276091749" />
+          <ConnectorPoint PointX="2.9583333333333335" PointY="11.84624727609175" />
+          <ConnectorPoint PointX="4.715494791666667" PointY="11.84624727609175" />
+          <ConnectorPoint PointX="4.882161458333333" PointY="11.84624727609175" />
+          <ConnectorPoint PointX="5.066080729166667" PointY="11.84624727609175" />
+          <ConnectorPoint PointX="5.232747395833333" PointY="11.84624727609175" />
+          <ConnectorPoint PointX="6" PointY="11.84624727609175" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_MODULE_LESSON_LESSON">
+          <ConnectorPoint PointX="2.25" PointY="8.2511528461538468" />
+          <ConnectorPoint PointX="2.4410744349011204" PointY="8.0600784112527251" />
+          <ConnectorPoint PointX="2.6214255650988791" PointY="7.8797272810549677" />
+          <ConnectorPoint PointX="2.625" PointY="7.8761528461538468" />
+          <ConnectorPoint PointX="2.625" PointY="8.20139648437501" />
+          <ConnectorPoint PointX="2.6285744349011204" PointY="8.1978220494738885" />
+          <ConnectorPoint PointX="2.7464255650988791" PointY="8.079970919276132" />
+          <ConnectorPoint PointX="3" PointY="7.82639648437501" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_USER_RESPONSE_LESSON">
+          <ConnectorPoint PointX="2.25" PointY="12.47559495352564" />
+          <ConnectorPoint PointX="2.4375" PointY="12.912903645833332" />
+          <ConnectorPoint PointX="2.4375" PointY="12.561347153846153" />
+          <ConnectorPoint PointX="2.4410744349011226" PointY="12.564921588747273" />
+          <ConnectorPoint PointX="2.8089255650988787" PointY="12.932772718945031" />
+          <ConnectorPoint PointX="3.0011528461538459" PointY="13.125" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_LESSON_FLOW_LESSON_TYPE">
+          <ConnectorPoint PointX="4.798828125" PointY="3.7206835937500031" />
+          <ConnectorPoint PointX="4.798828125" PointY="12.160827960962543" />
+          <ConnectorPoint PointX="5.066080729166667" PointY="12.160827960962543" />
+          <ConnectorPoint PointX="5.232747395833333" PointY="12.160827960962543" />
+          <ConnectorPoint PointX="6" PointY="12.160827960962543" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_LESSON_FLOW_QUESTION_GROUP">
+          <ConnectorPoint PointX="5.1494140625" PointY="18.875" />
+          <ConnectorPoint PointX="5.1494140625" PointY="8.28125" />
+          <ConnectorPoint PointX="6" PointY="8.28125" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_LESSON_FLOW_VIDEO">
+          <ConnectorPoint PointX="5.25" PointY="24.115143229166662" />
+          <ConnectorPoint PointX="5.75" PointY="24.115143229166662" />
+          <ConnectorPoint PointX="5.75" PointY="12.787903645833332" />
+          <ConnectorPoint PointX="6.2604146666666667" PointY="12.787903645833332" />
+          <ConnectorPoint PointX="6.4270813333333328" PointY="12.787903645833332" />
+          <ConnectorPoint PointX="6.666666666666667" PointY="12.787903645833332" />
+          <ConnectorPoint PointX="6.833333333333333" PointY="12.787903645833332" />
+          <ConnectorPoint PointX="7.1249994999999995" PointY="12.787903645833332" />
+          <ConnectorPoint PointX="7.1249994999999995" PointY="12.412903645833332" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_LOGIN_AUDIT_USER">
+          <ConnectorPoint PointX="2.25" PointY="31.115967048878204" />
+          <ConnectorPoint PointX="2.78125" PointY="31.647217048878204" />
+          <ConnectorPoint PointX="2.78125" PointY="31.030097153846153" />
+          <ConnectorPoint PointX="3.0011528461538459" PointY="31.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_MODULE_LESSON_MODULE">
+          <ConnectorPoint PointX="2.25" PointY="5.6431320600836381" />
+          <ConnectorPoint PointX="2.4791666666666665" PointY="5.6431320600836372" />
+          <ConnectorPoint PointX="2.6458333333333335" PointY="5.6431320600836381" />
+          <ConnectorPoint PointX="3" PointY="5.6431320600836381" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_USER_RESPONSE_MODULE">
+          <ConnectorPoint PointX="2.25" PointY="7.148690656650639" />
+          <ConnectorPoint PointX="2.4410744349011217" PointY="7.33976509155176" />
+          <ConnectorPoint PointX="2.6214255650988791" PointY="7.5201162217495181" />
+          <ConnectorPoint PointX="2.6875" PointY="7.586190656650639" />
+          <ConnectorPoint PointX="2.6875" PointY="15.268951822916666" />
+          <ConnectorPoint PointX="3" PointY="15.268951822916666" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_QUESTION_GROUP_QUESTION_QUESTION">
+          <ConnectorPoint PointX="2.75" PointY="18.78125" />
+          <ConnectorPoint PointX="3.0416666666666665" PointY="18.78125" />
+          <ConnectorPoint PointX="3.2708333333333335" PointY="18.78125" />
+          <ConnectorPoint PointX="5.066080729166667" PointY="18.78125" />
+          <ConnectorPoint PointX="5.232747395833333" PointY="18.78125" />
+          <ConnectorPoint PointX="5.666666666666667" PointY="18.78125" />
+          <ConnectorPoint PointX="5.864583333333333" PointY="18.78125" />
+          <ConnectorPoint PointX="6" PointY="18.78125" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_QUESTION_OPTIONS_QUESTIONS">
+          <ConnectorPoint PointX="2.75" PointY="18.4843725" />
+          <ConnectorPoint PointX="3.1875" PointY="18.4843725" />
+          <ConnectorPoint PointX="3.1875" PointY="26.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_QUESTION_QUESTION_TYPE">
+          <ConnectorPoint PointX="2.125" PointY="23.25" />
+          <ConnectorPoint PointX="2.125" PointY="21.768697916666667" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_USER_RESPONSE_QUESTION">
+          <ConnectorPoint PointX="2.46875" PointY="18.25" />
+          <ConnectorPoint PointX="2.46875" PointY="17.021098632812503" />
+          <ConnectorPoint PointX="3" PointY="17.021098632812503" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_QUESTION_GROUP_QUESTION_QUESTION_GROUP">
+          <ConnectorPoint PointX="5.5" PointY="20.345896809895834" />
+          <ConnectorPoint PointX="5.666666666666667" PointY="20.345896809895834" />
+          <ConnectorPoint PointX="5.864583333333333" PointY="20.345896809895834" />
+          <ConnectorPoint PointX="6" PointY="20.345896809895834" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_USER_RESPONSES_USERS">
+          <ConnectorPoint PointX="2.25" PointY="28.501741614708983" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="28.501741614708983" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="28.501741614708983" />
+          <ConnectorPoint PointX="2.75" PointY="28.501741614708983" />
+          <ConnectorPoint PointX="2.75" PointY="25.355286458333325" />
+          <ConnectorPoint PointX="3.1041666666666665" PointY="25.355286458333325" />
+          <ConnectorPoint PointX="3.2708333333333335" PointY="25.355286458333325" />
+          <ConnectorPoint PointX="3.5" PointY="25.355286458333325" />
+          <ConnectorPoint PointX="3.5" PointY="22.066793619791667" />
+          <ConnectorPoint PointX="3.125" PointY="22.066793619791667" />
+          <ConnectorPoint PointX="3.125" PointY="17.787903645833335" />
+          <ConnectorPoint PointX="3.75" PointY="17.787903645833335" />
+          <ConnectorPoint PointX="3.75" PointY="17.412903645833335" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="fit_elearningModel.USER_STATUS" Width="1.5" PointX="0.75" PointY="31.625" Height="1.5956835937500067" />
+        <AssociationConnector Association="fit_elearningModel.FK_USER_USER_STATUS">
+          <ConnectorPoint PointX="1.4687474999999997" PointY="31.625" />
+          <ConnectorPoint PointX="1.4687474999999997" PointY="31.172506510416667" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="fit_elearningModel.USER_ACTIVITY" Width="1.5" PointX="6" PointY="13.375" Height="3.9033007812500031" />
+        <EntityTypeShape EntityType="fit_elearningModel.USER_AUDIT" Width="1.5" PointX="3" PointY="34.75" Height="2.1725878906250102" />
+        <EntityTypeShape EntityType="fit_elearningModel.USER_LESSON_COMPLETE" Width="1.5" PointX="9" PointY="14" Height="2.7494921875000031" />
+        <EntityTypeShape EntityType="fit_elearningModel.USER_QUIZ_COMPLETE" Width="1.875" PointX="9" PointY="10" Height="2.7494921875000031" />
+        <AssociationConnector Association="fit_elearningModel.FK_USER_ACTIVITY_LESSON">
+          <ConnectorPoint PointX="2.25" PointY="10.944102054067761" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="10.944102054067759" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="10.944102054067761" />
+          <ConnectorPoint PointX="2.875" PointY="10.944102054067761" />
+          <ConnectorPoint PointX="2.875" PointY="12.662903645833332" />
+          <ConnectorPoint PointX="5.066080729166667" PointY="12.662903645833332" />
+          <ConnectorPoint PointX="5.232747395833333" PointY="12.662903645833332" />
+          <ConnectorPoint PointX="6.75" PointY="12.662903645833332" />
+          <ConnectorPoint PointX="6.75" PointY="13.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_USER_LESSON_COMPLETE_LESSON">
+          <ConnectorPoint PointX="2.25" PointY="8.8357139572347023" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="8.8357139572347" />
+          <ConnectorPoint PointX="2.7395833333333335" PointY="8.8357139572347023" />
+          <ConnectorPoint PointX="2.75" PointY="8.8357139572347023" />
+          <ConnectorPoint PointX="2.75" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="2.7923117003205151" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="2.9589783669871821" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="5.066080729166667" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="5.232747395833333" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="5.666666666666667" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="5.833333333333333" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="6.2604146666666667" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="6.4270813333333328" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="6.666666666666667" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="6.833333333333333" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="9.56250025" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="9.56250025" PointY="14" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_USER_QUIZ_COMPLETE_LESSON">
+          <ConnectorPoint PointX="2.25" PointY="12.506653645833332" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="12.50665364583333" />
+          <ConnectorPoint PointX="2.9583333333333335" PointY="12.506653645833332" />
+          <ConnectorPoint PointX="5.066080729166667" PointY="12.506653645833332" />
+          <ConnectorPoint PointX="5.232747395833333" PointY="12.506653645833332" />
+          <ConnectorPoint PointX="7.0416661666666664" PointY="12.506653645833332" />
+          <ConnectorPoint PointX="7.2083328333333325" PointY="12.506653645833332" />
+          <ConnectorPoint PointX="9" PointY="12.506653645833332" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_USER_ACTIVITY_MODULE">
+          <ConnectorPoint PointX="2.25" PointY="4.7934221900278109" />
+          <ConnectorPoint PointX="2.5625" PointY="4.7934221900278109" />
+          <ConnectorPoint PointX="2.5625" PointY="12.662903645833332" />
+          <ConnectorPoint PointX="2.5729166666666665" PointY="12.66290364583333" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="12.662903645833332" />
+          <ConnectorPoint PointX="5.066080729166667" PointY="12.662903645833332" />
+          <ConnectorPoint PointX="5.232747395833333" PointY="12.662903645833332" />
+          <ConnectorPoint PointX="6.343748" PointY="12.662903645833332" />
+          <ConnectorPoint PointX="6.343748" PointY="13.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_USER_LESSON_COMPLETE_MODULE">
+          <ConnectorPoint PointX="2.25" PointY="6.3594260429925535" />
+          <ConnectorPoint PointX="2.5" PointY="6.3594260429925535" />
+          <ConnectorPoint PointX="2.5" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="2.7395833333333335" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="2.7923117003205151" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="2.9589783669871821" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="5.066080729166667" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="5.232747395833333" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="5.666666666666667" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="5.833333333333333" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="6.2604146666666667" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="6.4270813333333328" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="6.666666666666667" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="6.833333333333333" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="9.249998125" PointY="12.999492187500003" />
+          <ConnectorPoint PointX="9.249998125" PointY="14" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_USER_QUIZ_COMPLETE_MODULE">
+          <ConnectorPoint PointX="2.25" PointY="4.1103417968750016" />
+          <ConnectorPoint PointX="4.736979166666667" PointY="4.1103417968750007" />
+          <ConnectorPoint PointX="4.903645833333333" PointY="4.1103417968750016" />
+          <ConnectorPoint PointX="9.75" PointY="4.1103417968750016" />
+          <ConnectorPoint PointX="9.75" PointY="10" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_USER_ACTIVITY_USER">
+          <ConnectorPoint PointX="2.25" PointY="27.4696188073545" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="27.4696188073545" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="27.4696188073545" />
+          <ConnectorPoint PointX="2.875" PointY="27.4696188073545" />
+          <ConnectorPoint PointX="2.875" PointY="26.125" />
+          <ConnectorPoint PointX="3.1041666666666665" PointY="26.125" />
+          <ConnectorPoint PointX="3.2708333333333335" PointY="26.125" />
+          <ConnectorPoint PointX="5.78125" PointY="26.125" />
+          <ConnectorPoint PointX="5.78125" PointY="17.653300781250003" />
+          <ConnectorPoint PointX="6.75" PointY="17.653300781250003" />
+          <ConnectorPoint PointX="6.75" PointY="17.278300781250003" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_USER_AUDIT_USER">
+          <ConnectorPoint PointX="2.2257692307692309" PointY="31.172506510416667" />
+          <ConnectorPoint PointX="2.625" PointY="31.571737279647436" />
+          <ConnectorPoint PointX="2.625" PointY="35.836293945312505" />
+          <ConnectorPoint PointX="3" PointY="35.836293945312505" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_USER_LESSON_COMPLETE_USER">
+          <ConnectorPoint PointX="2.25" PointY="30.312528550480771" />
+          <ConnectorPoint PointX="9.75" PointY="30.312528550480771" />
+          <ConnectorPoint PointX="9.75" PointY="16.749492187500003" />
+        </AssociationConnector>
+        <AssociationConnector Association="fit_elearningModel.FK_USER_QUIZ_COMPLETE_USER">
+          <ConnectorPoint PointX="2.25" PointY="29.533864422063466" />
+          <ConnectorPoint PointX="2.625" PointY="29.533864422063466" />
+          <ConnectorPoint PointX="2.625" PointY="26.109375" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="26.109375" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="26.109375" />
+          <ConnectorPoint PointX="3.1041666666666665" PointY="26.109375" />
+          <ConnectorPoint PointX="3.2708333333333335" PointY="26.109375" />
+          <ConnectorPoint PointX="8.75" PointY="26.109375" />
+          <ConnectorPoint PointX="8.75" PointY="13.124492187500003" />
+          <ConnectorPoint PointX="9.1666647916666655" PointY="13.124492187500003" />
+          <ConnectorPoint PointX="9.3333314583333333" PointY="13.124492187500003" />
+          <ConnectorPoint PointX="9.4791669166666654" PointY="13.124492187500003" />
+          <ConnectorPoint PointX="9.6458335833333333" PointY="13.124492187500003" />
+          <ConnectorPoint PointX="10.031249625000001" PointY="13.124492187500003" />
+          <ConnectorPoint PointX="10.031249625000001" PointY="12.749492187500003" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

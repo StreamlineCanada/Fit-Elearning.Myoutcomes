@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Manage Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using Fit_Elearning.MyOutcomes.Models;
+<style>
+    #users {
+        font-family: Calibri, Arial, sans-serif;
+        border-collapse: collapse;
+        width: 150%;
+    }
+    #users td, #users th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    #users th {
+        text-align: center;
+    }
+</style>
+<div class="row">
+    <div class="col-lg-8 col-md-8 col-xs-10 col-sm-10 page-header">
+        <h1>Manage Users</h1>    <br/>   
+        <div><a href="./ManageUsers?showInactives=1">Show Inactives</a> | <a href="./ManageUsers">Show Actives</a></div>
+        <div>&nbsp;</div>
+        <a href='CreateUserView' style="color:green">Create User</a>     <br/>   <br/>      
+        <div class="statusPane">
+            <table id="users">
+                <tr>
+                    <th>Name</th>
+                    <th>Login ID</th>
+                    <th>Email</th>
+                    <th>Company Name</th>
+                    <th>FIT Number</th>
+                    <th>Create Date</th>
+                    <th style="text-align:center; text-wrap:none;width:70px;">L# 1-12</th>
+                    <th style="text-align:center;text-wrap:none;width:70px;">L# 13-14</th>
+                    <th colspan="2">Action</th>
+                </tr>
+                @foreach (CreateUserModel user in Model.Users)
+                {
+                    var hrefVal = "UpdateUserView?userid=" + user.LoginUserId;                    
+                    <tr>                        
+                        <td>@user.Name</td>
+                        <td>@user.LoginUserId</td>
+                        <td><a href="mailto:@user.Email">@user.Email</a></td>
+                        <td>@user.CompanyName</td>
+                        <td>@user.FitNumber</td>
+                        <td>@user.CreateDate.ToShortDateString()</td>
+                        <td style="text-align:center;">@if (user.BasicModule == (byte)1) { <span>Y</span> } </td>
+                        <td style="text-align:center;">@if (user.AdvancedModule == (byte)1){ <span>Y</span> } </td>
+                        <td><a href="@hrefVal">Edit</a></td>
+                        <td >                                
+                            @if (@user.UserStatusId == 0) {                         
+                            <a href="javascript:FitElearn.Utilities.deactivateUser(@user.Id,'@user.LoginUserId');" style="color:red;">Deactivate</a>
+                            }
+                            else
+                            {
+                                <a href="javascript:FitElearn.Utilities.reactivateUser(@user.Id,'@user.LoginUserId');" style="color:green;">Reactivate</a>
+                            }
+                                                                                                                                    
+                        </td>
+                    </tr>
+                } 
+
+            </table>
+        </div>            
+    </div>
+</div>

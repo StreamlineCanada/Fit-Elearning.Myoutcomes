@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Create User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-2 col-md-2 col-xs-4 col-sm-4">
+        <img src="../../Images/icons/training_room_icon_29.jpg" class="lesson_icon">
+        <a href='ManageUsers' style="color:red">Back to Home</a>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-xs-8 col-sm-8 page-header">
+
+        <h1>Create User</h1>
+        <form name="CreateUserForm">            
+            <div class="form">
+                <div style="clear:both;">
+                    <div class="form_cell" id="profileMsg"></div>
+                </div>
+                <div class="form_row">
+                    <div class="form_cell">Login User ID : </div>
+                    <div class="form_cell">
+                        <input type="text" id="loginuserid" class="user_form_input" />
+                    </div>
+                </div>
+                <div class="form_row">
+                    <div class="form_cell">Name : </div>
+                    <div class="form_cell">
+                        <input type="text" id="name" class="user_form_input" />
+                    </div>
+                </div>
+                <div class="form_row">
+                    <div class="form_cell">Email : </div>
+                    <div class="form_cell">
+                        <input type="text" id="email" class="user_form_input" />
+                    </div>
+                </div>
+                <div class="form_row">
+                    <div class="form_cell">Company Name : </div>
+                    <div class="form_cell">
+                        <input type="text" id="companyname" class="user_form_input" />
+                    </div>
+                </div>
+                <div class="form_row">
+                    <div class="form_cell">FIT Number : </div>
+                    <div class="form_cell">
+                        <input type="text" id="fitnumber" class="user_form_input" />
+                    </div>
+                </div>
+                <div class="form_row">
+                    <div class="form_cell">Basic Module : </div>
+                    <div class="form_cell">
+                        <input type="checkbox" id="basicmodule" class="user_form_input" />
+                    </div>
+                </div>   
+                <div class="form_row">
+                    <div class="form_cell">Advanced Module : </div>
+                    <div class="form_cell">
+                        <input type="checkbox" id="advancedmodule" class="user_form_input" />
+                    </div>
+                </div>               
+                <div class="form_row">
+                    <div class="form_cell"> </div>
+                    <div class="form_cell">
+                        <input type="button" name="goBtn" onclick="FitElearn.Utilities.createUser();" value="Create User" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

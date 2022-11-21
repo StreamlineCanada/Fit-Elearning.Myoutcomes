@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MyOutcomes - Feedback Informed Treatment</title>
+    <meta name="description" content="{article_meta_description}">
+    <meta name="keywords" content="{article_meta_keywords}">
+    <meta name="google-site-verification" content="QuHN5DaKV4dReupSuaMLH8BxFjGSazixlbjKYv4cGk4" />
+
+    <link rel="stylesheet" href="~/Scripts/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Scripts/css/jquery-ui.css" />
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/FitElearn")
+
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript" src="/Scripts/jquery.printElement.min.js"></script>
+    <script>
+
+        function show_icce_menu() {
+
+            $("#icce_menu").toggle();
+        }
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53592313-12"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-53592313-12');
+    </script>
+
+
+    @{
+
+        var ui = Fit_Elearning.MyOutcomes.Helper.UtilitiesHelper.GetUserInfo(Request.Cookies["ExtServerId"].Value);
+        string displayName = ui.userId;
+        bool isAdmin = Fit_Elearning.MyOutcomes.Helper.UtilitiesHelper.GetIsAdmin();
+
+    }
+    <link href="../../Content/ePlatform_style.css" type="text/css" rel="stylesheet">
+</head>
+
+    <body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-6 col-xs-12 col-sm-12">
+                <div class="logo"><img src="../../Images/FIT-logo.png" /></div>
+            </div>
+        </div>
+
+            <nav class="navbar navbar-default">
+
+                    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="Index">Your Dashboard</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <li><a href="training_room">Training Room <span class="sr-only">(current)</span></a></li>
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" onclick="show_icce_menu();">ICCE Manuals <span class="caret"></span></a>
+                <ul id="icce_menu" style="display:none;">
+                    <li><a href="/Content/docs/Manual_1.pdf#page=3" target="_blank">1 -  What Works in Treatment: A Primer</a></li>
+                    <li><a href="/Content/docs/Manual_2.pdf#page=3" target="_blank">2 -  Feedback-Informed Treatment: The Basics</a></li>
+                    <li><a href="https://scott-d-miller-ph-d.myshopify.com/collections/fit-manuals" target="_blank">3 - Feedback-Informed Supervision</a></li>
+                    <li><a href="https://scott-d-miller-ph-d.myshopify.com/collections/fit-manuals" target="_blank">4 - Documenting Change: A Primer on Measurement, Analysis and Reporting</a></li>
+                    <li><a href="https://scott-d-miller-ph-d.myshopify.com/collections/fit-manuals" target="_blank">5 - Feedback-Informed Treatment: Advanced Applications</a></li>
+                    <li><a href="https://scott-d-miller-ph-d.myshopify.com/collections/fit-manuals" target="_blank">6 - Implementing Feedback-Informed Work in Agencies and Systems of Care</a></li>
+                </ul>
+            </li>
+            <li class="dropdown" style="display:none;">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Events <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="https://www.eventbrite.ie/e/fit-implementation-intensive-training-2015-tickets-13008971183" target="_blank">FIT Implementation Intensive Training 2015.</a></li>
+                    <li><a href="https://www.eventbrite.ie/e/fit-professional-development-intensive-tickets-14207409745" target="_blank">FIT Professional Development Intensive.</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Blogs <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="https://www.myoutcomes.com/blog-feed" target="_blank">MyOutcomes Blog</a></li>
+                    <li><a href="http://www.scottdmiller.com/blog/" target="_blank">Top Performance Blog</a></li>
+                </ul>
+            </li>
+            <li><a href="About">About</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right pull-right">
+            <li>
+                <h5 class="small">
+
+                    @displayName logged in @if (Request.Cookies["ExtServerId"].Value == Fit_Elearning.MyOutcomes.Domain.Helpers.ConstantVars.USERSTATUS_ORIGN_LOCAL.ToString())
+                    {<span>&nbsp; | &nbsp;<a href='LogOff'><small>Log out</small></a> </span>} &nbsp; | &nbsp;<a href="ProfileEdit" title="Edit your Profile / Change your password"><small>Edit Profile</small></a> &nbsp; | &nbsp;<a href="Contact"><small>Tech Support </small>&nbsp; <img src="../../Images/hammerguy2.png" height="32" /></a>
+                    @if (isAdmin)
+                    {<span>&nbsp; | &nbsp;<a href='ManageUsers'><small>Manage Users</small></a> </span>}
+                </h5>
+            </li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
+    </nav>
+    </div>
+    <div class="tabmenu"></div>
+
+    <!--render body---->
+
+    <div class="container">
+
+        @RenderBody()
+
+    </div>
+
+
+
+    <div id="footer">
+
+    </div>
+
+    <div id="basicDialog" title="Purchase access to Lessons 1 - 12">
+        <p>Click to <a href="https://www.myoutcomes.com/fit-elearning" target="_blank">purchase access to lessons 1 - 12</a>.</p>
+    </div>
+    <div id="advancedDialog" title="Purchase access to FIT Deliberate Practice" style="display:none;">
+        <p>Click to <a href="https://www.myoutcomes.com/fit-deliberate-practice-e-learning/" target="_blank">purchase access to FIT Deliberate Practice (lessons 13 - 14)</a>.</p>
+    </div>
+
+    <script>
+
+        $("#basicDialog").dialog({ autoOpen: false, width: 500 });
+        $('.basicPrompt').click(function () {
+            $('#basicDialog').dialog('open');
+        });
+
+        $("#advancedDialog").dialog({ autoOpen: false, width: 500 });
+        $('.advancedPrompt').click(function () {
+            $('#advancedDialog').dialog('open');
+        });
+    </script>
+
+
+    </body>
+</html>

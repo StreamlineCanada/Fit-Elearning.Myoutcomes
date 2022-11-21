@@ -1,0 +1,66 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Fit_Elearning.MyOutcomes.Domain.Concrete
+@using Fit_Elearning.MyOutcomes.Models
+@using Fit_Elearning.MyOutcomes.Domain.Helpers
+@model Fit_Elearning.MyOutcomes.Models.LessonFlow
+
+
+<div class="row">
+    <div class="col-lg-2 col-md-2 col-xs-4 col-sm-4">
+        <img src="../../Images/icons/@Model.lesson.lessonImageFile" a class="lesson_icon">
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-xs-8 col-sm-8 page-header">
+        <h1>Lesson @Model.lesson.lessonSortOrderNumber</h1>
+        <h2>@Model.lesson.lessonName Score</h2>
+        <hr />
+
+        @using (Html.BeginForm("", "", FormMethod.Post, new { id = "completeForm" }))
+        {
+            <input type="hidden" id="userId" value="@Model.userId" />
+            <input type="hidden" id="moduleId" value="@Model.moduleId" />
+            <input type="hidden" id="lessonId" value="@Model.lesson.lessonId" />
+            <p>&nbsp;</p>
+            <p>Your score for Lesson @Model.lesson.lessonSortOrderNumber is @Model.lesson.lessonQuizScore%</p>
+            <p>&nbsp;</p>
+
+            if (Model.lesson.lessonQuizPass)
+            {
+                if (Model.lesson.lessonSortOrderNumber == 12)
+                {
+                    <p><strong>Congratulations! You have completed the course for lessons 1 - 12.</strong><br />Click the image below to receive your certificate.<br /><br /></p>
+                    <p><a href="Request_Certificate" target="_blank"><img src="~/Images/CERTIFICATE.jpg" border="0" alt="Click to receive your certificate of course completion" title="Click to receive your certificate of course completion"></a></p>
+                    <p><br /><a href="Progress_Report">View your Progress Report</a></p>
+                }
+                else if (Model.lesson.lessonSortOrderNumber == 14)
+                {
+                    <p><strong>Congratulations! You have completed the course for lessons 13 and 14.</strong><br />Click the image below to receive your certificate.<br /><br /></p>
+                    <p><a href="Request_Certificate_Advanced" target="_blank"> <img src="~/Images/CERTIFICATE.jpg" border="0" alt="Click to receive your certificate of course completion" title="Click to receive your certificate of course completion"></a></p>
+                    <p><br /><a href="Progress_Report">View your Progress Report</a></p>
+                }
+                
+                else
+                {
+                    <p>@Html.ActionLink("Congratulations, Continue on your FIT Path to Excellence", "Index", "Home")  </p>
+                }
+            }
+            else
+            {
+                <p>@Html.ActionLink("Retake the lesson to improve your score", "Training_Room", "Home/Index")  </p>
+            }
+
+
+            if (Model.lesson.lessonContent != null)
+            {
+                <div>@Html.Raw(Model.lesson.lessonContent)</div>
+            }
+
+            if (!Model.hideCompleteNextButton)
+            {
+                <div style="padding-top:20px;" id="nextBtn"><a href="/Home/Index"><img alt="next" title="Next" src="../../Images/btn_next.jpg" border="0" /></a></div>
+            }
+        }
+    </div>
+</div>
